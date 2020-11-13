@@ -11,7 +11,7 @@ if (!process.env.SERVER_SECRET) {
   throw new Error("SERVER_SECRET is not set.");
 }
 
-const uri = process.env.MONGODB_URI || "mongodb://localhost/temp";
+const uri = process.env.MONGODB_URI || "mongodb://localhost/campaignpnannerDB";
 mongoose.connect(uri, { useNewUrlParser: true });
 
 const app = express();
