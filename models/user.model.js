@@ -1,9 +1,17 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const validate = require("validate.js");
 
 const SALT_ROUNDS = 10;
 
+
 const schema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+
+  },
   username: {
     type: String,
     minlength: 6,
@@ -15,6 +23,20 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String, 
+    required: true
+  },
+  teams: {
+    type: Array,
+  }, 
+  characters: {
+    type: Array
+  }
 
   // add additional user fields as needed
 });
