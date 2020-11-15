@@ -101,7 +101,7 @@ export default class Calendar extends React.Component {
   }
 
   handleEventClick = (clickInfo) => {
-    if ((`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+    if (  (`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
       clickInfo.event.remove()
     }
   }
