@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const validate = require("validate.js");
+//const validate = require("validate.js");
 
 const SALT_ROUNDS = 10;
 
