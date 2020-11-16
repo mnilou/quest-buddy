@@ -13,6 +13,9 @@ module.exports = function (app) {
     db.User.create({
       email: req.body.email,
       password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      username: req.body.username,
     })
       .then(() => {
         res.redirect(307, '/api/login');
