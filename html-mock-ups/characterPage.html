@@ -7,6 +7,93 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Document</title>
+    <style>
+        .number-input input[type="number"] {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        .number-input input[type=number]::-webkit-inner-spin-button,
+        .number-input input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .number-input {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .number-input button {
+            -webkit-appearance: none;
+            background-color: transparent;
+            border: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 0;
+            position: relative;
+        }
+
+        .number-input button:before,
+        .number-input button:after {
+            display: inline-block;
+            position: absolute;
+            content: '';
+            height: 2px;
+            transform: translate(-50%, -50%);
+        }
+
+        .number-input button.plus:after {
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        .number-input input[type=number] {
+            text-align: center;
+        }
+
+        .number-input.number-input {
+            border: 1px solid #ced4da;
+            width: 10rem;
+            border-radius: .25rem;
+        }
+
+        .number-input.number-input button {
+            width: 2.6rem;
+            height: .7rem;
+        }
+
+        .number-input.number-input button.minus {
+            padding-left: 10px;
+        }
+
+        .number-input.number-input button:before,
+        .number-input.number-input button:after {
+            width: .7rem;
+            background-color: #495057;
+        }
+
+        .number-input.number-input input[type=number] {
+            max-width: 4rem;
+            padding: .5rem;
+            border: 1px solid #ced4da;
+            border-width: 0 1px;
+            font-size: 1rem;
+            height: 2rem;
+            color: #495057;
+        }
+
+        @media not all and (min-resolution:.001dpcm) {
+            @supports (-webkit-appearance: none) and (stroke-color:transparent) {
+
+                .number-input.def-number-input.safari_only button:before,
+                .number-input.def-number-input.safari_only button:after {
+                    margin-top: -.3rem;
+                }
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -37,15 +124,71 @@
                         <p class="mt-2"></p>
                         <h5>Race: High Elf</h5>
                         <h5>Class: Druid</h5>
-                        <h5>Level: <input type="number" size="1" maxlength="4"></input></h5>
+                        <h5>Level:
+                            <div class="def-number-input number-input safari_only">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"></button>
+                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus"></button>
+                            </div>
+                        </h5>
                         <br>
                         <h5>Stats</h5>
-                        <h6>Strength:     <input type="number" size="1"></input></h6>
-                        <h6>Dexterity:    <input type="number" size="1"></input></h6>
-                        <h6>Constitution: <input type="number" size="1"></input></h6>
-                        <h6>Intelligence: <input type="number" size="1"></input></h6>
-                        <h6>Widsom:       <input type="number" size="1"></input></h6>
-                        <h6>Charisma:     <input type="number" size="1"></input></h6>
+                        <h6>Strength:
+                            <div class="def-number-input number-input safari_only">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"></button>
+                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus"></button>
+                            </div>
+                        </h6>
+                        <h6>Dexterity:
+                            <div class="def-number-input number-input safari_only">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"></button>
+                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus"></button>
+                            </div>
+                        </h6>
+                        <h6>Constitution:
+                            <div class="def-number-input number-input safari_only">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"></button>
+                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus"></button>
+                            </div>
+                        </h6>
+                        <h6>Intelligence: 
+                            <div class="def-number-input number-input safari_only">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"></button>
+                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus"></button>
+                            </div>
+                        </h6>
+                        <h6>Widsom: 
+                            <div class="def-number-input number-input safari_only">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"></button>
+                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus"></button>
+                            </div>
+                        </h6>
+                        <h6>Charisma: 
+                            <div class="def-number-input number-input safari_only">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"></button>
+                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus"></button>
+                            </div>
+                        </h6>
                     </div>
                     <div class="col-md-6">
 
@@ -71,7 +214,12 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Acid Arrow</h5>
-                                        <p class="card-text">A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn.
+                                        <p class="card-text">A shimmering green arrow streaks toward a target within
+                                            range and bursts in a spray of acid. Make a ranged spell attack against the
+                                            target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid
+                                            damage at the end of its next turn. On a miss, the arrow splashes the target
+                                            with acid for half as much of the initial damage and no damage at the end of
+                                            its next turn.
                                         </p>
                                         <p class="card-text">Evocation
                                         </p>
@@ -82,9 +230,17 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">Produce Flame</h5>
-                                        <p class="card-text">"A flickering flame appears in your hand. The flame remains there for the duration and harms neither you nor your equipment. The flame sheds bright light in a 10-foot radius and dim light for an additional 10 feet. The spell ends if you dismiss it as an action or if you cast it again.",
-                                            "You can also attack with the flame, although doing so ends the spell. When you cast this spell, or as an action on a later turn, you can hurl the flame at a creature within 30 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 fire damage.",
-                                            "This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8)."
+                                        <p class="card-text">"A flickering flame appears in your hand. The flame remains
+                                            there for the duration and harms neither you nor your equipment. The flame
+                                            sheds bright light in a 10-foot radius and dim light for an additional 10
+                                            feet. The spell ends if you dismiss it as an action or if you cast it
+                                            again.",
+                                            "You can also attack with the flame, although doing so ends the spell. When
+                                            you cast this spell, or as an action on a later turn, you can hurl the flame
+                                            at a creature within 30 feet of you. Make a ranged spell attack. On a hit,
+                                            the target takes 1d8 fire damage.",
+                                            "This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th
+                                            level (3d8), and 17th level (4d8)."
                                         </p>
                                         <p class="card-text">Conjuration
                                         </p>
@@ -100,7 +256,9 @@
         </div>
     </main>
 
+    <script>
 
+    </script>
 </body>
 
 </html>
