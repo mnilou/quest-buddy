@@ -30,8 +30,14 @@ const login = async (req, res) => {
 };
 
 const signup = (req, res) => {
-  const { username, password } = req.body;
-  const user = new db.User({ username, password });
+  const user = new db.User(
+    {
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      username: req.body.username,
+    });
   return user
     .save()
     .then(() => {
