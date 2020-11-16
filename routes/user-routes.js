@@ -1,9 +1,9 @@
 // Requiring our models and passport as we've configured it
 const db = require('../models');
-const passport = require('../config/passport');
+const exjwt = require("express-jwt");
 
 module.exports = function (app) {
-  app.post('/api/login', passport.authenticate('local'), (req, res) => {
+  app.post('/api/login', exjwt.authenticate('local'), (req, res) => {
     res.json({
       email: req.user.email,
       id: req.user.id,
