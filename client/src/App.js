@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import Authentication from "./pages/Authentication";
 import UserPage from "./pages/UserPage";
@@ -34,17 +34,22 @@ function App() {
 
 
     // </ProvideAuth>
+    <ProvideAuth>
     <Router>
       <Navbar />
       <Switch>
         <Route exact path="/">
           <Authentication />
         </Route>
+        <Route path="/login">
+          <Redirect to="/"/>
+        </Route>
         <ProtectedRoute path="/user">
           <UserPage />
         </ProtectedRoute>
       </Switch>
     </Router>
+    </ProvideAuth>
   );
 }
 

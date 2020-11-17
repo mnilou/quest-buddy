@@ -48,9 +48,9 @@ const login = ({ username, password }) => {
     });
 };
 
-const signup = ({ username, password }) => {
+const signup = ({ username, password, firstName, lastName, email }) => {
   return axios
-    .post("/api/auth/signup", { username, password })
+    .post("/api/auth/signup", { username, password, firstName, lastName, email })
     .then((response) => {
       const { token } = response.data;
       saveToken(token);
