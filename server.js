@@ -36,6 +36,7 @@ app.get("/api/protected", hasValidToken, (req, res) => {
 });
 
 app.use(handleErrors);
+app.use(require("./routes/api"));
 
 app.get("*", (req, res) =>
   res.sendFile(path.resolve(__dirname, "client/build/index.html"))
