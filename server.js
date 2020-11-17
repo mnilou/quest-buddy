@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const authController = require("./controllers/auth.controller");
 const { handleErrors } = require("./middleware/error.middleware");
 const { hasValidToken } = require("./middleware/auth.middleware");
+const userRoutes = require("./routes/user-routes");
 
 if (!process.env.SERVER_SECRET) {
   // SERVER_SECRET env var is required for auth
