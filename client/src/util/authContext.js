@@ -4,9 +4,15 @@ import * as AuthService from "./auth";
 const AuthContext = createContext({
   user: null,
   isLoggedIn: false,
-  login: () => {},
-  signup: () => {},
-  logout: () => {},
+  login: () => {
+    throw new Error("no auth provider found")
+  },
+  signup: () => {
+    throw new Error("no auth provider found")
+  },
+  logout: () => {
+    throw new Error("no auth provider found")
+  },
 });
 
 const useAuth = () => useContext(AuthContext);
@@ -23,9 +29,9 @@ const ProvideAuth = ({ children }) => {
     );
   };
 
-  const signup = ({ username, password }) => {
-    return AuthService.signup({ username, password }).then((user) =>
-      setUser(user)
+  const signup = ({ username, password, firstName, lastName, email }) => {
+    return AuthService.signup({ username, password, firstName, lastName, email }).then((user) =>{
+      setUser(user)}
     );
   };
 
