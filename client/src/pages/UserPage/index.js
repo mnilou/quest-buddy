@@ -3,21 +3,33 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
 
 function UserPage() {
+    const history = useHistory();
+    const { user } = useAuth();
+
+    const characterCreatorClick = (event) => {
+        event.preventDefault();
+        history.push("/charactercreator");
+    };
+
+    const teamCreatorClick = (event) => {
+        event.preventDefault();
+        history.push("/teamcreator");
+    };
 
     return (
         <main className="container">
-        <h3 className="mt-3 mb-4 text-center">Welcome home, User</h3>
+        <h3 className="mt-3 mb-4 text-center">Welcome home, <span style={{color: "red"}}>{user.username}</span></h3>
         <div className="row">
             <div className="col-md-5 mt-2 componentLeft border">
                 <div className="row justify-content-center">
                     <h4 className="my-3">My Characters</h4>
                 </div>
                 <div className="row">
-                    <button type="button" className="btn btn-outline-danger btn-block mx-3 mt-3 mb-5">Create a New Character</button>
+                    <button type="button" className="btn btn-outline-danger btn-block mx-3 mt-3 mb-5" onClick={characterCreatorClick}>Create a New Character</button>
                 </div>
                 <div className="row justify-content-center border">
                     <div className="col overflow-auto" style={{height: "25em"}}>
-                        <div>
+                        <div className="mt-2">
                             <p>
                             <div className="card">
                                 <div className="card-body">
@@ -67,11 +79,11 @@ function UserPage() {
                     <button type="button" className="btn btn-outline-info btn-block mx-3 mt-3 mb-1">Join an Existing Team</button>
                 </div>
                 <div className="row">
-                    <button type="button" className="btn btn-outline-info btn-block mx-3 mb-2">Make a New Team</button>
+                    <button type="button" className="btn btn-outline-info btn-block mx-3 mb-2" onClick={teamCreatorClick}>Make a New Team</button>
                 </div>
                 <div className="row justify-content-center border">
                     <div className="col overflow-auto" style={{height: "25em"}}>
-                        <div>
+                        <div className="mt-2">
                             <p>
                             <div className="card">
                                 <div className="card-body">

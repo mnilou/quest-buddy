@@ -1,8 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useAuth } from "../../util/authContext";
 
 function Navbar() {
     const { isLoggedIn, logout } = useAuth();
+    const history = useHistory();
+
+    const goBack = (event) => {
+        event.preventDefault();
+        history.goBack();
+      };
 
     return (
 
@@ -14,22 +20,11 @@ function Navbar() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
+                    <li className="nav-item active mr-2">
+                        {isLoggedIn && <button className="btn btn-sm btn-outline-secondary" onClick={logout}>Logout</button>}
+                    </li>
                     <li className="nav-item active">
-                        {isLoggedIn && (
-                            <NavLink
-                                className="nav-link"
-                                to="/protected/example"
-                                activeClassName="nav-link-active"
-                            >
-                                Protected
-                            </NavLink>
-                        )}
-                    </li>
-                    <li>
-                        {isLoggedIn && <button onClick={logout}>Logout</button>}
-                    </li>
-                    <li className="mt-1 ml-1">
-                        <button className="btn btn-sm btn-outline-secondary" type="button">BACK</button>
+                        {isLoggedIn && <button className="btn btn-sm btn-outline-danger" onClick={goBack}>BACK</button>}
                     </li>
                 </ul>
             </div>
