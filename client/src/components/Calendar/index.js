@@ -3,13 +3,16 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import {INITIAL_EVENTS, createEventId} from '../util/event-utils';
-import './style.css';
+import {INITIAL_EVENTS, createEventId} from '../../util/event-utils';
+import './calendar.css';
 
 export default class Calendar extends React.Component {
   state = {
     weekendsVisible: true,
-    currentEvents: [],
+    events: [
+    {title: "event 1",
+    date: "2020-11-20",}
+    ],
   };
 
   render() {
