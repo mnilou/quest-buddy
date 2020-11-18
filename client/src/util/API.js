@@ -11,8 +11,16 @@ const createTeam = (team) => {
         url: "/api/team", 
         data: team
     });
-
 }
-const API = { getProtectedExample, getPublicExample, createTeam };
+
+const createSession = (session) => {
+    return axios({
+        method: "post",
+        url: "/api/session", 
+        data: session
+    });
+}
+
+const API = { getProtectedExample, getPublicExample, createTeam, createSession };
 
 export default API;

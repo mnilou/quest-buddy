@@ -25,8 +25,11 @@ function TeamCreator (){
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        API.createTeam(formState);
-        history.push("/user");
+        API.createTeam(formState).then(res=>{
+            console.log("Team created!");
+            history.push("/user");
+        });
+        
     };
 
 
