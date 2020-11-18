@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
     },
     time: {
         type: Date,
-        required: true        
+        required: true       
     }
   });
 
