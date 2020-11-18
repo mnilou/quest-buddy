@@ -153,11 +153,9 @@ function Authentication() {
                                     placeholder="abc123!@#" />
 
                                 <button className="btn btn-info my-4 btn-block" type="submit">Sign up</button>
-                                <p>By clicking
-                                <em>Sign up</em> you agree to our
-                                <a
-                                        href="/"
-                                        target="_blank">terms of service</a></p>
+                                <p>
+                                    By clicking 'Sign up' you agree to our <a href="/" target="_blank"> terms of service</a>
+                                </p>
                             </form>
                         </div>
                     </div>
