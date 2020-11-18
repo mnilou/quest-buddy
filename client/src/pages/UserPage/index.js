@@ -1,6 +1,7 @@
 import {React, useHistory} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
+import Calendar from "../../components/Calendar";
 
 function UserPage() {
     const history = useHistory();
@@ -29,7 +30,8 @@ function UserPage() {
                 </div>
                 <div className="row justify-content-center border">
                     <div className="col overflow-auto" style={{height: "25em"}}>
-                        <div className="mt-2">
+                        < Calendar />
+                        {/* <div className="mt-2">
                             <p>
                             <div className="card">
                                 <div className="card-body">
@@ -66,7 +68,7 @@ function UserPage() {
                                     </div>
                                 </div>
                             </p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
