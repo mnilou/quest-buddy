@@ -18,7 +18,7 @@ const schema = new mongoose.Schema({
     type: Array
   },
   description: {
-      type: Text
+      type: String
   },
   currentHP: {
       type: Number

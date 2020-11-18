@@ -1,35 +1,54 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import {React, useState} from "react";
+import {useHistory} from "react-router-dom";
+import API from "../../util/API"
 import { useAuth } from "../../util/authContext";
 
-function TeamCreator() {
-    const { logout, user } = useAuth();
-    const [data, setData] = useState(null);
-    const history = useHistory();
 
+function TeamCreator (){
+    
+
+    const {user, logout} = useAuth();
+    const [data, setData] = useState(null);
+    const [formState, setFormState] = useState({
+                                            name: "", 
+                                            manager: "",
+                                            members: [],
+                                        });
+    const history = useHistory();
+    
+    
+
+    const handleInputChange = (event) => {
+        setFormState({name: event.target.value, manager: user.username, members: [user.username], campaigns: []});
+        console.log(formState);
+    }
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
+        API.createTeam(formState);
         history.push("/user");
     };
 
 
     return (
-        <main class="container">
-            <h3 class="mt-3 mb-4 text-center">Create a New Team</h3>
-            <div class="row">
-                <div class="col">
+        <main className="container">
+            <h3 className="mt-3 mb-4 text-center">Create a New Team</h3>
+            <div className="row">
+                <div className="col">
                     <form onSubmit={handleOnSubmit}>
-                        <div class="form-group">
-                            <label for="teamName">Team Name</label>
-                            <input type="text" class="form-control" id="teamName" aria-describedby="teamName" />
+                        <div className="form-group">
+                            <label htmlFor="teamName">Team Name</label>
+                            <input type="text" className="form-control" id="teamName" aria-describedby="teamName" onChange={handleInputChange}/>
                         </div>
-                        <button type="submit" class="btn btn-secondary">Create!</button>
+                        <button type="submit" className="btn btn-secondary">Create!</button>
                     </form>
                 </div>
             </div>
         </main>
     );
-}
+};
+
+
+
 
 export default TeamCreator;
