@@ -3,7 +3,9 @@ import "./App.css";
 import Authentication from "./pages/Authentication";
 import UserPage from "./pages/UserPage";
 import CharacterCreator from "./pages/CharacterCreator";
+import CharacterPage from "./pages/CharacterPage";
 import TeamCreator from "./pages/TeamCreator";
+import TeamPage from "./pages/TeamPage";
 import Navbar from "./components/Navbar";
 import { ProvideAuth } from "./util/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -28,6 +30,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/teamcreator">
           <TeamCreator />
+        </ProtectedRoute>
+        <ProtectedRoute path="/team">
+          <TeamPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/character">
+          <CharacterPage />
         </ProtectedRoute>
       </Switch>
     </Router>
