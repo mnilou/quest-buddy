@@ -1,31 +1,25 @@
 import { React, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
-
 function UserPage() {
     const history = useHistory();
     const { user } = useAuth();
-
     const characterCreatorClick = (event) => {
         event.preventDefault();
         history.push("/charactercreator");
     };
-
     const teamCreatorClick = (event) => {
         event.preventDefault();
         history.push("/teamcreator");
     };
-
     const teamPageClick = (event) => {
         event.preventDefault();
         history.push("/team");
     };
-
     const characterPageClick = (event) => {
         event.preventDefault();
         history.push("/character");
     };
-
     return (
         <main className="container">
             <h3 className="mt-3 mb-4 text-center">Welcome home, <span style={{ color: "red" }}>{user.username}</span></h3>
@@ -108,7 +102,6 @@ function UserPage() {
                                             className="btn btn-info">Go to Team</button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -117,5 +110,4 @@ function UserPage() {
         </main>
     );
 }
-
 export default UserPage;
