@@ -17,7 +17,11 @@ app.post("/api/campaign", (req, res) => {
 });
 
 app.post("/api/session", (req, res) => {
-  console.log("session created");
+    db.Session.create(req.body).then(()=>{
+        res.json(req.body)
+    }).catch(err => {
+        console.log(err);
+    })
 });
 
 app.put("/api/character", (req, res) => {

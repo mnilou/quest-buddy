@@ -86,7 +86,7 @@ function UserPage() {
                 <div className="row justify-content-center border">
                     <div className="col overflow-auto" style={{height: "25em"}}>
                         <div className="mt-2">
-                            <p>
+                           
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">Team Sparkle Motion</h5>
@@ -97,8 +97,8 @@ function UserPage() {
                                     className="btn btn-info">Go to Team</a>
                                 </div>
                             </div>
-                            </p>
-                            <p>
+                           
+                            
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">Team Adventure Zone</h5>
@@ -109,7 +109,7 @@ function UserPage() {
                                     className="btn btn-info">Go to Team</a>
                                 </div>
                             </div>
-                            </p>
+                            
 
                         </div>
                     </div>
