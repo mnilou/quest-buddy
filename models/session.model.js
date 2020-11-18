@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-    campaign: {
-        type: String,
-        required: true
-    },
-    team: {
-        type: Array,
-        required: true
-    },
+    // campaign: {
+    //     type: String,
+    //     required: true
+    // },
+    // team: {
+    //     type: Array,
+    //     required: true
+    // },
     time: {
-        type: Date,
+        type: Object,
         required: true       
     }
   });

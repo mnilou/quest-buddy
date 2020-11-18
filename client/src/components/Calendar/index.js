@@ -4,15 +4,17 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import {INITIAL_EVENTS, createEventId} from '../../util/event-utils';
+import API from "../../util/API"
 import './calendar.css';
 
 export default class Calendar extends React.Component {
   state = {
     weekendsVisible: true,
-    events: [
+    currentEvents: [
     {title: "event 1",
     date: "2020-11-20",}
     ],
+    calendarPending: false
   };
 
   render() {
@@ -56,20 +58,35 @@ export default class Calendar extends React.Component {
   }
 
   handleDateSelect = (selectInfo) => {
+    if(this.state.calendarPending){
+      return false
+    }
+    this.setState({calendarPending: true})
+
     let title = prompt('Please enter a new title for your event')
+    const session = {time: selectInfo.start};
     let calendarApi = selectInfo.view.calendar
 
-    calendarApi.unselect() // clear date selection
+    API.createSession(session).then(() => {
+      console.log("Then");
+      calendarApi.unselect() // clear date selection
 
-    if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      })
-    }
+      if (title) {
+        calendarApi.addEvent({
+          id: createEventId(),
+          title,
+          start: selectInfo.startStr,
+          end: selectInfo.endStr,
+          allDay: selectInfo.allDay
+        })
+      }
+      this.setState({calendarPending: false});
+    }).catch(err => {
+      console.log(err);
+      this.setState({calendarPending: false});
+    })
+
+
   }
 
   handleEventClick = (clickInfo) => {
