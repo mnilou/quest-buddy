@@ -1,4 +1,4 @@
-import {React, useHistory} from "react-router-dom";
+import { React, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
 import Calendar from "../../components/Calendar";
@@ -17,6 +17,16 @@ function UserPage() {
         history.push("/teamcreator");
     };
 
+    const teamPageClick = (event) => {
+        event.preventDefault();
+        history.push("/team");
+    };
+
+    const characterPageClick = (event) => {
+        event.preventDefault();
+        history.push("/character");
+    };
+
     return (
         <main className="container">
         <h3 className="mt-3 mb-4 text-center">Welcome home, <span style={{color: "red"}}>{user.username}</span></h3>
@@ -30,8 +40,7 @@ function UserPage() {
                 </div>
                 <div className="row justify-content-center border">
                     <div className="col overflow-auto" style={{height: "25em"}}>
-                        < Calendar />
-                        {/* <div className="mt-2">
+                        <div className="mt-2">
                             <p>
                             <div className="card">
                                 <div className="card-body">
@@ -68,7 +77,7 @@ function UserPage() {
                                     </div>
                                 </div>
                             </p>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,7 +119,6 @@ function UserPage() {
                                 </div>
                             </div>
                             </p>
-
                         </div>
                     </div>
                 </div>
