@@ -8,7 +8,16 @@ const schema = new mongoose.Schema({
     members: {
         type: Array,
         required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    campaigns: {
+        type: Array,
+        required: true
     }
+
   
     // add additional user fields as needed
   });

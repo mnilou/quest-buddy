@@ -1,12 +1,15 @@
 const express = require("express");
 const app = express();
+const db = require("../models/")
 
 app.post("/api/character", (req, res) => {
   console.log("Character created");
 });
 
 app.post("/api/team", (req, res) => {
-  console.log("team created");
+  db.Team.create(req.body).then(
+      res.json(req.body)
+  )
 });
 
 app.post("/api/campaign", (req, res) => {
