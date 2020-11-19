@@ -1,40 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+import { React, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../util/authContext";
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">CP</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="mt-1 ml-1">
-                    <button class="btn btn-sm btn-outline-secondary" type="button">BACK</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <main class="container">
-        <h3 class="mt-3 mb-4 text-center">Death, Frost, Doom</h3>
+function CampaignPage() {
+    const history = useHistory();
+    const { user } = useAuth();
+    const characterCreatorClick = (event) => {
+        event.preventDefault();
+        history.push("/charactercreator");
+    };
+    const teamCreatorClick = (event) => {
+        event.preventDefault();
+        history.push("/teamcreator");
+    };
+    const teamPageClick = (event) => {
+        event.preventDefault();
+        history.push("/team");
+    };
+    const characterPageClick = (event) => {
+        event.preventDefault();
+        history.push("/character");
+    };
+    return (
+        <main class="container">
+        <h3 class="mt-3 mb-4 text-center">Death, Frost, Doom </h3>
         <div class="row">
             <div class="col">
-                <div class="row" style="height: 15em;">
-                    <div class="col-11 overflow-auto" style="background-color: grey;"></div>
+                <div class="row" style={{height: "15em"}}>
+                    <div class="col-11 overflow-auto" style={{backgroundColor: "grey"}}></div>
                     <div class="col-1 border">
-                        <button class="btn btn-primary" style="height: 15em; display: block;">
+                        <button class="btn btn-primary" style={{height: "15em", display: "block"}}>
                             Create New Event</button>
                     </div>
                 </div>
@@ -43,7 +38,7 @@
         <div class="row">
             <div class="col">
                 <div class="row mt-2">
-                    <div class="col-md-6 overflow-auto border" style="height: 15em;">
+                    <div class="col-md-6 overflow-auto border" style={{height: "15em"}}>
                         <p class="mt-2"></p>
                         <p>Up on the mountain is a house by a cemetary, haunted by the memories of atrocities past.  The cult on the mountain is long gone,
                             yet the music of weidling death carries on the wind.
@@ -51,14 +46,16 @@
                         <p>The mountain is cold. So very cold.</p>
                         <p>And the greedy and the foolish will march bravely up the mountain for gold and glory.</p>
                     </div>
-                    <div class="col-md-6 overflow-auto border" style="height: 15em;">
+                    <div class="col-md-6 overflow-auto border" style={{height: "15em"}}>
                         <p>
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Grumble the Merciless</h5>
                                     <p class="card-text">Level: 8 / Barbarian / Dark Elf 
                                     </p>
-                                    <a href="#" class="btn btn-danger">Go to Character</a>
+                                    <button 
+                                    onClick={characterPageClick}
+                                    class="btn btn-danger">Go to Character</button>
                                 </div>
                             </div>
                             </p>
@@ -68,7 +65,9 @@
                                     <h5 class="card-title">Bumble the Less Merciless</h5>
                                     <p class="card-text">Level: 2 / Druid / Human
                                     </p>
-                                    <a href="#" class="btn btn-danger">Go to Character</a>
+                                    <button 
+                                    onClick={characterPageClick} 
+                                    class="btn btn-danger">Go to Character</button>
                                 </div>
                             </div>
                             </p>
@@ -78,7 +77,9 @@
                                         <h5 class="card-title">R'end Stormrider</h5>
                                         <p class="card-text">Level: 12 / Necromancer / High Elf
                                         </p>
-                                        <a href="#" class="btn btn-danger">Go to Character</a>
+                                        <button 
+                                        onClick={characterPageClick} 
+                                        class="btn btn-danger">Go to Character</button>
                                     </div>
                                 </div>
                             </p>
@@ -87,8 +88,6 @@
             </div>
         </div>
     </main>
-
-
-</body>
-
-</html>
+    );
+}
+export default CampaignPage;
