@@ -4,7 +4,7 @@ import { useAuth } from "../../util/authContext";
 
 function Authentication() {
 
-    const { signup, login } = useAuth();
+    const { signup, login} = useAuth();
     const history = useHistory();
     const [formState, setFormState] = useState({ usernameSignup: "", email: "", passwordSignup: "", firstName: "", lastName: "", usernameLogin: "", passwordLogin: "" });
     const [isPending, setIsPending] = useState(false);

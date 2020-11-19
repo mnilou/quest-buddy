@@ -1,9 +1,10 @@
-import {React, useHistory} from "react-router-dom";
+import {React, useHistory, useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
 import "./style.css";
 
 function CharacterPage() {
+    const {id} = useParams();
     const history = useHistory();
     const { user } = useAuth();
 
