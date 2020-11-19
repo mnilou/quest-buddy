@@ -1,10 +1,8 @@
 import React from "react";
 
 function TeamTile(props) {
-  console.log("props")
-  console.log(props)
   return (
-    <div className="card">
+    <div key={props.id} className="card">
         <div className="card-body">
             <h5 className="card-title">{props.name}</h5>
             <p className="card-text">Team Members: {props.members.length}
