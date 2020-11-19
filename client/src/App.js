@@ -4,6 +4,8 @@ import Authentication from "./pages/Authentication";
 import UserPage from "./pages/UserPage";
 import CharacterCreator from "./pages/CharacterCreator";
 import CharacterPage from "./pages/CharacterPage";
+import CampaignPage from "./pages/CampaignPage";
+import CampaignCreator from "./pages/CampaignCreator";
 import TeamCreator from "./pages/TeamCreator";
 import TeamPage from "./pages/TeamPage";
 import Navbar from "./components/Navbar";
@@ -25,17 +27,23 @@ function App() {
         <ProtectedRoute path="/user">
           <UserPage />
         </ProtectedRoute>
-        <ProtectedRoute path="/charactercreator">
+        <ProtectedRoute path="/character">
+          <CharacterPage />
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/charactercreator">
           <CharacterCreator />
         </ProtectedRoute>
-        <ProtectedRoute path="/teamcreator">
+        <ProtectedRoute exact path="/teamcreator">
           <TeamCreator />
         </ProtectedRoute>
         <ProtectedRoute path="/team">
           <TeamPage />
         </ProtectedRoute>
-        <ProtectedRoute path="/character">
-          <CharacterPage />
+        <ProtectedRoute exact path="/campaigncreator">
+          <CampaignCreator />
+        </ProtectedRoute>
+        <ProtectedRoute path="/campaign">
+          <CampaignPage />
         </ProtectedRoute>
       </Switch>
     </Router>
