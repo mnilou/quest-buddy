@@ -15,17 +15,14 @@ function TeamCreator (){
                                             members: [],
                                         });
     const history = useHistory();
-    
-    
 
     const handleInputChange = (event) => {
-        setFormState({name: event.target.value, manager: user.username, members: [user.username], campaigns: []});
-        console.log(formState);
+        setFormState({name: event.target.value, manager: user.username, members: [{username: user.username, id: user.id}], campaigns: []});
     }
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        API.createTeam(formState).then(res=>{
+        API.createTeam(user.id, formState).then(res=>{
             console.log("Team created!");
             history.push("/user");
         });
