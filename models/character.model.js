@@ -8,8 +8,8 @@ const schema = new mongoose.Schema({
   owner: {
     type: String,
   },
-  stats: {
-    type: Object
+  system: {
+    type: String
   },
   equipment: {
     type: Array
@@ -24,6 +24,9 @@ const schema = new mongoose.Schema({
       type: Number
   }, 
   maxHP: {
+      type: Number
+  },
+  level: {
       type: Number
   }
 });
