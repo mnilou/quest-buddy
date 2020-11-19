@@ -1,10 +1,18 @@
 import { React, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
+import API from "../../util/API";
+import UserTile from "../../components/UserTile";
+import TeamTile from "../../components/TeamTile";
+
 function UserPage() {
-    const {id} = useParams();
+    const { id } = useParams();
     const history = useHistory();
     const { user } = useAuth();
+
+    const [characters, setCharacters] = useState([]);
+    const [teams, setTeams] = useState([]);
+
     const characterCreatorClick = (event) => {
         event.preventDefault();
         history.push("/charactercreator");
@@ -15,12 +23,39 @@ function UserPage() {
     };
     const teamPageClick = (event) => {
         event.preventDefault();
-        history.push("/team");
+        const id = event.target.id;
+        console.log(id);
+        history.push("/team/" + id);
     };
     const characterPageClick = (event) => {
         event.preventDefault();
-        history.push("/character");
+        const id = event.target.id;
+        console.log(id);
+        history.push("/character/" + id);
     };
+
+
+    // API.getCharacters(user).then(results => {
+    //     currentUser = results;
+    //     characters = currentUser.data.characters;
+    //     console.log(characters[0]);
+    // }).catch(err => {
+    //     console.log(err);
+    // }) ;
+
+    useEffect(() => {
+        // example API call
+        API.getCharacters(user).then(results => {
+            setCharacters(results.data.characters);
+            setTeams(results.data.teams);
+        }).then(() => {
+            console.log(characters);
+            console.log(teams);
+        }).catch(err => {
+            console.log(err);
+        })
+    }, [user]);
+
     return (
         <main className="container">
             <h3 className="mt-3 mb-4 text-center">Welcome home, <span style={{ color: "red" }}>{user.username}</span></h3>
@@ -34,38 +69,17 @@ function UserPage() {
                     </div>
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
-                            <div className="mt-2">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Grumble the Merciless</h5>
-                                        <p className="card-text">Level: 8 / Barbarian / Dark Elf
-                                    </p>
-                                        <button
-                                            onClick={characterPageClick}
-                                            className="btn btn-danger">Go to Character</button>
-                                    </div>
-                                </div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Bumble the Less Merciless</h5>
-                                        <p className="card-text">Level: 2 / Druid / Human
-                                    </p>
-                                        <button
-                                            onClick={characterPageClick}
-                                            className="btn btn-danger">Go to Character</button>
-                                    </div>
-                                </div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">R'end Stormrider</h5>
-                                        <p className="card-text">Level: 12 / Necromancer / High Elf
-                                        </p>
-                                        <button
-                                            onClick={characterPageClick}
-                                            className="btn btn-danger">Go to Character</button>
-                                    </div>
-                                </div>
-                            </div>
+                        {characters.map(character => (
+                                    <UserTile
+                                        onClick={characterPageClick}
+                                        id={character._id}
+                                        key={character._id}
+                                        name={character.name}
+                                        class={character.class}
+                                        race={character.race}
+                                        level={character.level}
+                                    />
+                        ))}
                         </div>
                     </div>
                 </div>
@@ -82,28 +96,14 @@ function UserPage() {
                     </div>
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
-                            <div className="mt-2">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Team Sparkle Motion</h5>
-                                        <p className="card-text">Members: ( 4 ) / Campaigns: ( 1 )
-                                    </p>
-                                        <button
-                                            onClick={teamPageClick}
-                                            className="btn btn-info">Go to Team</button>
-                                    </div>
-                                </div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Team Adventure Zone</h5>
-                                        <p className="card-text">Members: ( 8 ) / Campaigns: ( 3 )
-                                    </p>
-                                        <button
-                                            onClick={teamPageClick}
-                                            className="btn btn-info">Go to Team</button>
-                                    </div>
-                                </div>
-                            </div>
+                        {teams.map(team => (
+                                    <TeamTile
+                                        onClick={teamPageClick}
+                                        id={team._id}
+                                        key={team._id}
+                                        name={team.name}
+                                    />
+                        ))}
                         </div>
                     </div>
                 </div>

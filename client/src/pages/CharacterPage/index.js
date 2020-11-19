@@ -1,6 +1,7 @@
 import {React, useHistory, useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
+import API from "../../util/API";
 import "./style.css";
 
 function CharacterPage() {
@@ -8,17 +9,28 @@ function CharacterPage() {
     const history = useHistory();
     const { user } = useAuth();
 
+    const [characterData, setCharacterData] = useState({});
+
+    useEffect(() => {
+        // example API call
+        API.getOneCharacter(id).then(results => {
+            setCharacterData(results.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    }, []);
+
     return (
         <main class="container">
-        <h3 class="mt-3 mb-4 text-center">R'end Stormrider</h3>
-        <h4 class="mt-3 mb-4 text-center">D&D, 5th Edition</h4>
+        <h3 class="mt-3 mb-4 text-center">{characterData.name}</h3>
+        <h4 class="mt-3 mb-4 text-center">{characterData.system}</h4>
         <div class="row">
             <div class="col">
                 <div class="row mt-2">
                     <div class="col-md-6 overflow-auto border" style={{height: "40em"}}>
                         <p class="mt-2"></p>
-                        <h5>Race: High Elf</h5>
-                        <h5>Class: Druid</h5>
+                        <h5>Race: {characterData.race}</h5>
+                        <h5>Class: {characterData.class}</h5>
                         <h5>Level:
                             <div class="def-number-input number-input safari_only">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
