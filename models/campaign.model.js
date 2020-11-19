@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
     manager: {
-        type: String,
+        type: Object,
         required: true
     }, 
     name: {

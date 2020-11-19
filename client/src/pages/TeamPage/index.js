@@ -19,12 +19,12 @@ function TeamPage() {
 
     const campaignCreatorClick = (event) => {
         event.preventDefault();
-        history.push("/campaigncreator");
+        history.push("/campaigncreator/" + id);
     };
 
     const campaignClick = (event) => {
         event.preventDefault();
-        history.push("/campaign/" + id);
+        history.push("/campaign");
     };
 
     return (
