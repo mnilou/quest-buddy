@@ -9,7 +9,7 @@ function UserTile(props) {
         </p>
             <button
                 onClick={props.onClick}
-                key={props.id}
+                id={props.id}
                 className="btn btn-danger">Go to Character</button>
         </div>
     </div>
