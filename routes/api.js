@@ -3,19 +3,30 @@ const app = express();
 const db = require("../models/")
 
 app.post("/api/character", (req, res) => {
-  db.User.findById(req.body.id).then(results => {
-      const character = req.body.character;
-      const characterArray = results.characters;
-      characterArray.push(character);
-      results.save();
-      res.json(results);
-  })
+  db.Character.create(req.body.character).then(result => {
+    const character = result;
+
+    db.User.findById(req.body.id).then(results => {
+        const characterArray = results.characters;
+        characterArray.push(character);
+        results.save();
+        res.json(results);
+    })
+  }) 
+
 });
 
 app.post("/api/team", (req, res) => {
-  db.Team.create(req.body).then(
-      res.json(req.body)
-  )
+  db.Team.create(req.body.team).then(result => {
+    const team = result;
+
+    db.User.findById(req.body.id).then(results => {
+        const teamsArray = results.teams;
+        teamsArray.push(team);
+        results.save();
+        res.json(results);
+    })
+  })
 });
 
 app.post("/api/campaign", (req, res) => {
