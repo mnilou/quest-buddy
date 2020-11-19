@@ -12,8 +12,8 @@ function CharacterCreator() {
     system: "",
     level: 0,
     hp: 0,
-    race: "",
-    class: "",
+    race: "human",
+    class: "fighter",
     description: ""
 });
 

@@ -37,6 +37,15 @@ const createSession = (session) => {
     });
 }
 
-const API = {createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession };
+
+const getCharacters = (user) => {
+    return axios.get("/api/character/" + user.id)
+}
+
+const getOneCharacter = (userId) => {
+    return axios.get("/api/character/getdata/" + userId)
+}
+
+const API = {getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter };
 
 export default API;

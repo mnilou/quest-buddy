@@ -82,8 +82,16 @@ app.delete("/api/session", (req, res) => {
     console.log("session deleted");
 });
 
-app.get("/api/character", (req, res) => {
-    console.log("Characters gotten");
+app.get("/api/character/:id", (req, res) => {
+    db.User.findById(req.params.id).then(results => {
+        res.json(results);
+    })
+});
+
+app.get("/api/character/getdata/:id", (req, res) => {
+    db.Character.findById(req.params.id).then(results => {
+        res.json(results);
+    })
 });
   
 app.get("/api/team", (req, res) => {
