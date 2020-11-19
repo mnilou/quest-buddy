@@ -12,11 +12,11 @@ const createCharacter = (id, character) => {
         data: {id: id, character: character}
     })
 }
-const createTeam = (team) => {
- return axios({
+const createTeam = (id, team) => {
+    return axios({
         method: "post",
         url: "/api/team", 
-        data: team
+        data: {id: id, team: team}
     });
 }
 
