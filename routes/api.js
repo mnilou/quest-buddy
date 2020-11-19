@@ -30,7 +30,16 @@ app.post("/api/team", (req, res) => {
 });
 
 app.post("/api/campaign", (req, res) => {
-  console.log("campaign created");
+  db.Campaign.create(req.body.campaign).then(result => {
+      const campaign = result;
+
+      db.Team.findById(req.body.id).then(results => {
+          const campaignArray = results.campaigns;
+          campaignArray.push(campaign),
+          results.save();
+          res.json(results);
+      })
+  })
 });
 
 app.post("/api/session", (req, res) => {

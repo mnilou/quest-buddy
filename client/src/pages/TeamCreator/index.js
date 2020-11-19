@@ -26,7 +26,6 @@ function TeamCreator (){
             console.log("Team created!");
             history.push("/user");
         });
-        
     };
 
 
