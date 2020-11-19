@@ -1,12 +1,12 @@
 import { React, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import API from "../../util/API"
 import { useAuth } from "../../util/authContext";
 
 
 function CampaignCreator() {
 
-
+    const { id } = useParams();
     const { user, logout } = useAuth();
     const [data, setData] = useState(null);
     const [formState, setFormState] = useState({
@@ -20,7 +20,7 @@ function CampaignCreator() {
     });
     const history = useHistory();
 
-
+console.log(id);
 
     const handleInputChange = (event) => {
         switch (event.target.id) {
@@ -41,8 +41,10 @@ function CampaignCreator() {
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        API.createCampaign("id", formState);
-        history.push("/team");
+        API.createCampaign(id, formState).then(()=> {
+            history.push("/team/" + id);
+        });
+        
     };
 
 
