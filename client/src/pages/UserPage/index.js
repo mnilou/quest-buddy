@@ -48,7 +48,8 @@ function UserPage() {
         API.getCharacters(user).then(results => {
             setCharacters(results.data.characters);
             setTeams(results.data.teams);
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err);
         })
     }, [user]);
@@ -96,9 +97,9 @@ function UserPage() {
                         {teams.map(team => (
                                     <TeamTile
                                         onClick={teamPageClick}
-                                        key={team._id}
                                         members = {team.members}
                                         id={team._id}
+                                        key={team._id}
                                         name={team.name}
                                     />
                         ))}
