@@ -16,6 +16,13 @@ const isLoggedIn = () => {
   }
 };
 
+const user = () => {
+  if(isLoggedIn()) {
+    return decodeToken();
+  } 
+  return null
+}
+
 // adds auth headers for same origin requests if user is logged in
 const authRequestMiddleware = (config) => {
   // if user is logged in and request is same origin include token in header
@@ -60,4 +67,4 @@ const signup = ({ username, password, firstName, lastName, email }) => {
 
 const logout = () => removeToken();
 
-export { initAuth, login, logout, isLoggedIn, signup };
+export { initAuth, login, logout, isLoggedIn, signup, user };

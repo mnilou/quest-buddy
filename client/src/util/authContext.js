@@ -17,11 +17,7 @@ const AuthContext = createContext({
 
 const useAuth = () => useContext(AuthContext);
 const ProvideAuth = ({ children }) => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    AuthService.initAuth();
-  }, []);
+  const [user, setUser] = useState(AuthService.user());
 
   const login = ({ username, password }) => {
     return AuthService.login({ username, password }).then((user) =>
