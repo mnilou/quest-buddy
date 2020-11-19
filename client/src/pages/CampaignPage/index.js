@@ -61,7 +61,7 @@ function CampaignPage() {
           </p>
         </div>
         <div className="col-md-6 overflow-auto border" style={{height: '15em'}}>
-          <p>
+          <div>
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">Grumble the Merciless</h5>
@@ -71,8 +71,8 @@ function CampaignPage() {
                 </button>
               </div>
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">Bumble the Less Merciless</h5>
@@ -82,8 +82,8 @@ function CampaignPage() {
                 </button>
               </div>
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">R'end Stormrider</h5>
@@ -93,7 +93,7 @@ function CampaignPage() {
                 </button>
               </div>
             </div>
-          </p>
+          </div>
         </div>
       </div>
       {/* </div>
