@@ -33,7 +33,6 @@ function CampaignCreator() {
   return (
     <main class="container">
       <h3 class="mt-3 mb-4 text-center">Create a New Campaign</h3>
-      <Calendar />
       <div class="row">
         <div class="col" onSubmit={handleOnSubmit}>
           <form>

@@ -37,6 +37,6 @@ b { /* used for event dates/times */
   }
   
   .fc { /* the calendar root */
-    max-width: 500px;
+    width: 100%;
     margin: 0 auto;
   }
