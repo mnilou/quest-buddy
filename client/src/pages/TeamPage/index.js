@@ -24,7 +24,7 @@ function TeamPage() {
 
     const campaignClick = (event) => {
         event.preventDefault();
-        history.push("/campaign");
+        history.push("/campaign/" + id);
     };
 
     return (
