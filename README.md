@@ -1,23 +1,30 @@
-# MERN JWT Boilerplate
+# Campaign Planner
 
-## About This Boilerplate
+## License
 
-This setup allows for a Node/Express/React/JWT app which can be easily deployed to Heroku.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+## Description
 
-An article on how the server is setup with JWT can be found [here](https://hptechblogs.com/using-json-web-token-for-authentication/). This has been modified to use a mongo database instead of hardcoded array of users.
+Tabletop gaming, including Dungeon and Dragons, is being rediscovered by current generations and is growing substantially.  According to journalists at sites such as the NYT, “[Dungeons and Dragons] has made a surprising return to mainstream culture,” and the maker of the game said “2018 was the fifth consecutive year of double-digit growth for D&D, and its best sales year ever.”  Needless to say, the game is exploding and so too is the number of online tools and apps to allow users to better run a campaign.  
 
-The front end has been setup to use JWT as a way of authenticating users and routes. To understand it's structure better please refer to the following article [here](https://hptechblogs.com/using-json-web-token-react/)
+However, a glaring omission in the existing toolsets is the ability to both track your characters/sessions/campaigns and to schedule meet-ups.  All too often, teams have to use a second app, such as Facebook or Zoom, to track their meetups.  And there is no single record of what happened at each session.  This app simplifies the life of every adventurer and dungeon master by allowing them to download the app, make teams, schedule meetings directly, and keep a record of all past sessions.  No longer will players have to jump between multiple apps just to play the game and know when the next session will be and where.  
 
-Please feel free to modify this code in anyway you see fit for your project. It is a boilerplate setup that tries to make sure you can get something up and running without having to worry about setting up user authentication from scratch.
-I highly suggest you read the articles before jumping in so you can have an better understanding of how everything works in the code. 
+## Screenshots
 
-Server-side article and using JWT: https://hptechblogs.com/using-json-web-token-for-authentication/
 
-Front End article on using the JWT on a react application: https://hptechblogs.com/using-json-web-token-react/
+## Table of contents
 
-## Starting the app locally
+- [Licence](#Licence)
+- [Description](#Description)
+- [Screenshots](#Screenshots)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Link](#link)
+- [Contributors](#Contributors)
+- [Technology](#Technology)
+
+## Installation
 
 Add a .env at the top level of this project.
 
@@ -41,21 +48,27 @@ npm start
 
 That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
 
-## Deployment (Heroku)
+## Usage
 
-### Create a Git Repo
+As an avid Dungeons and Dragons player who often has multiple campaigns running at once, I want to have a place to schedule and organize my games, so that I can better run Dungeons and Dragons sessions with my friends. 
 
-Once you're ready to deploy, start by making sure your project is a git repository. If so, proceed to the next section, otherwise run the following commands in your terminal:
+## Deployed Link (Heroku)
 
-```
-git init
-git add .
-git commit -m "Initial commit"
-```
+>[Campaign Planner](https://campaign-planner20.herokuapp.com/)
 
-### Deploying
+## Contributors
 
-1. Go onto your heroku account and link your repository through the UI
-2. Provision a Mongo Database (MongoDB Atlas provides a free sandbox cluster)
-3. Add `SERVER_SECRET` and `MONGODB_URI` to the Heroku config.
-4. Go back and click "Deploy"
+> Chris Cruzcosa, Joshua Bidwell and Nilou Mostofi
+
+## Technology
+
+- REACT 
+- Javascript
+- Node.js
+- Mongoose
+- Express 
+- Axios 
+- DOTENV 
+- D&De5 API
+- FullCalendar API
+
