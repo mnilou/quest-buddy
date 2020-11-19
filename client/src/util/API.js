@@ -13,7 +13,7 @@ const createCharacter = (id, character) => {
     })
 }
 const createTeam = (team) => {
- return axios({
+    return axios({
         method: "post",
         url: "/api/team", 
         data: team
