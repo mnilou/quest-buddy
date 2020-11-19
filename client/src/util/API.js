@@ -20,6 +20,15 @@ const createTeam = (id, team) => {
     });
 }
 
+const createCampaign = (id, campaign) => {
+    //ID IS TEAM ID, NOT USER ID
+    return axios({
+        method: "post",
+        url: "/api/campaign", 
+        data: {id: id, campaign: campaign}
+    });
+}
+
 const createSession = (session) => {
     return axios({
         method: "post",
@@ -28,6 +37,6 @@ const createSession = (session) => {
     });
 }
 
-const API = { getProtectedExample, getPublicExample, createCharacter, createTeam, createSession };
+const API = {createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession };
 
 export default API;
