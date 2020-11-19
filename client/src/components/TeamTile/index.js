@@ -9,7 +9,7 @@ function TeamTile(props) {
         </p>
             <button
                 onClick={props.onClick}
-                key={props.id}
+                id={props.id}
                 className="btn btn-warning">Go to Team</button>
         </div>
     </div>
