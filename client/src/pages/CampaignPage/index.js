@@ -1,9 +1,10 @@
-import {React, useHistory} from 'react-router-dom';
+import {React, useHistory, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {useAuth} from '../../util/authContext';
-import Calendar from '../../components/Calendar';
+import Calendar from "../../Calendar;"
 
 function CampaignPage() {
+  const {id} = useParams();
   const history = useHistory();
   const {user} = useAuth();
   const characterCreatorClick = (event) => {
@@ -43,7 +44,7 @@ function CampaignPage() {
           >
             Click on the date to create a new event
           </span>
-          <br/>
+          <br />
         </div>
       </div>
       <div className="row mt-2">
