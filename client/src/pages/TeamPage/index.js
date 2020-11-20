@@ -1,20 +1,51 @@
 import { React, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import API from "../../util/API";
 import { useAuth } from "../../util/authContext";
+import UserTile from "../../components/UserTile";
+import CampaignTile from "../../components/CampaignTile";
 
 function TeamPage() {
     const {id} = useParams();
     const history = useHistory();
     const { user } = useAuth();
 
+    const [team,setTeam] = useState({});
+    const [users, setUsers] = useState([]);
+    const [campaigns, setCampaigns] = useState([]);
+
+    useEffect(() => {
+        API.getOneTeam(id).then(results => {
+            setTeam(results.data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, []);
+
+    useEffect(() => {
+        API.getUsersByTeam(id).then(results => {
+            setUsers(results.data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, []);
+
+    useEffect(() => {
+        API.getCampaignsByTeam(id).then(results => {
+            console.log(results);
+            setCampaigns(results.data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, []);
+
     const userClick = (event) => {
         event.preventDefault();
-        history.push("/user");
-    };
-
-    const teamCreatorClick = (event) => {
-        event.preventDefault();
-        history.push("/teamcreator");
+        const id = event.target.id;
+        history.push("/user/" + id);
     };
 
     const campaignCreatorClick = (event) => {
@@ -24,12 +55,13 @@ function TeamPage() {
 
     const campaignClick = (event) => {
         event.preventDefault();
-        history.push("/campaign");
+        const id = event.target.id;
+        history.push("/campaign/" + id);
     };
 
     return (
         <main className="container">
-            <h3 className="mt-3 mb-4 text-center">Team Sparkle Motion</h3>
+            <h3 className="mt-3 mb-4 text-center">{"Team: " + team.name}</h3>
             <div className="row">
                 <div className="col-md-5 col-sm mt-2 componentLeft border">
                     <div className="row justify-content-center">
@@ -44,42 +76,15 @@ function TeamPage() {
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
                             <div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Chris Cruzcosa</h5>
-                                        <p className="card-text">
-                                            ccruzcosa@gmail.com
-                                        </p>
-                                        <button
-                                            onClick={userClick}
-                                            className="btn btn-success">Go to User
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Allie Cortez</h5>
-                                        <p className="card-text">
-                                            allie@gmail.com
-                                        </p>
-                                        <button
-                                            onClick={userClick}
-                                            className="btn btn-success">Go to User
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Sayeed Ghazali</h5>
-                                        <p className="card-text">
-                                            shardok@yahoo.com
-                                        </p>
-                                        <button
-                                            onClick={userClick}
-                                            className="btn btn-success">Go to User
-                                        </button>
-                                    </div>
-                                </div>
+                            {users.map( user => (
+                                    <UserTile
+                                        onClick={userClick}
+                                        id={user._id}
+                                        key={user._id}
+                                        username={user.username}
+                                        email={user.email}
+                                    />
+                        ))}
                             </div>
                         </div>
                     </div>
@@ -95,30 +100,16 @@ function TeamPage() {
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
                             <div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Into the UnderDark</h5>
-                                        <p className="card-text">
-                                            D&D Campaign / Characters: ( 4 )
-                                        </p>
-                                        <button
-                                            onClick={campaignClick}
-                                            className="btn btn-info">Go to Campaign
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Death, Frost, Doom</h5>
-                                        <p className="card-text">
-                                            D&D Campaign / Characters: ( 3 )
-                                        </p>
-                                        <button
-                                            onClick={campaignClick}
-                                            className="btn btn-info">Go to Campaign
-                                        </button>
-                                    </div>
-                                </div>
+                            {campaigns.map( campaign => (
+                                    <CampaignTile
+                                        onClick={campaignClick}
+                                        id={campaign._id}
+                                        key={campaign._id}
+                                        name={campaign.name}
+                                        system={campaign.system}
+                                        characterCount={campaign.characters.length}
+                                    />
+                        ))}
                             </div>
                         </div>
                     </div>
