@@ -157,5 +157,12 @@ app.get("/api/session", (req, res) => {
     console.log("sessions gotten");
 });
 
+app.get("/api/session/:sessionName/searchbycampaign/:campaignId", (req, res) => {
+    db.Session.findOne({ title: req.params.sessionName, campaignId: req.params.campaignId }).then(results => {
+        console.log(results);
+       res.json(results)
+    })
+});
+
 
 module.exports = app;

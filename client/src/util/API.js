@@ -66,6 +66,10 @@ const getOneCampaign = (campaignId) => {
     return axios.get("/api/campaign/getdata/" + campaignId)
 };
 
-const API = { getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter, getUsersByTeam, getOneTeam, getCampaignsByTeam, getOneCampaign  };
+const getSessionIdByCampaign = (sessionName,campaignId) => {
+    return axios.get("/api/session/" + sessionName + "/searchbycampaign/" + campaignId)
+};
+
+const API = { getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter, getUsersByTeam, getOneTeam, getCampaignsByTeam, getOneCampaign, getSessionIdByCampaign  };
 
 export default API;
