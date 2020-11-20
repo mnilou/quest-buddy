@@ -1,7 +1,7 @@
 import {React, useHistory, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {useAuth} from '../../util/authContext';
-import Calendar from "../../Calendar;"
+import Calendar from "../../components/Calendar";
 
 function CampaignPage() {
   const {id} = useParams();
