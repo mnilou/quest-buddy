@@ -93,12 +93,54 @@ app.get("/api/character/getdata/:id", (req, res) => {
         res.json(results);
     })
 });
+
+app.get("/api/team/getdata/:id", (req, res) => {
+    db.Team.findById(req.params.id).then(results => {
+        res.json(results);
+    })
+});
   
+
+app.get("/api/team/getcampaigns/:id", (req, res) => {
+    db.Team.findById(req.params.id).then(results => {
+        let campaignArray = results.campaigns;
+        let newArray = [];
+        let counter = 0;
+
+        campaignArray.forEach(element => {
+            db.Campaign.findById(element._id).then(results => {
+                newArray.push(results);
+                counter++;
+                if (counter === campaignArray.length) {
+                    return res.json(newArray)
+                }
+            })
+        });
+
 app.get("/api/team", (req, res) => {
     db.Team.find().then(results => {
         res.json(results)
     })
 });
+
+app.get("/api/team/getusers/:id", (req, res) => {
+    db.Team.findById(req.params.id).then(results => {
+        let userArray = results.members;
+        let newArray = [];
+        let counter = 0;
+
+        userArray.forEach(element => {
+            db.User.findById(element.id).then(results => {
+                newArray.push(results);
+                counter++;
+                if (counter === userArray.length) {
+                    return res.json(newArray)
+                }
+            })
+        });
+    })
+});
+
   
 app.get("/api/campaign", (req, res) => {
     console.log("campaigns gotten");
