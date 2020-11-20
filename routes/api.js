@@ -100,6 +100,7 @@ app.get("/api/team/getdata/:id", (req, res) => {
     })
 });
   
+
 app.get("/api/team/getcampaigns/:id", (req, res) => {
     db.Team.findById(req.params.id).then(results => {
         let campaignArray = results.campaigns;
@@ -115,6 +116,10 @@ app.get("/api/team/getcampaigns/:id", (req, res) => {
                 }
             })
         });
+
+app.get("/api/team", (req, res) => {
+    db.Team.find().then(results => {
+        res.json(results)
     })
 });
 
