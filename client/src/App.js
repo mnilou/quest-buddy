@@ -46,7 +46,7 @@ function App() {
         <ProtectedRoute exact path="/campaigncreator/:id">
           <CampaignCreator />
         </ProtectedRoute>
-        <ProtectedRoute exact path="/campaign/:id">
+        <ProtectedRoute exact path="/campaign/:campaignId">
           <CampaignPage />
         </ProtectedRoute>
         <ProtectedRoute exact path="/team_search">
