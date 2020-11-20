@@ -99,7 +99,6 @@ app.get("/api/team/getdata/:id", (req, res) => {
         res.json(results);
     })
 });
-  
 
 app.get("/api/team/getcampaigns/:id", (req, res) => {
     db.Team.findById(req.params.id).then(results => {
@@ -143,6 +142,11 @@ app.get("/api/team/getusers/:id", (req, res) => {
     })
 });
 
+app.get("/api/campaign/getdata/:id", (req, res) => {
+    db.Campaign.findById(req.params.id).then(results => {
+        res.json(results);
+    })
+});
   
 app.get("/api/campaign", (req, res) => {
     console.log("campaigns gotten");
