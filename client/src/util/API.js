@@ -46,6 +46,10 @@ const getOneCharacter = (userId) => {
     return axios.get("/api/character/getdata/" + userId)
 }
 
-const API = {getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter };
+const getTeams = () => {
+    return axios.get("api/team");
+}
+
+const API = {getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter };
 
 export default API;
