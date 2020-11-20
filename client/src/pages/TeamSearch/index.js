@@ -2,6 +2,7 @@ import { React, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
 import API from "../../util/API"
+import SearchResults from "../../components/SearchResults/index";
 
 function TeamSearch() {
 
@@ -11,6 +12,9 @@ function TeamSearch() {
     const [teams, setTeams] = useState([]);
     const [search, setSearch] = useState("");
 
+    let searchArray = [];
+
+
     useEffect(() => {
         API.getTeams().then(results => {
             setTeams(results.data);
@@ -19,7 +23,14 @@ function TeamSearch() {
 
     const handleInputChange = (event) => {
         setSearch(event.target.value);
-        console.log(search);
+        const lowerCaseSearch = search.toLowerCase().trim();
+        //console.log(lowerCaseSearch);
+        teams.forEach(team => {
+            if (team.name.toLowerCase().includes(lowerCaseSearch)){
+                searchArray.push(team)
+            }
+        });
+        //console.log(searchArray)
     }
 
     return (
@@ -40,7 +51,10 @@ function TeamSearch() {
                     {teams.map(team => {
                     return <tr key={team._id}>
                              <td>{team.name}</td>
-                             <td>aefuyashdfukjashdfk</td> 
+                                {team.members.map((member, index) => {
+                                    return <td key={index}>{member.username}</td> 
+                                })}
+                             
                             </tr>
                   
                     })}
