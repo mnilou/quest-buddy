@@ -1,8 +1,9 @@
-import { React, useHistory } from "react-router-dom";
+import { React, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
 
 function TeamPage() {
+    const {id} = useParams();
     const history = useHistory();
     const { user } = useAuth();
 
@@ -18,7 +19,7 @@ function TeamPage() {
 
     const campaignCreatorClick = (event) => {
         event.preventDefault();
-        history.push("/campaigncreator");
+        history.push("/campaigncreator/" + id);
     };
 
     const campaignClick = (event) => {

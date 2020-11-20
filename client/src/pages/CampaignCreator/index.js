@@ -1,6 +1,5 @@
 import {React, useState} from 'react';
-import {useHistory} from 'react-router-dom';
-import Calendar from '../../components/Calendar';
+import {useHistory, useParams} from 'react-router-dom';
 import API from '../../util/API';
 import {useAuth} from '../../util/authContext';
 
@@ -14,55 +13,85 @@ function CampaignCreator() {
   });
   const history = useHistory();
 
-  const handleInputChange = (event) => {
-    setFormState({
-      name: event.target.value,
-      manager: user.username,
-      members: [user.username],
-      campaigns: [],
+  function CampaignCreator() {
+    const {id} = useParams();
+    const {user, logout} = useAuth();
+    const [data, setData] = useState(null);
+    const [formState, setFormState] = useState({
+      name: '',
+      manager: {username: user.username, id: user.id},
+      description: '',
+      system: 'D&D 5E',
+      characters: [],
+      monsters: [],
+      sessions: [],
     });
-    console.log(formState);
-  };
+    const history = useHistory();
 
-  const handleOnSubmit = (event) => {
-    event.preventDefault();
-    API.createTeam(formState);
-    history.push('/team');
-  };
+    console.log(id);
 
-  return (
-    <main class="container">
-      <h3 class="mt-3 mb-4 text-center">Create a New Campaign</h3>
-      <div class="row">
-        <div class="col" onSubmit={handleOnSubmit}>
-          <form>
-            <div class="form-group">
-              <label for="campaignName">Campaign Name</label>
-              <input type="text" class="form-control" id="campaignName" />
-            </div>
-            <div class="form-group">
-              <label for="gameSystem">Game System</label>
-              <select class="form-control" id="gameSystem">
-                <option>D&D, 5E</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label for="description">Setting Description</label>
-              <textarea
-                type="text"
-                className="form-control"
-                id="description"
-                rows="5"
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">
-              Create!
-            </button>
-          </form>
+    const handleInputChange = (event) => {
+      switch (event.target.id) {
+        case 'campaignName':
+          setFormState({...formState, name: event.target.value});
+          console.log(formState);
+          break;
+        case 'description':
+          setFormState({...formState, description: event.target.value});
+          console.log(formState);
+          break;
+        default:
+          break;
+      }
+
+      console.log(formState);
+    };
+
+    const handleOnSubmit = (event) => {
+      event.preventDefault();
+      API.createCampaign(id, formState).then(() => {
+        history.push('/team/' + id);
+      });
+    };
+    return (
+      <main className="container">
+        <h3 className="mt-3 mb-4 text-center">Create a New Campaign</h3>
+        <div className="row">
+          <div className="col" onSubmit={handleOnSubmit}>
+            <form>
+              <div className="form-group">
+                <label htmlFor="campaignName">Campaign Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="campaignName"
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="gameSystem">Game System</label>
+                <select className="form-control" id="gameSystem">
+                  <option>D&D, 5E</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="description">Setting Description</label>
+                <textarea
+                  type="text"
+                  onChange={handleInputChange}
+                  className="form-control"
+                  id="description"
+                  rows="5"
+                ></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary">
+                Create!
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-    </main>
-  );
+      </main>
+    );
+  }
 }
-
 export default CampaignCreator;

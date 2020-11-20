@@ -1,29 +1,28 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-    DM: {
+    manager: {
+        type: Object,
+        required: true
+    }, 
+    name: {
         type: String,
         required: true
-    }, 
-    players: {
-        type: Array,
-        required: true
-    }, 
-    characters: {
-        type: Array,
-        required: true
     },
-    name: {
+    system: {
         type: String,
         required: true
     },
     description : {
         type: String
     }, 
-    link: {
-        type: String
+    characters: {
+        type: Array
     },
     sessions: {
+        type: Array
+    }, 
+    monsters: {
         type: Array
     }
   });

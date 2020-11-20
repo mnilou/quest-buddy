@@ -8,6 +8,7 @@ import CampaignPage from "./pages/CampaignPage";
 import CampaignCreator from "./pages/CampaignCreator";
 import TeamCreator from "./pages/TeamCreator";
 import TeamPage from "./pages/TeamPage";
+import TeamSearch from "./pages/TeamSearch"
 import Navbar from "./components/Navbar";
 import { ProvideAuth } from "./util/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -19,15 +20,18 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Authentication />
+          <Authentication/>
         </Route>
         <Route path="/login">
           <Redirect to="/"/>
         </Route>
-        <ProtectedRoute path="/user">
+        <ProtectedRoute exact path="/user">
           <UserPage />
         </ProtectedRoute>
-        <ProtectedRoute path="/character">
+        <ProtectedRoute exact path="/user/:id">
+          <UserPage />
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/character/:id">
           <CharacterPage />
         </ProtectedRoute>
         <ProtectedRoute exact path="/charactercreator">
@@ -36,14 +40,17 @@ function App() {
         <ProtectedRoute exact path="/teamcreator">
           <TeamCreator />
         </ProtectedRoute>
-        <ProtectedRoute path="/team">
+        <ProtectedRoute exact path="/team/:id">
           <TeamPage />
         </ProtectedRoute>
-        <ProtectedRoute exact path="/campaigncreator">
+        <ProtectedRoute exact path="/campaigncreator/:id">
           <CampaignCreator />
         </ProtectedRoute>
-        <ProtectedRoute path="/campaign">
+        <ProtectedRoute exact path="/campaign/:id">
           <CampaignPage />
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/team_search">
+           <TeamSearch />
         </ProtectedRoute>
       </Switch>
     </Router>

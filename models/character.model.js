@@ -11,6 +11,12 @@ const schema = new mongoose.Schema({
   system: {
     type: String
   },
+  race: {
+    type: String
+  },
+  class: {
+    type: String
+  },
   equipment: {
     type: Array
   },

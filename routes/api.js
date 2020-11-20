@@ -30,7 +30,16 @@ app.post("/api/team", (req, res) => {
 });
 
 app.post("/api/campaign", (req, res) => {
-  console.log("campaign created");
+  db.Campaign.create(req.body.campaign).then(result => {
+      const campaign = result;
+
+      db.Team.findById(req.body.id).then(results => {
+          const campaignArray = results.campaigns;
+          campaignArray.push(campaign),
+          results.save();
+          res.json(results);
+      })
+  })
 });
 
 app.post("/api/session", (req, res) => {
@@ -73,12 +82,22 @@ app.delete("/api/session", (req, res) => {
     console.log("session deleted");
 });
 
-app.get("/api/character", (req, res) => {
-    console.log("Characters gotten");
+app.get("/api/character/:id", (req, res) => {
+    db.User.findById(req.params.id).then(results => {
+        res.json(results);
+    })
+});
+
+app.get("/api/character/getdata/:id", (req, res) => {
+    db.Character.findById(req.params.id).then(results => {
+        res.json(results);
+    })
 });
   
 app.get("/api/team", (req, res) => {
-    console.log("teams gotten");
+    db.Team.find().then(results => {
+        res.json(results)
+    })
 });
   
 app.get("/api/campaign", (req, res) => {
