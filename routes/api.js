@@ -116,6 +116,8 @@ app.get("/api/team/getcampaigns/:id", (req, res) => {
                 }
             })
         });
+    });
+});
 
 app.get("/api/team", (req, res) => {
     db.Team.find().then(results => {
