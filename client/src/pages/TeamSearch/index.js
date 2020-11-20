@@ -1,26 +1,32 @@
-import { React, useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useAuth } from "../../util/authContext";
+import React, {useEffect, useState} from "react";
 import API from "../../util/API"
+import SearchResults from "../../components/SearchResults/index";
 
 function TeamSearch() {
 
-    const history = useHistory();
-    const { user } = useAuth();
 
     const [teams, setTeams] = useState([]);
     const [search, setSearch] = useState("");
+    const searchArray = teams.filter(team => {
+        if(!search){
+            return teams
+        } 
+        return team.name.toLowerCase().includes(search.toLowerCase())
+    })
 
     useEffect(() => {
         API.getTeams().then(results => {
-            setTeams(results.data);
+            setTeams(results.data); 
         })
     }, [])
 
+
+   
+
     const handleInputChange = (event) => {
-        setSearch(event.target.value);
-        console.log(search);
+        setSearch(event.target.value)
     }
+
 
     return (
         <main className="container">
@@ -28,7 +34,7 @@ function TeamSearch() {
             <div className="form-group">
                 <label htmlFor="search">Search</label>
                 <input className="form-control" type="text" onChange={handleInputChange}></input>
-            </div>
+                </div>
             <table className="table">
                 <thead>
                 <tr className="thead-dark">
@@ -36,15 +42,7 @@ function TeamSearch() {
                     <th scope="col">Members</th>
                 </tr>
                 </thead>
-                <tbody>
-                    {teams.map(team => {
-                    return <tr key={team._id}>
-                             <td>{team.name}</td>
-                             <td>aefuyashdfukjashdfk</td> 
-                            </tr>
-                  
-                    })}
-                </tbody>
+                <SearchResults teams={searchArray}/>
             </table>
         </main>
     );

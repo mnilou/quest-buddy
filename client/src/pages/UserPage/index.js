@@ -1,5 +1,5 @@
-import { React, useHistory, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
 import API from "../../util/API";
 import CharacterTile from "../../components/CharacterTile";
@@ -76,7 +76,7 @@ function UserPage() {
                         <h4 className="my-3 ml-3 text-justify">My Teams</h4>
                     </div>
                     <div className="row">
-                        <button type="button" className="btn btn-outline-info btn-block mx-3 mt-3 mb-1">Join an Existing Team</button>
+                        <button type="button" className="btn btn-outline-info btn-block mx-3 mt-3 mb-1"><Link target="_blank" to="/team_search">Join an Existing Team</Link></button>
                     </div>
                     <div className="row">
                         <button type="button" className="btn btn-outline-info btn-block mx-3 mb-2" onClick={teamCreatorClick}>Make a New Team</button>
