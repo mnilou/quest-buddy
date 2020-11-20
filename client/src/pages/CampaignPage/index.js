@@ -7,7 +7,8 @@ import Calendar from "../../components/Calendar";
 
 function CampaignPage() {
 
-  const { id } = useParams();
+  const { campaignId } = useParams();
+  console.log({campaignId});
   const history = useHistory();
   const { user } = useAuth();
 
@@ -16,7 +17,7 @@ function CampaignPage() {
 
   useEffect(() => {
     // example API call
-    API.getOneCampaign(id).then(results => {
+    API.getOneCampaign(campaignId).then(results => {
       console.log(results)
       setCampaign(results.data);
       setcharacters(results.characters)
@@ -36,7 +37,7 @@ function CampaignPage() {
       <h3 className="mt-3 mb-4 text-center">{campaign.name}</h3>
       <div className="row">
         <div className="col">
-          <Calendar />
+          <Calendar campaignId={ campaignId }/>
         </div>
         <div
           className="col-lg-3"

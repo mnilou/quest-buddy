@@ -32,7 +32,7 @@ const createCampaign = (id, campaign) => {
 const createSession = (session) => {
     return axios({
         method: "post",
-        url: "/api/session", 
+        url: "/api/session/create", 
         data: session
     });
 }

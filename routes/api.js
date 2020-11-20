@@ -42,7 +42,8 @@ app.post("/api/campaign", (req, res) => {
   })
 });
 
-app.post("/api/session", (req, res) => {
+app.post("/api/session/create", (req, res) => {
+    console.log(req.body);
     db.Session.create(req.body).then(()=>{
         res.json(req.body)
     }).catch(err => {
