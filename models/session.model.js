@@ -1,18 +1,26 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-    // campaign: {
-    //     type: String,
-    //     required: true
-    // },
-    // team: {
-    //     type: Array,
-    //     required: true
-    // },
-    time: {
-        type: Object,
+    campaignId: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: String,
         required: true       
-    }
+    },
+    title: {
+      type: String,
+      required: true       
+    },
+    posts: {
+      type: Array,
+      required: false     
+    },
+    description: {
+      type: String,
+      required: false    
+    },
   });
 
 const Session = mongoose.model("Session", schema);

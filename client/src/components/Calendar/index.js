@@ -1,9 +1,10 @@
 import React, {useRef} from 'react';
+import { useParams } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-// import API from '../../util/API';
+import API from '../../util/API';
 import './calendar.css';
 
 const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
@@ -104,21 +105,40 @@ export default class Calendar extends React.Component {
   };
 
   handleEventTitleSubmit = (title) => {
-    if (title) {
-      const event = {title, date: this.state.selectInfo.startStr};
+    if (title && this.props.campaignId) {
+      const event = {title, date: this.state.selectInfo.startStr, campaignId: this.props.campaignId};
+
+      API.createSession(event).then(results => {
+        console.log(results);
+        this.setState(
+          (prevState) => ({
+            events: [...prevState.events, event],
+            showEventTitleInput: false,
+            selectInfo: null,
+          }),
+          () => {
+            console.log(this.state.events);
+          }
+        );
+      })
+        .catch(err => {
+          console.log(err);
+        })
+
       // send request to add event in the .then call lines 50-58
-      this.setState(
-        (prevState) => ({
-          events: [...prevState.events, event],
-          showEventTitleInput: false,
-          selectInfo: null,
-        }),
-        () => {
-          console.log(this.state.events);
-        }
-      );
+      // this.setState(
+      //   (prevState) => ({
+      //     events: [...prevState.events, event],
+      //     showEventTitleInput: false,
+      //     selectInfo: null,
+      //   }),
+      //   () => {
+      //     console.log(this.state.events);
+      //   }
+      // );
     }
   };
+
   handleClose = () => {
     this.setState(
       {showEventTitleInput: false})
