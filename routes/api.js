@@ -164,5 +164,11 @@ app.get("/api/session/:sessionName/searchbycampaign/:campaignId", (req, res) => 
     })
 });
 
+app.get("/api/session/getdata/:sessionId", (req, res) => {
+    db.Session.findById(req.params.sessionId).then(results => {
+        res.json(results);
+    })
+});
+
 
 module.exports = app;
