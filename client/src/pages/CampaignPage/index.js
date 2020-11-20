@@ -7,7 +7,6 @@ import Calendar from '../../components/Calendar';
 
 function CampaignPage() {
   const {campaignId} = useParams();
-  console.log({campaignId});
   const history = useHistory();
   const {user} = useAuth();
 
