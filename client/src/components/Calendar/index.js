@@ -11,8 +11,8 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
   const handleSubmit = () => {
     onSubmit(inputRef.current.value);
     inputRef.current.value = '';
-      };
-      const handleClose = () => onClose(true);
+  };
+  const handleClose = () => onClose();
   return (
     <div
       style={{
@@ -52,7 +52,7 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
           </div>
         </div>
         <div className="footer">
-          <button onClick={inputRef.handleClose}>Close</button>
+          <button onClick={handleClose}>Close</button>
         </div>
       </div>
     </div>
@@ -93,6 +93,7 @@ export default class Calendar extends React.Component {
           <EventTitleInputModal
             onSubmit={this.handleEventTitleSubmit}
             eventDate={this.state.selectInfo && this.state.selectInfo.startStr}
+            onClose={this.handleClose}
           />
         )}
       </div>
@@ -118,11 +119,16 @@ export default class Calendar extends React.Component {
       );
     }
   };
+  handleClose = () => {
+    this.setState(
+      {showEventTitleInput: false})
+  };
+  
   handleEventClick = (clickInfo) => {
-    if (
-      `Are you sure you want to delete the event '${clickInfo.event.title}'`
-    ) {
-      clickInfo.event.remove();
-    }
+    // if (
+    //   `Are you sure you want to delete the event '${clickInfo.event.title}'`
+    // ) {
+    clickInfo.event.remove();
+    // }
   };
 }
