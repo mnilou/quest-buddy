@@ -95,7 +95,9 @@ app.get("/api/character/getdata/:id", (req, res) => {
 });
   
 app.get("/api/team", (req, res) => {
-    console.log("teams gotten");
+    db.Team.find().then(results => {
+        res.json(results)
+    })
 });
   
 app.get("/api/campaign", (req, res) => {
