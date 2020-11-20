@@ -1,21 +1,21 @@
 import React from "react";
 
-function UserTile(props) {
+function CharacterTile(props) {
     return (
         <div key={props.id} className="card">
             <div className="card-body">
-                <h5 className="card-title">{props.username}</h5>
+                <h5 className="card-title">{props.name}</h5>
                 <p className="card-text">
-                    {props.email}
+                    {props.system + " Campaign / Characters: ( " + props.characterCount + " )"}
                 </p>
                 <button
                     onClick={props.onClick}
                     id={props.id}
-                    className="btn btn-success">Go to User
+                    className="btn btn-info">Go to Campaign
                 </button>
             </div>
         </div>
     );
 }
 
-export default UserTile;
+export default CharacterTile;

@@ -2,7 +2,7 @@ import { React, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
 import API from "../../util/API";
-import UserTile from "../../components/UserTile";
+import CharacterTile from "../../components/CharacterTile";
 import TeamTile from "../../components/TeamTile";
 
 function UserPage() {
@@ -24,24 +24,13 @@ function UserPage() {
     const teamPageClick = (event) => {
         event.preventDefault();
         const id = event.target.id;
-        console.log(id);
         history.push("/team/" + id);
     };
     const characterPageClick = (event) => {
         event.preventDefault();
         const id = event.target.id;
-        console.log(id);
         history.push("/character/" + id);
     };
-
-
-    // API.getCharacters(user).then(results => {
-    //     currentUser = results;
-    //     characters = currentUser.data.characters;
-    //     console.log(characters[0]);
-    // }).catch(err => {
-    //     console.log(err);
-    // }) ;
 
     useEffect(() => {
         // example API call
@@ -68,7 +57,7 @@ function UserPage() {
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
                         {characters.map(character => (
-                                    <UserTile
+                                    <CharacterTile
                                         onClick={characterPageClick}
                                         id={character._id}
                                         key={character._id}
