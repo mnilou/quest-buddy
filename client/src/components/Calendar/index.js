@@ -1,111 +1,134 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import {INITIAL_EVENTS, createEventId} from '../../util/event-utils';
-import API from "../../util/API"
+// import API from '../../util/API';
 import './calendar.css';
+
+const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
+  const inputRef = useRef();
+  const handleSubmit = () => {
+    onSubmit(inputRef.current.value);
+    inputRef.current.value = '';
+  };
+  const handleClose = () => onClose();
+  return (
+    <div
+      style={{
+        zIndex: 999,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: 'rgba(51, 51, 51, 0.3)',
+      }}
+    >
+      <div className="p-5 bg-light">
+        <h4 className="mb-3">Creating event on {eventDate}</h4>
+        <div className="form-group">
+          <label htmlFor="event-title">Event Title</label>
+          <div className="input-group">
+            <input
+              ref={inputRef}
+              type="text"
+              id="event-title"
+              className="form-control"
+              placeholder="Climbing the Mountain Part 1"
+            />
+            <div className="input-group-append">
+              <button
+                onClick={handleSubmit}
+                className="btn btn-outline-secondary"
+                type="button"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="footer">
+          <button onClick={handleClose}>Close</button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default class Calendar extends React.Component {
   state = {
     weekendsVisible: true,
-    currentEvents: [
-    {title: "event 1",
-    date: "2020-11-20",}
-    ],
-    calendarPending: false
+    events: [{title: 'event 1', date: '2020-11-20'}],
+    showEventTitleInput: false,
+    selectInfo: null,
   };
 
   render() {
     return (
-      <div className="calendar">
-        <div className="calendar-main">
-          <FullCalendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            headerToolbar={{
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay',
-            }}
-            initialView="dayGridMonth"
-            editable={true}
-            selectable={true}
-            selectMirror={true}
-            dayMaxEvents={true}
-            weekends={this.state.weekendsVisible}
-            events={this.state.events}
-            initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
-            select={this.handleDateSelect}
-            eventContent={renderEventContent} // custom render function
-            eventClick={this.handleEventClick}
-            eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
-            eventAdd={function(){}}
-            /* you can update a remote database when these fire:
-                eventChange={function(){}}
-                eventRemove={function(){}}
-                */
-          />
+      <div>
+        <div className="calendar">
+          <div className="calendar-main">
+            <FullCalendar
+              events={this.state.events}
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+              headerToolbar={{
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay',
+              }}
+              initialView="dayGridMonth"
+              editable={true}
+              selectable={true}
+              dayMaxEvents={true}
+              select={this.handleDateSelect}
+              eventClick={this.handleEventClick}
+            />
+          </div>
         </div>
+        {this.state.showEventTitleInput && (
+          <EventTitleInputModal
+            onSubmit={this.handleEventTitleSubmit}
+            eventDate={this.state.selectInfo && this.state.selectInfo.startStr}
+            onClose={this.handleClose}
+          />
+        )}
       </div>
     );
   }
-
-  handleWeekendsToggle = () => {
-    this.setState({
-      weekendsVisible: !this.state.weekendsVisible
-    })
-  }
-
   handleDateSelect = (selectInfo) => {
-    if(this.state.calendarPending){
-      return false
+    this.setState({showEventTitleInput: true, selectInfo});
+  };
+
+  handleEventTitleSubmit = (title) => {
+    if (title) {
+      const event = {title, date: this.state.selectInfo.startStr};
+      // send request to add event in the .then call lines 50-58
+      this.setState(
+        (prevState) => ({
+          events: [...prevState.events, event],
+          showEventTitleInput: false,
+          selectInfo: null,
+        }),
+        () => {
+          console.log(this.state.events);
+        }
+      );
     }
-    this.setState({calendarPending: true})
-
-    let title = prompt('Please enter a new title for your event')
-    const session = {time: selectInfo.start};
-    let calendarApi = selectInfo.view.calendar
-
-    API.createSession(session).then(() => {
-      console.log("Then");
-      calendarApi.unselect() // clear date selection
-
-      if (title) {
-        calendarApi.addEvent({
-          id: createEventId(),
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay
-        })
-      }
-      this.setState({calendarPending: false});
-    }).catch(err => {
-      console.log(err);
-      this.setState({calendarPending: false});
-    })
-
-
-  }
-
+  };
+  handleClose = () => {
+    this.setState(
+      {showEventTitleInput: false})
+  };
+  
   handleEventClick = (clickInfo) => {
-    if (  (`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove()
-    }
-  }
-
-  handleEvents = (events) => {
-    this.setState({
-      currentEvents: events
-    })
-  }
+    // if (
+    //   `Are you sure you want to delete the event '${clickInfo.event.title}'`
+    // ) {
+    clickInfo.event.remove();
+    // }
+  };
 }
-function renderEventContent(eventInfo) {
-    return (
-      <>
-        <b>{eventInfo.timeText}</b>
-        <i>{eventInfo.event.title}</i>
-      </>
-    )
-  }

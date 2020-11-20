@@ -13,7 +13,7 @@ function Navbar() {
     return (
 
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <NavLink className="navbar-brand" to="/">Campaign Planner</NavLink>
+            { isLoggedIn ? <NavLink className="navbar-brand" to="/user" >Campaign Planner</NavLink> : <NavLink className="navbar-brand" to="/" >Campaign Planner</NavLink>}
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

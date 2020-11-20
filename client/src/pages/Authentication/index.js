@@ -74,7 +74,7 @@ function Authentication() {
                                     id="usernameLogin"
                                     value={formState.usernameLogin}
                                     onChange={handleInputChange}
-                                    className="form-control mb-4" placeholder="jane.doe@email.com" />
+                                    className="form-control mb-4" placeholder="jane1234" />
                                 <input
                                     type="password"
                                     name="passwordLogin"

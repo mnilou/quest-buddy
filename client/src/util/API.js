@@ -40,16 +40,32 @@ const createSession = (session) => {
 
 const getCharacters = (user) => {
     return axios.get("/api/character/" + user.id)
-}
+};
 
 const getOneCharacter = (userId) => {
     return axios.get("/api/character/getdata/" + userId)
-}
+};
+
+const getUsersByTeam = (teamId) => {
+    return axios.get("/api/team/getusers/" + teamId)
+};
+
+const getOneTeam = (teamId) => {
+    return axios.get("/api/team/getdata/" + teamId)
+};
+
+const getCampaignsByTeam = (teamId) => {
+    return axios.get("/api/team/getcampaigns/" + teamId)
+};
 
 const getTeams = () => {
     return axios.get("api/team");
 }
 
-const API = {getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter };
+const getOneCampaign = (campaignId) => {
+    return axios.get("/api/campaign/getdata/" + campaignId)
+};
+
+const API = { getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter, getUsersByTeam, getOneTeam, getCampaignsByTeam, getOneCampaign  };
 
 export default API;
