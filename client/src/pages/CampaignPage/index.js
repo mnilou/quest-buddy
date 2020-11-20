@@ -25,27 +25,27 @@ function CampaignPage() {
   return (
     <main className="container">
       <h3 className="mt-3 mb-4 text-center">Death, Frost, Doom </h3>
-      {/* <div className="row"> */}
       <div className="row">
         <div className="col">
           <Calendar />
         </div>
-        <div className="col-lg-3" style={{display: 'inline-flex', justifyContent: 'center', alignItems: 'center'}}>
-                    {/* <div className="row">
-            <div className="col-1 border"> */}
-              <button
-                className="btn btn-primary"
-                style={{padding: "1rem"}}
-              >
-                Create New Event
-              </button>
-            </div>
-          </div>
-        {/* </div>
-      </div> */}
-      {/* </div> */}
-      {/* <div className="row">
-        <div className="col"> */}
+        <div
+          className="col-lg-3"
+          style={{
+            display: 'inline-flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <span
+            className="d-block p-2 bg-primary text-white rounded"
+            style={{padding: '3rem', borderBlock: 'primary'}}
+          >
+            Click on the date to create a new event
+          </span>
+          <br/>
+        </div>
+      </div>
       <div className="row mt-2">
         <div className="col-md-6 overflow-auto border" style={{height: '15em'}}>
           <p className="mt-2"></p>
