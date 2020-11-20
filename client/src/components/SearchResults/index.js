@@ -1,19 +1,19 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function SearchResults(props) {
-    console.log(props);
 
     return (
         <tbody>
-            {/* {props.searchArray.map(team => {
+            {props.teams.map(team => {
                 return <tr key={team._id}>
-                    <td>{team.name}</td>
-                        {team.members.map((member, index) => {
-                            return <td key={index}>{member.username}</td> 
-                        })}
-                      </tr>
-                    })} */}
-                </tbody>
+                    <td><Link target="_blank" to={"/team/" + team._id}>{team.name}</Link></td>
+                    {team.members.map((member, index) => {
+                        return <td key={index}>{member.username}</td>
+                    })}
+                </tr>
+            })}
+        </tbody>
     )
 }
 
