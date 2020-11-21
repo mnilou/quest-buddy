@@ -20,7 +20,7 @@ function Navbar() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                    <li className="nav-item active mr-2">
+                    <li className="nav-item active">
                         {isLoggedIn && <button className="btn btn-sm btn-outline-secondary" onClick={logout}>Logout</button>}
                     </li>
                     <li className="nav-item active">

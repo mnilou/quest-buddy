@@ -93,7 +93,7 @@ function CampaignPage() {
   return (
     <main className="container">
       <h3 className="mt-3 mb-4 text-center">{campaign.name}</h3>
-      <div className="row">
+      <div className="row" >
         <div className="col">
           <Calendar campaignId={campaignId} sessionClick={sessionClick} />
         </div>

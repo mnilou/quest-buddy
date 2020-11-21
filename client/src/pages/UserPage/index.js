@@ -52,7 +52,7 @@ function UserPage() {
                         <h4 className="my-3">My Characters</h4>
                     </div>
                     <div className="row">
-                        <button type="button" className="btn btn-outline-danger btn-block mx-3 mt-3 mb-5" onClick={characterCreatorClick}>Create a New Character</button>
+                        <button type="button" className="btn btn-outline-success btn-block mx-3 mt-3 mb-5" onClick={characterCreatorClick}>Create a New Character</button>
                     </div>
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
@@ -79,7 +79,7 @@ function UserPage() {
                         <button type="button" className="btn btn-outline-info btn-block mx-3 mt-3 mb-1"><Link target="_blank" to="/team_search">Join an Existing Team</Link></button>
                     </div>
                     <div className="row">
-                        <button type="button" className="btn btn-outline-info btn-block mx-3 mb-2" onClick={teamCreatorClick}>Make a New Team</button>
+                        <button type="button" className="btn btn-outline-success btn-block mx-3 mb-2" onClick={teamCreatorClick}>Make a New Team</button>
                     </div>
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
