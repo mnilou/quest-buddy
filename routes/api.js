@@ -178,5 +178,16 @@ app.get("/api/session/getsessionsbycampaign/:campaignId", (req, res) => {
     })
 });
 
+app.post("/api/campaign/:campaignId/addcharacter/:characterId", (req, res) => {
+    db.Campaign.findById(req.params.campaignId).then(results => {
+        const characterArray = results.characters;
+        characterArray.push(req.params.characterId),
+        results.save();
+        res.json(results);
+    })
+
+});
+
+
 
 module.exports = app;
