@@ -160,5 +160,23 @@ app.get("/api/session", (req, res) => {
     console.log("sessions gotten");
 });
 
+app.get("/api/session/:sessionName/searchbycampaign/:campaignId", (req, res) => {
+    db.Session.findOne({ title: req.params.sessionName, campaignId: req.params.campaignId }).then(results => {
+       res.json(results)
+    })
+});
+
+app.get("/api/session/getdata/:sessionId", (req, res) => {
+    db.Session.findById(req.params.sessionId).then(results => {
+        res.json(results);
+    })
+});
+
+app.get("/api/session/getsessionsbycampaign/:campaignId", (req, res) => {
+    db.Session.find({campaignId: req.params.campaignId}).then(results => {
+        res.json(results);
+    })
+});
+
 
 module.exports = app;

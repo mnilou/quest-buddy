@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import { useParams } from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -29,43 +29,59 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
         backgroundColor: 'rgba(51, 51, 51, 0.3)',
       }}
     >
-      <div className="p-5 bg-light">
-        <h4 className="mb-3">Creating event on {eventDate}</h4>
+      <form>
         <div className="form-group">
+          <h4 className="p-5 bg-light">Creating event on {eventDate}</h4>
           <label htmlFor="event-title">Event Title</label>
-          <div className="input-group">
-            <input
-              ref={inputRef}
-              type="text"
-              id="event-title"
-              className="form-control"
-              placeholder="Climbing the Mountain Part 1"
-            />
-            <div className="input-group-append">
-              <button
-                onClick={handleSubmit}
-                className="btn btn-outline-secondary"
-                type="button"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
+          <input
+            ref={inputRef}
+            type="text"
+            id="event-title"
+            className="form-control"
+            placeholder="Climbing the Mountain Part 1"
+          />
         </div>
+        <div className="form-group">
+          <label htmlfor="description"> Event Description</label>
+          <textarea
+            type="text"
+            className="form-control"
+            id="event-description"
+            rows="5"
+            placeholder="It was a dark and lonely night in the land of Neverwinter. Your journey begins."
+          ></textarea>
+        </div>
+        <button
+          onClick={handleSubmit}
+          className="btn btn-outline-secondary"
+          type="button"
+        >
+          Submit
+        </button>
         <div className="footer">
           <button onClick={handleClose}>Close</button>
         </div>
-      </div>
-    </div>
+      </form>
+     </div>
   );
 };
 
 export default class Calendar extends React.Component {
   state = {
     weekendsVisible: true,
-    events: [{title: 'event 1', date: '2020-11-20'}],
+    events: [],
     showEventTitleInput: false,
     selectInfo: null,
+  };
+
+  componentDidMount() {
+    API.getSessionsByCampaign(this.props.campaignId)
+      .then((results) => {
+        this.setState({events: results.data});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -81,7 +97,7 @@ export default class Calendar extends React.Component {
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay',
               }}
-              initialView="dayGridMonth"
+              initialView="dayGridWeek"
               editable={true}
               selectable={true}
               dayMaxEvents={true}
@@ -106,49 +122,47 @@ export default class Calendar extends React.Component {
 
   handleEventTitleSubmit = (title) => {
     if (title && this.props.campaignId) {
-      const event = {title, date: this.state.selectInfo.startStr, campaignId: this.props.campaignId};
+      const event = {
+        title,
+        date: this.state.selectInfo.startStr,
+        campaignId: this.props.campaignId,
+      };
 
-      API.createSession(event).then(results => {
-        console.log(results);
-        this.setState(
-          (prevState) => ({
-            events: [...prevState.events, event],
-            showEventTitleInput: false,
-            selectInfo: null,
-          }),
-          () => {
-            console.log(this.state.events);
-          }
-        );
-      })
-        .catch(err => {
-          console.log(err);
+      API.createSession(event)
+        .then((results) => {
+          console.log(results);
+          this.setState(
+            (prevState) => ({
+              events: [...prevState.events, event],
+              showEventTitleInput: false,
+              selectInfo: null,
+            }),
+            () => {
+              console.log(this.state.events);
+            }
+          );
         })
-
-      // send request to add event in the .then call lines 50-58
-      // this.setState(
-      //   (prevState) => ({
-      //     events: [...prevState.events, event],
-      //     showEventTitleInput: false,
-      //     selectInfo: null,
-      //   }),
-      //   () => {
-      //     console.log(this.state.events);
-      //   }
-      // );
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
   handleClose = () => {
-    this.setState(
-      {showEventTitleInput: false})
+    this.setState({showEventTitleInput: false});
   };
-  
+
   handleEventClick = (clickInfo) => {
-    // if (
-    //   `Are you sure you want to delete the event '${clickInfo.event.title}'`
-    // ) {
-    clickInfo.event.remove();
-    // }
+    const title = clickInfo.event.title;
+
+    API.getSessionIdByCampaign(title, this.props.campaignId)
+      .then((results) => {
+        const sessionId = results.data._id;
+
+        this.props.sessionClick(title, sessionId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 }

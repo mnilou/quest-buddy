@@ -15,7 +15,7 @@ However, a glaring omission in the existing toolsets is the ability to both trac
 
 ## Table of contents
 
-- [Licence](#Licence)
+- [License](#License)
 - [Description](#Description)
 - [Screenshots](#Screenshots)
 - [Installation](#Installation)
@@ -54,7 +54,7 @@ As an avid Dungeons and Dragons player who often has multiple campaigns running 
 
 ## Deployed Link (Heroku)
 
->[Campaign Planner](https://campaign-planner20.herokuapp.com/)
+>[Campaign Planner](https://campaign-planner-nat20.herokuapp.com/)
 
 ## Contributors
 

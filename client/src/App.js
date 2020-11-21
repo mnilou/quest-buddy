@@ -9,6 +9,7 @@ import CampaignCreator from "./pages/CampaignCreator";
 import TeamCreator from "./pages/TeamCreator";
 import TeamPage from "./pages/TeamPage";
 import TeamSearch from "./pages/TeamSearch"
+import SessionPage from "./pages/SessionPage"
 import Navbar from "./components/Navbar";
 import { ProvideAuth } from "./util/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -51,6 +52,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact path="/team_search">
            <TeamSearch />
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/session/:sessionId">
+           <SessionPage />
         </ProtectedRoute>
       </Switch>
     </Router>
