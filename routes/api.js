@@ -52,7 +52,10 @@ app.post("/api/session/create", (req, res) => {
 });
 
 app.put("/api/character", (req, res) => {
-    console.log("Character edited");
+    console.log(typeof req.body._id);
+    db.Character.findByIdAndUpdate(req.body._id, req.body).then(results => {
+        res.json(results);
+    })
 });
   
 app.put("/api/team", (req, res) => {
