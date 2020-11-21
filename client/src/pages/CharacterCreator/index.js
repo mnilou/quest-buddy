@@ -19,8 +19,8 @@ function CharacterCreator() {
     intelligence: 10,
     wisdom: 10,
     charisma: 10,
-    race: "human",
-    class: "fighter",
+    race: "Dragonborn",
+    class: "Barbarian",
     description: ""
 });
 
@@ -37,7 +37,7 @@ function CharacterCreator() {
            setFormState({...formState, level: event.target.value })
            break;
            case "hp": 
-           setFormState({...formState, hp: event.target.value })
+           setFormState({...formState, maxHP: event.target.value, currentHP: event.target.value })
            break;
            case "race": 
            setFormState({...formState, race: event.target.value })
@@ -92,20 +92,68 @@ function CharacterCreator() {
                     <div className="form-group">
                         <label htmlFor="race">Race</label>
                         <select className="form-control" id="race">
+                            <option>Aarakocra</option>
+                            <option>Aasimar</option>
+                            <option>Bugbear</option>
+                            <option>Centaur</option>
+                            <option>Changeling</option>
+                            <option>Dragonborn</option>
+                            <option>Dwarf</option>
+                            <option>Elf</option>
+                            <option>Feral Tiefling</option>
+                            <option>Firbolg</option>
+                            <option>Genasi</option>
+                            <option>Gith</option>
+                            <option>Gnome</option>
+                            <option>Goblin</option>
+                            <option>Goliath</option>
+                            <option>Grung</option>
+                            <option>Half-Elf</option>
+                            <option>Half-Orc</option>
+                            <option>Halfling</option>
+                            <option>Hobgoblin</option>
                             <option>Human</option>
-                            <option>High Elf</option>
-                            <option>Dark Elf</option>
+                            <option>Kalashtar</option>
+                            <option>Kenku</option>
+                            <option>Kobold</option>
+                            <option>Leonin</option>
+                            <option>Lizardfolk</option>
+                            <option>Locathah</option>
+                            <option>Loxodon</option>
+                            <option>Minotaur</option>
                             <option>Orc</option>
+                            <option>Orc of Eberron</option>
+                            <option>Orc of Exandria</option>
+                            <option>Satyr</option>
+                            <option>Shifter</option>
+                            <option>Simic Hybrid</option>
+                            <option>Tabaxi</option>
+                            <option>Tiefking</option>
+                            <option>Tortle</option>
+                            <option>Triton</option>
+                            <option>Vedalken</option>
+                            <option>Verdan</option>
+                            <option>Warforged</option>
+                            <option>Yuan-ti Pureblood</option>
                         </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="class">Class</label>
                         <select className="form-control" id="class">
-                            <option>Fighter</option>
-                            <option>Mage</option>
-                            <option>Rogue</option>
+                            <option>Arificer</option>
                             <option>Barbarian</option>
+                            <option>Bard</option>
+                            <option>Blood Hunter</option>
+                            <option>Cleric</option>
                             <option>Druid</option>
+                            <option>Fighter</option>
+                            <option>Monk</option>
+                            <option>Paladin</option>
+                            <option>Ranger</option>
+                            <option>Rogue</option>
+                            <option>Socerer</option>
+                            <option>Warlock</option>
+                            <option>Wizard</option>
                         </select>
                     </div>
                     <div className="form-group">
