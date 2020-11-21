@@ -33,7 +33,7 @@ function TeamPage() {
         .catch(err => {
             console.log(err);
         })
-    }, []);
+    }, [teamId,userAlreadyInTeam]);
 
     useEffect(() => {
         API.getCampaignsByTeam(teamId).then(results => {
@@ -63,6 +63,13 @@ function TeamPage() {
         })
     }, [users]);
 
+    const joinTheTeamClick = (event) => {
+        event.preventDefault();
+        API.addUserToTeamArray(teamId,loggedInUser.id, loggedInUser.username).then(() => {
+            setUserAlreadyInTeam(true);
+        })
+    };
+
     const userClick = (event) => {
         event.preventDefault();
         const userId = event.target.id;
@@ -88,13 +95,14 @@ function TeamPage() {
                     <div className="row justify-content-center">
                         <h4 className="my-3">Current Team Members</h4>
                     </div>
-                    {userAlreadyInTeam ? <div></div> :
-                    <div className="row">
-                        <button type="button" className="btn btn-outline-success btn-block mx-3 mt-3 mb-1">Join the Team</button>
-                    </div>}
+                    {userAlreadyInTeam ? 
                     <div className="row">
                         <button type="button" className="btn btn-outline-danger btn-block mx-3 mb-2">Leave Team</button>
-                    </div>
+                    </div> 
+                    :
+                    <div className="row">
+                        <button type="button" onClick={joinTheTeamClick} className="btn btn-outline-success btn-block mx-3 mt-3 mb-1">Join the Team</button>
+                    </div>}
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
                             <div>

@@ -30,6 +30,15 @@ app.post("/api/team", (req, res) => {
   })
 });
 
+app.post("/api/team/:teamId/adduser/:userId/:username", (req, res) => {
+    db.Team.findById(req.params.teamId).then(results => {
+        const usersArray = results.members;
+        usersArray.push({id: req.params.userId,username: req.params.username});
+        results.save();
+        res.json(results);
+    })
+});
+
 app.post("/api/campaign", (req, res) => {
   db.Campaign.create(req.body.campaign).then(result => {
       const campaign = result;

@@ -90,6 +90,10 @@ const addCharacterToCampaignArray = (campaignId, characterId) => {
     return axios.post("/api/campaign/" + campaignId + "/addcharacter/" + characterId)
 };
 
-const API = {updateCharacter, getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter, getUsersByTeam, getOneTeam, getCampaignsByTeam, getOneCampaign, getSessionIdByCampaign, getOneSession, getSessionsByCampaign, addCharacterToCampaignArray  };
+const addUserToTeamArray = (teamId, userId,username) => {
+    return axios.post("/api/team/" + teamId + "/adduser/" + userId + "/" + username)
+};
+
+const API = {updateCharacter, getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter, getUsersByTeam, getOneTeam, getCampaignsByTeam, getOneCampaign, getSessionIdByCampaign, getOneSession, getSessionsByCampaign, addCharacterToCampaignArray, addUserToTeamArray  };
 
 export default API;
