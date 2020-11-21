@@ -34,7 +34,6 @@ function TeamPage() {
 
     useEffect(() => {
         API.getCampaignsByTeam(id).then(results => {
-            console.log(results);
             setCampaigns(results.data);
         })
         .catch(err => {
