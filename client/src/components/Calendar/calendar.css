@@ -22,6 +22,16 @@ li {
   padding: 0;
 }
 
+.navbar-collapse > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav > li {
+  margin: 0.5em 0.5em;
+  padding: 0;
+}
+
 b {
   /* used for event dates/times */
   margin-right: 1px;

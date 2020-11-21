@@ -6,16 +6,19 @@ import UserTile from "../../components/UserTile";
 import CampaignTile from "../../components/CampaignTile";
 
 function TeamPage() {
-    const {id} = useParams();
+    const { teamId } = useParams();
     const history = useHistory();
     const { user } = useAuth();
+    const loggedInUser = user;
+    let usersInCampaignArray; 
 
     const [team,setTeam] = useState({});
     const [users, setUsers] = useState([]);
     const [campaigns, setCampaigns] = useState([]);
+    const [userAlreadyInTeam,setUserAlreadyInTeam] = useState(false);
 
     useEffect(() => {
-        API.getOneTeam(id).then(results => {
+        API.getOneTeam(teamId).then(results => {
             setTeam(results.data);
         })
         .catch(err => {
@@ -24,7 +27,7 @@ function TeamPage() {
     }, []);
 
     useEffect(() => {
-        API.getUsersByTeam(id).then(results => {
+        API.getUsersByTeam(teamId).then(results => {
             setUsers(results.data);
         })
         .catch(err => {
@@ -33,7 +36,7 @@ function TeamPage() {
     }, []);
 
     useEffect(() => {
-        API.getCampaignsByTeam(id).then(results => {
+        API.getCampaignsByTeam(teamId).then(results => {
             setCampaigns(results.data);
         })
         .catch(err => {
@@ -41,21 +44,40 @@ function TeamPage() {
         })
     }, []);
 
+    //check if user is already in the team and if so removes the "join" button
+    useEffect(() => {
+        API.getUsersByTeam(teamId).then(results => {
+            console.log(results.data);
+            console.log(loggedInUser.id);
+            usersInCampaignArray = results.data;
+        })
+        .then(() => {
+            usersInCampaignArray.forEach(user => {
+                if(user._id === loggedInUser.id ) {
+                    setUserAlreadyInTeam(true);
+                }
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, [users]);
+
     const userClick = (event) => {
         event.preventDefault();
-        const id = event.target.id;
-        history.push("/user/" + id);
+        const userId = event.target.id;
+        history.push("/user/" + userId);
     };
 
     const campaignCreatorClick = (event) => {
         event.preventDefault();
-        history.push("/campaigncreator/" + id);
+        history.push("/campaigncreator/" + teamId);
     };
 
     const campaignClick = (event) => {
         event.preventDefault();
-        const id = event.target.id;
-        history.push("/campaign/" + id);
+        const campaignId = event.target.id;
+        history.push("/campaign/" + campaignId);
     };
 
     return (
@@ -66,11 +88,12 @@ function TeamPage() {
                     <div className="row justify-content-center">
                         <h4 className="my-3">Current Team Members</h4>
                     </div>
+                    {userAlreadyInTeam ? <div></div> :
                     <div className="row">
-                        <button type="button" className="btn btn-outline-success btn-block mx-3 mt-3 mb-1">Ask to Join</button>
-                    </div>
+                        <button type="button" className="btn btn-outline-success btn-block mx-3 mt-3 mb-1">Join the Team</button>
+                    </div>}
                     <div className="row">
-                        <button type="button" className="btn btn-outline-success btn-block mx-3 mb-2">Leave Team</button>
+                        <button type="button" className="btn btn-outline-danger btn-block mx-3 mb-2">Leave Team</button>
                     </div>
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
@@ -94,7 +117,7 @@ function TeamPage() {
                         <h4 className="my-3 ml-3 text-justify">Campaigns</h4>
                     </div>
                     <div className="row">
-                        <button type="button" onClick={campaignCreatorClick} className="btn btn-outline-info btn-block mx-3 mt-3 mb-5">Create New Campaign</button>
+                        <button type="button" onClick={campaignCreatorClick} className="btn btn-outline-success btn-block mx-3 mt-3 mb-5">Create New Campaign</button>
                     </div>
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>

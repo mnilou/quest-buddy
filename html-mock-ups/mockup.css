@@ -43,3 +43,7 @@ html {
     margin-top: -25px;
     margin-bottom: -25px;
 }
+
+.container {
+  background-color: black;
+}
