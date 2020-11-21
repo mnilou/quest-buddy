@@ -39,7 +39,7 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
               type="text"
               id="event-title"
               className="form-control"
-              placeholder="Climbing the Mountain Part 1"
+              placeholder="Climbing the Mountain, Part 1"
             />
             <div className="input-group-append">
               <button
@@ -63,9 +63,19 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
 export default class Calendar extends React.Component {
   state = {
     weekendsVisible: true,
-    events: [{title: 'event 1', date: '2020-11-20'}],
+    events: [],
     showEventTitleInput: false,
     selectInfo: null,
+  };
+
+  componentDidMount() {
+      API.getSessionsByCampaign(this.props.campaignId)
+        .then((results) => {
+          this.setState({events: results.data});
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   render() {

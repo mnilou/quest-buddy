@@ -2,24 +2,23 @@ import {React, useHistory, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import API from '../../util/API';
 import CharacterTile from '../../components/CharacterTile';
+import CharacterAdd from '../../components/CharacterAdd';
 import {useAuth} from '../../util/authContext';
 import Calendar from '../../components/Calendar';
 
 function CampaignPage() {
-  const {campaignId} = useParams();
+  const { campaignId } = useParams();
   const history = useHistory();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const [campaign, setCampaign] = useState({});
-  const [characters, setcharacters] = useState([{}]);
+  const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
-    // example API call
     API.getOneCampaign(campaignId)
       .then((results) => {
-        console.log(results);
         setCampaign(results.data);
-        setcharacters(results.characters);
+        setCharacters(results.data.characters);
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +39,7 @@ function CampaignPage() {
       <h3 className="mt-3 mb-4 text-center">{campaign.name}</h3>
       <div className="row">
         <div className="col">
-          <Calendar campaignId={campaignId} sessionClick={sessionClick} />
+          <Calendar campaignId={campaignId} sessionClick={sessionClick}/>
         </div>
         <div
           className="col-lg-3"
@@ -65,23 +64,11 @@ function CampaignPage() {
           {campaign.description}
         </div>
         <div className="col-md-6 overflow-auto border" style={{height: '15em'}}>
-          {characters > 0
-            ? characters.map((character) => (
-                <CharacterTile
-                  onClick={characterPageClick}
-                  id={character._id}
-                  key={character._id}
-                  name={character.name}
-                  class={character.class}
-                  race={character.race}
-                  level={character.level}
-                />
-              ))
-            : ''}
+          <CharacterAdd 
+            characters={characters}
+          />
         </div>
       </div>
-      {/* </div>
-      </div> */}
     </main>
   );
 }
