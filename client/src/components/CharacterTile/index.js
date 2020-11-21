@@ -1,6 +1,7 @@
 import React from "react";
 
 function CharacterTile(props) {
+  console.log(props);
   return (
     <div key={props.id} className="card">
         <div className="card-body">

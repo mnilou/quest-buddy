@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
     required: true
   },
   owner: {
-    type: String,
+    type: Object,
   },
   system: {
     type: String
@@ -34,7 +34,26 @@ const schema = new mongoose.Schema({
   },
   level: {
       type: Number
-  }
+  },
+  strength: {
+    type: Number
+  },
+  dexterity: {
+    type: Number
+  },
+  constitution: {
+    type: Number
+  },
+  intelligence: {
+    type: Number
+  },
+  wisdom: {
+    type: Number
+  },
+  charisma: {
+    type: Number
+  },
+  
 });
 
 const Character = mongoose.model("Character", schema);

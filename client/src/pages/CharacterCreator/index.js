@@ -8,10 +8,17 @@ function CharacterCreator() {
   const history = useHistory();
   const [formState, setFormState] = useState({
     name: "", 
-    owner: user.username,
-    system: "",
+    owner: {id: user.id, username: user.username},
+    system: "D&D 5E",
     level: 0,
-    hp: 0,
+    maxHP: 10,
+    currentHP: 10,
+    strength: 5,
+    dexterity: 5,
+    constitution: 5,
+    intelligence: 5,
+    wisdom: 5,
+    charisma: 5,
     race: "human",
     class: "fighter",
     description: ""

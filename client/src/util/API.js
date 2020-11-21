@@ -37,6 +37,13 @@ const createSession = (session) => {
     });
 }
 
+const updateCharacter = (character) => {
+    return axios({
+        method: "put",
+        url: "/api/character",
+        data: character
+    })
+}
 
 const getCharacters = (user) => {
     return axios.get("/api/character/" + user.id)
@@ -78,10 +85,10 @@ const getSessionsByCampaign = (campaignId) => {
     return axios.get("/api/session/getsessionsbycampaign/" + campaignId)
 };
 
+
 const addCharacterToCampaignArray = (campaignId, characterId) => {
     return axios.post("/api/campaign/" + campaignId + "/addcharacter/" + characterId)
-}
-
+};
 
 const API = { getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter, getUsersByTeam, getOneTeam, getCampaignsByTeam, getOneCampaign, getSessionIdByCampaign, getOneSession, getSessionsByCampaign, addCharacterToCampaignArray  };
 
