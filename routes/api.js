@@ -67,9 +67,7 @@ app.put("/api/character", (req, res) => {
                 } 
             }
             user.characters.splice(index, 1, results);
-            //console.log(user.characters);
             user.save();
-            // console.log(index);
             res.json(user);
         })
     })
