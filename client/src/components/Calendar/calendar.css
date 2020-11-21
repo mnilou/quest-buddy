@@ -1,6 +1,7 @@
 html,
 body,
-body > div { /* the react root */
+body > div {
+  /* the react root */
   margin: 0;
   padding: 0;
   height: 50%;
@@ -21,7 +22,8 @@ li {
   padding: 0;
 }
 
-b { /* used for event dates/times */
+b {
+  /* used for event dates/times */
   margin-right: 1px;
 }
 
@@ -32,11 +34,16 @@ b { /* used for event dates/times */
   font-size: 14px;
 }
 .calendar-main {
-    flex-grow: 1;
-    padding: 3em;
-  }
-  
-  .fc { /* the calendar root */
-    width: 100%;
-    margin: 0 auto;
-  }
+  flex-grow: 1;
+  padding: 3em;
+}
+
+.fc {
+  /* the calendar root */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.textarea {
+  padding: 3rem;
+}
