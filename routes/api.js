@@ -1,4 +1,5 @@
 const express = require("express");
+const { result } = require("validate.js");
 const app = express();
 const db = require("../models/")
 
@@ -52,9 +53,25 @@ app.post("/api/session/create", (req, res) => {
 });
 
 app.put("/api/character", (req, res) => {
-    console.log(typeof req.body._id);
     db.Character.findByIdAndUpdate(req.body._id, req.body).then(results => {
-        res.json(results);
+        let index;
+        const charID = JSON.stringify(results._id);
+        db.User.findById(results.owner.id).then(user => {
+            let character = user.characters.filter(element => {
+                return JSON.stringify(element._id) === charID
+            })
+            character = character[0];
+            for (let i = 0; i <user.characters.length; i++){
+                if (user.characters[i] === character){
+                    index = i;
+                } 
+            }
+            user.characters.splice(index, 1, results);
+            //console.log(user.characters);
+            user.save();
+            // console.log(index);
+            res.json(user);
+        })
     })
 });
   
