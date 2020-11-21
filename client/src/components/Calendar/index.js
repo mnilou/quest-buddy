@@ -69,9 +69,19 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
 export default class Calendar extends React.Component {
   state = {
     weekendsVisible: true,
-    events: [{title: 'event 1', date: '2020-11-20'}],
+    events: [],
     showEventTitleInput: false,
     selectInfo: null,
+  };
+
+  componentDidMount() {
+    API.getSessionsByCampaign(this.props.campaignId)
+      .then((results) => {
+        this.setState({events: results.data});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
