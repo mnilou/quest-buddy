@@ -92,56 +92,58 @@ function CharacterCreator() {
                     <div className="form-group">
                         <label htmlFor="race">Race</label>
                         <select className="form-control" id="race">
+                            <option>Aarakocra</option>
+                            <option>Aasimar</option>
+                            <option>Bugbear</option>
+                            <option>Centaur</option>
+                            <option>Changeling</option>
                             <option>Dragonborn</option>
                             <option>Dwarf</option>
                             <option>Elf</option>
-                            <option>Gnome</option>
-                            <option>Half-Elf</option>
-                            <option>Halfling</option>
-                            <option>Half-Orc</option>
-                            <option>Human</option>
-                            <option>Tiefking</option>
-                            <option>Orc of Exandria</option>
-                            <option>Leonin</option>
-                            <option>Satyr</option>
-                            <option>Aarakocra</option>
-                            <option>Genasi</option>
-                            <option>Goliath</option>
-                            <option>Aasimar</option>
-                            <option>Bugbear</option>
+                            <option>Feral Tiefling</option>
                             <option>Firbolg</option>
+                            <option>Genasi</option>
+                            <option>Gith</option>
+                            <option>Gnome</option>
                             <option>Goblin</option>
+                            <option>Goliath</option>
+                            <option>Grung</option>
+                            <option>Half-Elf</option>
+                            <option>Half-Orc</option>
+                            <option>Halfling</option>
                             <option>Hobgoblin</option>
+                            <option>Human</option>
+                            <option>Kalashtar</option>
                             <option>Kenku</option>
                             <option>Kobold</option>
+                            <option>Leonin</option>
                             <option>Lizardfolk</option>
-                            <option>Orc</option>
-                            <option>Tabaxi</option>
-                            <option>Triton</option>
-                            <option>Yuan-ti Pureblood</option>
-                            <option>Feral Tiefling</option>
-                            <option>Tortle</option>
-                            <option>Changeling</option>
-                            <option>Kalashtar</option>
-                            <option>Orc of Eberron</option>
-                            <option>Shifter</option>
-                            <option>Warforged</option>
-                            <option>Gith</option>
-                            <option>Centaur</option>
+                            <option>Locathah</option>
                             <option>Loxodon</option>
                             <option>Minotaur</option>
+                            <option>Orc</option>
+                            <option>Orc of Eberron</option>
+                            <option>Orc of Exandria</option>
+                            <option>Satyr</option>
+                            <option>Shifter</option>
                             <option>Simic Hybrid</option>
+                            <option>Tabaxi</option>
+                            <option>Tiefking</option>
+                            <option>Tortle</option>
+                            <option>Triton</option>
                             <option>Vedalken</option>
                             <option>Verdan</option>
-                            <option>Locathah</option>
-                            <option>Grung</option>
+                            <option>Warforged</option>
+                            <option>Yuan-ti Pureblood</option>
                         </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="class">Class</label>
                         <select className="form-control" id="class">
+                            <option>Arificer</option>
                             <option>Barbarian</option>
                             <option>Bard</option>
+                            <option>Blood Hunter</option>
                             <option>Cleric</option>
                             <option>Druid</option>
                             <option>Fighter</option>
@@ -152,8 +154,6 @@ function CharacterCreator() {
                             <option>Socerer</option>
                             <option>Warlock</option>
                             <option>Wizard</option>
-                            <option>Arificer</option>
-                            <option>Blood Hunter</option>
                         </select>
                     </div>
                     <div className="form-group">
