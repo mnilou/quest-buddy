@@ -1,11 +1,11 @@
-import {useState} from 'react';
-import {useHistory} from 'react-router-dom';
-import {useAuth} from '../../util/authContext';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../util/authContext';
 import './style.css';
 import logoName from '../../assets/logo-name.png';
 
 function Authentication() {
-  const {signup, login} = useAuth();
+  const { signup, login } = useAuth();
   const history = useHistory();
   const [formState, setFormState] = useState({
     usernameSignup: '',
@@ -19,8 +19,8 @@ function Authentication() {
   const [isPending, setIsPending] = useState(false);
 
   const handleInputChange = (event) => {
-    const {name, value} = event.target;
-    setFormState((prevState) => ({...prevState, [name]: value}));
+    const { name, value } = event.target;
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSignUpSubmit = (event) => {
@@ -61,7 +61,7 @@ function Authentication() {
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-    const {usernameLogin, passwordLogin} = formState;
+    const { usernameLogin, passwordLogin } = formState;
     if (passwordLogin.length < 8) {
       alert('Password must have at least 8 characters.');
     } else if (usernameLogin.length < 6) {
@@ -70,7 +70,7 @@ function Authentication() {
       alert('Username must not contain more than 16 characters.');
     } else {
       setIsPending(true);
-      login({username: usernameLogin, password: passwordLogin})
+      login({ username: usernameLogin, password: passwordLogin })
         .then(() => history.push('/user'))
         .catch((error) => {
           console.log(error);
@@ -82,19 +82,26 @@ function Authentication() {
 
   return (
     <main className="background">
-        <br/>
-        <br/>
+      <br />
+      <br />
       <section className="container">
-        <h3 className="mt-3 mb-4 text-center">
-          {' '}
-          <img
-            className="logo"
-            src={logoName}
-            alt=""
-            style={{width: 200, height: 200, paddingRight: 4}}
-          />
-          Login/Signup
-        </h3>
+        <div className="row">
+          <div className="col d-flex justify-content-center">
+            <img
+              className="logo"
+              src={logoName}
+              alt="quest buddy logo"
+              style={{ width: 200, height: 100, objectFit: "none"}}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <h3 className="mb-4 text-center">
+              Login/Signup
+            </h3>
+          </div>
+        </div>
         <div>{isPending && 'Loading...'}</div>
         <div className="row">
           <div className="col">

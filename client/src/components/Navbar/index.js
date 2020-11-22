@@ -15,10 +15,12 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary" >
       {isLoggedIn ? (
-        <NavLink className="navbar-brand" to="/user"></NavLink>
+        <NavLink className="navbar-brand" to="/user">
+          <img src={logo} alt="" className="logo" style={{ width: 100, height: 50, objectFit: "cover"}}/>
+        </NavLink>
       ) : (
         <NavLink className="navbar-brand" to="/">
-         <img src={logo} alt="" className="logo" style={{width:100, height:100}}/>
+         <img src={logo} alt="" className="logo" style={{ width: 100, height: 50, objectFit: "cover"}}/>
         </NavLink>
       )}
       <button
@@ -37,7 +39,7 @@ function Navbar() {
           <li className="nav-item active">
             {isLoggedIn && (
               <button
-                className="btn btn-sm btn-outline-secondary"
+                className="btn btn-sm btn-light"
                 onClick={logout}
               >
                 Logout
@@ -47,7 +49,7 @@ function Navbar() {
           <li className="nav-item active">
             {isLoggedIn && (
               <button
-                className="btn btn-sm btn-outline-danger"
+                className="btn btn-sm btn-danger"
                 onClick={goBack}
               >
                 BACK

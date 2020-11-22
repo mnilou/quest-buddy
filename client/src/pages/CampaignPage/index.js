@@ -92,7 +92,8 @@ function CampaignPage() {
 
   return (
     <main className="container">
-      <h3 className="mt-3 mb-4 text-center">{campaign.name}</h3>
+      <h3 className="mt-5 mb-3 text-center">{campaign.name}</h3>
+      <h5 className="mt-1 mb-4 text-center">{"Game System: "+ campaign.system + " Campaign"}</h5>
       <div className="col" style={{contentHeight: '100'}}>
         <Calendar campaignId={campaignId} sessionClick={sessionClick} />
       </div>
@@ -114,12 +115,12 @@ function CampaignPage() {
       >
         Click on the calendar to create an event
       </span>
-      <div className="row mt-2">
-        <div className="col-md-6 overflow-auto border" style={{height: '15em'}}>
+      <div className="row mt-2 mb-6" style={{height: '15em'}}>
+        <div className="col-md-6 overflow-auto border" >
           <p className="mt-2"></p>
           {campaign.description}
         </div>
-        <div className="col-md-6 overflow-auto border" style={{height: '15em'}}>
+        <div className="col-md-6 overflow-auto border" >
           <CharacterAdd
             campaignCharacters={campaignCharacters}
             userCharacters={userCharacters}

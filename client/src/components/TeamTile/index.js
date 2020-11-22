@@ -10,7 +10,7 @@ function TeamTile(props) {
             <button
                 onClick={props.onClick}
                 id={props.id}
-                className="btn btn-warning" style={{backgroundColor: "purple", borderBlockColor: "purple", color: "white"}}>Go to Team</button>
+                className="btn" style={{backgroundColor: "purple", borderBlockColor: "purple", color: "white"}}>Go to Team</button>
         </div>
     </div>
   );
