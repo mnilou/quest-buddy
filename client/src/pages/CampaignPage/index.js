@@ -15,13 +15,28 @@ function CampaignPage() {
   const [campaignCharacters, setCampaignCharacters] = useState([]);
   const [userCharacters, setUserCharacters] = useState([]);
 
+  //these variables are for using the Add Character component and its modal
+  const [showCharacterAddModal, setShowCharacterAddModall] = useState(false);
+  const [selectedCharacterId, setSelectedCharacterId] = useState('');
+
+  //this gets the inital campaign data
+  useEffect(() => {
+    API.getOneCampaign(campaignId)
+      .then((results) => {
+        setCampaign(results.data)
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  //this gets the character tile information as an array
   useEffect(() => {
     let characterIdArray;
-    let campaignObject;
 
     API.getOneCampaign(campaignId)
       .then((results) => {
-        campaignObject = results.data;
         characterIdArray = results.data.characters;
       })
       .then(() => {
@@ -33,7 +48,6 @@ function CampaignPage() {
             arrayCounter++;
             if (arrayCounter === characterIdArray.length) {
               setCampaignCharacters(newArray);
-              setCampaign(campaignObject);
             }
           });
         });
@@ -41,7 +55,7 @@ function CampaignPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [campaignId,showCharacterAddModal]);
 
   useEffect(() => {
     API.getCharacters(user)
@@ -63,9 +77,6 @@ function CampaignPage() {
   const sessionClick = (event, sessionId) => {
     history.push('/session/' + sessionId);
   };
-
-  const [showCharacterAddModal, setShowCharacterAddModall] = useState(false);
-  const [selectedCharacterId, setSelectedCharacterId] = useState('');
 
   const showCharacterAddModalClick = (event) => {
     event.preventDefault();
