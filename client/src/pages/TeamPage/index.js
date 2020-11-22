@@ -92,16 +92,16 @@ function TeamPage() {
             <h3 className="mt-3 mb-4 text-center">{"Team: " + team.name}</h3>
             <div className="row">
                 <div className="col-md-5 col-sm mt-2 componentLeft border">
-                    <div className="row justify-content-center">
+                    <div className="row justify-content-center mb-2">
                         <h4 className="my-3">Current Team Members</h4>
                     </div>
                     {userAlreadyInTeam ? 
                     <div className="row">
-                        <button type="button" className="btn btn-outline-danger btn-block mx-3 mb-2">Leave Team</button>
+                        <button type="button" className="btn btn-outline-danger btn-block mx-3 mb-4">Leave Team</button>
                     </div> 
                     :
                     <div className="row">
-                        <button type="button" onClick={joinTheTeamClick} className="btn btn-outline-primary btn-block mx-3 mt-3 mb-1">Join the Team</button>
+                        <button type="button" onClick={joinTheTeamClick} className="btn btn-outline-primary btn-block mx-3 mb-4">Join the Team</button>
                     </div>}
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
@@ -121,11 +121,11 @@ function TeamPage() {
                 </div>
                 <div className="col-2"></div>
                 <div className="col-md-5 col-sm mt-2 componentLeft border">
-                    <div className="row justify-content-center">
-                        <h4 className="my-3 ml-3 text-justify">Campaigns</h4>
+                    <div className="row justify-content-center mb-2">
+                        <h4 className="my-3">Campaigns</h4>
                     </div>
                     <div className="row">
-                        <button type="button" onClick={campaignCreatorClick} className="btn btn-outline-success btn-block mx-3 mt-3 mb-5">Create New Campaign</button>
+                        <button type="button" onClick={campaignCreatorClick} className="btn btn-outline-success btn-block mx-3 mb-4">Create New Campaign</button>
                     </div>
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
