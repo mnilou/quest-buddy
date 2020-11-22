@@ -107,6 +107,7 @@ export default class Calendar extends React.Component {
               }}
               initialView="dayGridWeek"
               editable={true}
+              height={300}
               selectable={true}
               dayMaxEvents={true}
               select={this.handleDateSelect}
