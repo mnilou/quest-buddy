@@ -1,22 +1,57 @@
 import axios from "axios";
+//D&D API ROUTES
+const getLanguages = () => {
+    return axios.get("https://www.dnd5eapi.co/api/languages")
+}
 
+const getOneLanguage = (language) => {
+    return axios.get("https://www.dnd5eapi.co/api/languages/" + language)
+}
+
+const getMonsters = () => {
+    return axios.get("https://www.dnd5eapi.co/api/monsters");
+}
+
+const getOneMonster = (monster) => {
+    return axios.get("https://www.dnd5eapi.co/api/monsters/" + monster)
+}
+
+const getSpells = () => {
+    return axios.get("https://www.dnd5eapi.co/api/spells");
+}
+
+const getOneSpell = (spell) => {
+    return axios.get("https://www.dnd5eapi.co/api/spells/" + spell)
+}
+
+const getEquipment = () => {
+    return axios.get("https://www.dnd5eapi.co/api/equipment");
+}
+
+const getOneEquipment = (equipment) => {
+    return axios.get("https://www.dnd5eapi.co/api/equipment/" + equipment);
+}
+const getStartingEquipment = (characterClass) => {
+    return axios.get("https://www.dnd5eapi.co/api/starting-equipment/" + characterClass);
+}
+//USING OUR ROUTES
 // example api request for protected data (sends error i user isn't logged in)
 const getProtectedExample = () => axios.get("/api/protected");
 
 // example api request for public data
 const getPublicExample = () => axios.get("/api/unprotected");
 const createCharacter = (id, character) => {
-    return axios ({
+    return axios({
         method: "post",
         url: "api/character",
-        data: {id: id, character: character}
+        data: { id: id, character: character }
     })
 }
 const createTeam = (id, team) => {
     return axios({
         method: "post",
-        url: "/api/team", 
-        data: {id: id, team: team}
+        url: "/api/team",
+        data: { id: id, team: team }
     });
 }
 
@@ -24,15 +59,15 @@ const createCampaign = (id, campaign) => {
     //ID IS TEAM ID, NOT USER ID
     return axios({
         method: "post",
-        url: "/api/campaign", 
-        data: {id: id, campaign: campaign}
+        url: "/api/campaign",
+        data: { id: id, campaign: campaign }
     });
 }
 
 const createSession = (session) => {
     return axios({
         method: "post",
-        url: "/api/session/create", 
+        url: "/api/session/create",
         data: session
     });
 }
@@ -73,7 +108,7 @@ const getOneCampaign = (campaignId) => {
     return axios.get("/api/campaign/getdata/" + campaignId)
 };
 
-const getSessionIdByCampaign = (sessionName,campaignId) => {
+const getSessionIdByCampaign = (sessionName, campaignId) => {
     return axios.get("/api/session/" + sessionName + "/searchbycampaign/" + campaignId)
 };
 
@@ -90,15 +125,47 @@ const addCharacterToCampaignArray = (campaignId, characterId) => {
     return axios.post("/api/campaign/" + campaignId + "/addcharacter/" + characterId)
 };
 
-const addUserToTeamArray = (teamId, userId,username) => {
+const addUserToTeamArray = (teamId, userId, username) => {
     return axios.post("/api/team/" + teamId + "/adduser/" + userId + "/" + username)
 };
 
 const removeUserFromTeam = (teamId, userId, username) => {
     //console.log("api/team/" + teamId + "/removeuser/" + userId)
-    return axios.post("/api/team/" + teamId + "/removeuser/" + userId + "/" + username) 
+    return axios.post("/api/team/" + teamId + "/removeuser/" + userId + "/" + username)
 }
 
-const API = {updateCharacter, getTeams, getCharacters, createCampaign, getProtectedExample, getPublicExample, createCharacter, createTeam, createSession, getOneCharacter, getUsersByTeam, getOneTeam, getCampaignsByTeam, getOneCampaign, getSessionIdByCampaign, getOneSession, getSessionsByCampaign, addCharacterToCampaignArray, addUserToTeamArray, removeUserFromTeam };
+
+
+const API = {
+    getLanguages,
+    getOneLanguage,
+    getMonsters,
+    getOneMonster,
+    getEquipment,
+    getOneEquipment,
+    getStartingEquipment,
+    getSpells,
+    getOneSpell,
+    updateCharacter,
+    getTeams,
+    getCharacters,
+    createCampaign,
+    getProtectedExample,
+    getPublicExample,
+    createCharacter,
+    createTeam,
+    createSession,
+    getOneCharacter,
+    getUsersByTeam,
+    getOneTeam,
+    getCampaignsByTeam,
+    getOneCampaign,
+    getSessionIdByCampaign,
+    getOneSession,
+    getSessionsByCampaign,
+    addCharacterToCampaignArray,
+    addUserToTeamArray,
+    removeUserFromTeam
+};
 
 export default API;
