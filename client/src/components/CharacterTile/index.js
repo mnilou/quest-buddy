@@ -11,7 +11,7 @@ function CharacterTile(props) {
             <button
                 onClick={props.onClick}
                 id={props.id}
-                className="btn btn-danger">Go to Character</button>
+                className="btn btn-danger" style={{backgroundColor: "purple", borderBlockColor: "purple", color: "white"}}>Go to Character</button>
         </div>
     </div>
   );

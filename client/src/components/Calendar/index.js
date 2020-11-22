@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {useParams, useHistory} from 'react-router-dom';
+// import {useParams, useHistory} from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -26,7 +26,8 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: 'rgba(51, 51, 51, 0.3)',
+        backgroundColor: "whitesmoke",
+        // backgroundColor: "rgba(51, 51, 51, 0.3)"
       }}
     >
       <form>
@@ -53,16 +54,23 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
         </div>
         <button
           onClick={handleSubmit}
-          className="btn btn-outline-secondary"
+          className="btn btn-outline-success"
           type="button"
+          style={{marginBottom: "5px"}}
         >
           Submit
         </button>
         <div className="footer">
-          <button onClick={handleClose}>Close</button>
+          <button
+            onClick={handleClose}
+            className="btn btn-outline-danger"
+            type="button"
+          >
+            Close
+          </button>
         </div>
       </form>
-     </div>
+    </div>
   );
 };
 
@@ -82,7 +90,7 @@ export default class Calendar extends React.Component {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   render() {
     return (

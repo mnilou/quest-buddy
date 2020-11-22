@@ -68,7 +68,7 @@ console.log(id);
                             <label htmlFor="description">Setting Description</label>
                             <textarea type="text" onChange={handleInputChange} className="form-control" id="description" rows="5"></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary">Create!</button>
+                        <button type="submit" className="btn btn-success">Create!</button>
                     </form>
                 </div>
             </div>

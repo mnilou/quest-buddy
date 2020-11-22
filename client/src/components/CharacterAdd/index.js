@@ -7,7 +7,7 @@ function CharacterAdd (props) {
 
     return (
         <div className="col overflow-auto" style={{ height: "25em" }}>
-            <button type="button" className="btn btn-outline-danger btn-block mt-3 mb-5" onClick={props.showModalFunction}>Add a Character to Campaign</button>
+            <button type="button" className="btn btn-outline-success btn-block mt-3 mb-5" onClick={props.showModalFunction}>Add a Character to Campaign</button>
           <CharacterAddModal
           show={props.show}
           handleClose={props.handleClose}

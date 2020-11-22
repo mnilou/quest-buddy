@@ -101,7 +101,7 @@ function TeamPage() {
                     </div> 
                     :
                     <div className="row">
-                        <button type="button" onClick={joinTheTeamClick} className="btn btn-outline-success btn-block mx-3 mt-3 mb-1">Join the Team</button>
+                        <button type="button" onClick={joinTheTeamClick} className="btn btn-outline-primary btn-block mx-3 mt-3 mb-1">Join the Team</button>
                     </div>}
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
