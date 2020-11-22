@@ -18,7 +18,7 @@ function Navbar() {
         <NavLink className="navbar-brand" to="/user"></NavLink>
       ) : (
         <NavLink className="navbar-brand" to="/">
-         <img className="logo" src={logo} alt="" style={{width:100, height:100}}/>
+         <img src={logo} alt="" className="logo" style={{width:100, height:100}}/>
         </NavLink>
       )}
       <button
