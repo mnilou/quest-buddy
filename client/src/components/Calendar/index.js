@@ -26,7 +26,7 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: "whitesmoke",
+        backgroundColor: "rgba(245, 245, 245, 0.9)",
         // backgroundColor: "rgba(51, 51, 51, 0.3)"
       }}
     >
