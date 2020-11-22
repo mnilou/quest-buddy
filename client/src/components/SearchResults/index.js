@@ -5,12 +5,14 @@ function SearchResults(props) {
 
     return (
         <tbody>
-            {props.teams.map(team => {
+            {props.teams.map((team, index) => {
                 return <tr key={team._id}>
-                    <td><Link target="_blank" to={"/team/" + team._id}>{team.name}</Link></td>
-                    {team.members.map((member, index) => {
-                        return <td key={index}>{member.username}</td>
+                    <td><Link to={"/team/" + team._id}>{team.name}</Link></td>
+                    <td>
+                    {team.members.map(member => {
+                        return <span>{member.username} </span>
                     })}
+                    </td>
                 </tr>
             })}
         </tbody>
