@@ -6,12 +6,12 @@ function CharacterTile(props) {
     <div key={props.id} className="card">
         <div className="card-body">
             <h5 className="card-title">{props.name}</h5>
-            <p className="card-text">{"Level: " + props.level +" / " + props.class +  "/ " + props.race}
+            <p className="card-text">{props.race +  " / " + props.class + " / Level: " + props.level}
         </p>
             <button
                 onClick={props.onClick}
                 id={props.id}
-                className="btn btn-danger">Go to Character</button>
+                className="btn" style={{backgroundColor: "purple", borderBlockColor: "purple", color: "white"}}>Go to Character</button>
         </div>
     </div>
   );

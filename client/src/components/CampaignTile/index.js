@@ -11,7 +11,7 @@ function CharacterTile(props) {
                 <button
                     onClick={props.onClick}
                     id={props.id}
-                    className="btn btn-info">Go to Campaign
+                    className="btn" style={{backgroundColor: "purple", borderBlockColor: "purple", color: "white"}}>Go to Campaign
                 </button>
             </div>
         </div>

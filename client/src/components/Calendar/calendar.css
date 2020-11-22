@@ -4,7 +4,7 @@ body > div {
   /* the react root */
   margin: 0;
   padding: 0;
-  height: 50%;
+  background-color: whitesmoke;
 }
 
 h2 {
@@ -39,7 +39,6 @@ b {
 
 .calendar {
   display: flex;
-  min-height: 50%;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
 }

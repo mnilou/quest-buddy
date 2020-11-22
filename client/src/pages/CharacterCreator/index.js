@@ -160,7 +160,7 @@ function CharacterCreator() {
                         <label htmlfor="description">Description</label>
                         <textarea type="text" className="form-control" id="description" rows="5"></textarea>
                     </div>
-                    <button type="submit" className="btn btn-danger">Create!</button>
+                    <button type="submit" className="btn btn-success">Create!</button>
                 </form>
             </div>
         </div>

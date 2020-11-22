@@ -11,7 +11,7 @@ function UserTile(props) {
                 <button
                     onClick={props.onClick}
                     id={props.id}
-                    className="btn btn-success">Go to User
+                    className="btn" style={{backgroundColor: "purple", borderBlockColor: "purple", color: "white"}}>Go to User
                 </button>
             </div>
         </div>

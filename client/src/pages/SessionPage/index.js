@@ -119,7 +119,7 @@ function SessionPage () {
                         </p>
                     </div>
                     <div className="col-1 border">
-                        <button className="btn btn-primary" style={{height: "15em", display: "block"}}>
+                        <button className="btn btn-success" style={{height: "15em", display: "block"}}>
                             Add Post</button>
                     </div>
                 </div>

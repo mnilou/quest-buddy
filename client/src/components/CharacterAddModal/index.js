@@ -26,7 +26,7 @@ const CharacterAddModal = (props) => {
                 <div></div>  :  
                 <button
                     onClick={props.handleCharacterAddSubmit}
-                    className="btn btn-outline-secondary"
+                    className="btn btn-outline-success"
                     type="submit"
                 > Submit
                 </button> }

@@ -39,7 +39,7 @@ function TeamCreator (){
                             <label htmlFor="teamName">Team Name</label>
                             <input type="text" className="form-control" id="teamName" aria-describedby="teamName" onChange={handleInputChange}/>
                         </div>
-                        <button type="submit" className="btn btn-secondary">Create!</button>
+                        <button type="submit" className="btn btn-success">Create!</button>
                     </form>
                 </div>
             </div>
