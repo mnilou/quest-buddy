@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../util/authContext";
+import logoName from '../../assets/logo-name.png';
 
 function Authentication() {
 
@@ -60,7 +61,7 @@ function Authentication() {
 
     return (
         <main className="container">
-            <h3 className="mt-3 mb-4 text-center">Login/Signup</h3>
+            <h3 className="mt-3 mb-4 text-center"> <img className="logo" src={logoName} alt="" style={{width:200, height:200, paddingRight: 4}}/>Login/Signup</h3>
             <div>{isPending && "Loading..."}</div>
             <div className="row">
                 <div className="col">
