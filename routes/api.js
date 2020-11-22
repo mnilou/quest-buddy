@@ -34,6 +34,47 @@ app.post("/api/team/:teamId/adduser/:userId/:username", (req, res) => {
     db.Team.findById(req.params.teamId).then(results => {
         const usersArray = results.members;
         usersArray.push({id: req.params.userId,username: req.params.username});
+        db.User.findById(req.params.userId).then(user => {
+            const teamArray = user.teams;
+            console.log(teamArray);
+            teamArray.push(results);
+            user.save();
+        })
+        results.save();
+        res.json(results);
+    })
+});
+
+app.post("/api/team/:teamId/removeuser/:userId/:username", (req, res) => {
+    let index;
+    let id;
+    db.Team.findById(req.params.teamId).then(results => {
+        id = req.params.teamId;
+        const usersArray = results.members;
+        let removedUser = usersArray.filter(user => {
+            return user.id === req.params.userId
+        })
+        removedUser = removedUser[0];
+        for (let i = 0; i < usersArray.length; i++){
+            if(usersArray[i] === removedUser){
+                index = i
+            }
+        }
+        usersArray.splice(index, 1)
+        db.User.findById(req.params.userId).then(user => {
+           let teamIndex;
+           let removedTeam = user.teams.filter(team => {
+               return team._id == id
+           })
+           removedTeam = removedTeam[0]
+           for (let i = 0; i < user.teams.length; i++){
+                if (user.teams[i] === removedTeam){
+                    teamIndex = i;
+                } 
+           }
+           user.teams.splice(teamIndex, 1);
+           user.save();
+       })       
         results.save();
         res.json(results);
     })

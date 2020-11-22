@@ -67,8 +67,18 @@ function TeamPage() {
         event.preventDefault();
         API.addUserToTeamArray(teamId,loggedInUser.id, loggedInUser.username).then(() => {
             setUserAlreadyInTeam(true);
+            history.push("/user/" + teamId)
         })
+        
     };
+
+    const leaveTheTeamClick = (event) => {
+        event.preventDefault();
+        API.removeUserFromTeam(teamId, loggedInUser.id, loggedInUser.username).then(() => {
+            setUserAlreadyInTeam(false);
+            history.push("/user/")
+        })
+    }
 
     const userClick = (event) => {
         event.preventDefault();
@@ -97,7 +107,7 @@ function TeamPage() {
                     </div>
                     {userAlreadyInTeam ? 
                     <div className="row">
-                        <button type="button" className="btn btn-outline-danger btn-block mx-3 mb-2">Leave Team</button>
+                        <button type="button" onClick={leaveTheTeamClick} className="btn btn-outline-danger btn-block mx-3 mb-2">Leave Team</button>
                     </div> 
                     :
                     <div className="row">
