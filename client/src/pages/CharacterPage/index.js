@@ -65,7 +65,6 @@ function CharacterPage() {
     }
 
     useEffect(() => {
-        
         API.getOneCharacter(id).then(results => {
             setCharacterData(results.data);
         }).catch(err => {
