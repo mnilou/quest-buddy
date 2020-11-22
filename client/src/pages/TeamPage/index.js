@@ -107,11 +107,7 @@ function TeamPage() {
                     </div>
                     {userAlreadyInTeam ? 
                     <div className="row">
-<<<<<<< HEAD
                         <button type="button" onClick={leaveTheTeamClick} className="btn btn-outline-danger btn-block mx-3 mb-2">Leave Team</button>
-=======
-                        <button type="button" className="btn btn-outline-danger btn-block mx-3 mb-4">Leave Team</button>
->>>>>>> 0b60e4365b75a70f9b08ada8d8d87e6786d10cb7
                     </div> 
                     :
                     <div className="row">

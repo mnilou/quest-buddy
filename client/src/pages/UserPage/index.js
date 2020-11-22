@@ -85,11 +85,7 @@ function UserPage() {
                         <h4 className="my-3 ml-3 text-center">My Teams</h4>
                     </div>
                     <div className="row">
-<<<<<<< HEAD
                         <button type="button" className="btn btn-outline-info btn-block mx-3 mt-3 mb-1"><Link to="/team_search">Join an Existing Team</Link></button>
-=======
-                        <button type="button" className="btn btn-outline-primary btn-block mx-3 mt-3 mb-1"><Link target="_blank" to="/team_search">Join an Existing Team</Link></button>
->>>>>>> 0b60e4365b75a70f9b08ada8d8d87e6786d10cb7
                     </div>
                     <div className="row">
                         <button type="button" className="btn btn-outline-success btn-block mx-3 mb-2" onClick={teamCreatorClick}>Make a New Team</button>
