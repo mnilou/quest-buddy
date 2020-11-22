@@ -1,35 +1,63 @@
-import { NavLink, useHistory } from "react-router-dom";
-import { useAuth } from "../../util/authContext";
+import {NavLink, useHistory} from 'react-router-dom';
+import {useAuth} from '../../util/authContext';
+import './navbar.css';
+import logo from '../../assets/logo192.png';
 
 function Navbar() {
-    const { isLoggedIn, logout } = useAuth();
-    const history = useHistory();
+  const {isLoggedIn, logout} = useAuth();
+  const history = useHistory();
 
-    const goBack = (event) => {
-        event.preventDefault();
-        history.goBack();
-      };
+  const goBack = (event) => {
+    event.preventDefault();
+    history.goBack();
+  };
 
-    return (
-
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            { isLoggedIn ? <NavLink className="navbar-brand" to="/user" >Campaign Planner</NavLink> : <NavLink className="navbar-brand" to="/" >Campaign Planner</NavLink>}
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    <li className="nav-item active">
-                        {isLoggedIn && <button className="btn btn-sm btn-outline-secondary" onClick={logout}>Logout</button>}
-                    </li>
-                    <li className="nav-item active">
-                        {isLoggedIn && <button className="btn btn-sm btn-outline-danger" onClick={goBack}>BACK</button>}
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    );
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-secondary" >
+      {isLoggedIn ? (
+        <NavLink className="navbar-brand" to="/user"></NavLink>
+      ) : (
+        <NavLink className="navbar-brand" to="/">
+         <img className="logo" src={logo} alt="" style={{width:100, height:100}}/>
+        </NavLink>
+      )}
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+          <li className="nav-item active">
+            {isLoggedIn && (
+              <button
+                className="btn btn-sm btn-outline-secondary"
+                onClick={logout}
+              >
+                Logout
+              </button>
+            )}
+          </li>
+          <li className="nav-item active">
+            {isLoggedIn && (
+              <button
+                className="btn btn-sm btn-outline-danger"
+                onClick={goBack}
+              >
+                BACK
+              </button>
+            )}
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
