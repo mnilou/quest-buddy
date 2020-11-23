@@ -65,7 +65,7 @@ function TeamPage() {
         event.preventDefault();
         API.addUserToTeamArray(teamId,loggedInUser.id, loggedInUser.username).then(() => {
             setUserAlreadyInTeam(true);
-            history.push("/team/" + teamId);
+            window.location.reload(false);
         })
         
     };
@@ -74,7 +74,7 @@ function TeamPage() {
         event.preventDefault();
         API.removeUserFromTeam(teamId, loggedInUser.id, loggedInUser.username).then(() => {
             setUserAlreadyInTeam(false);
-            history.push("/team/" + teamId);
+            window.location.reload(false);
         })
     }
 

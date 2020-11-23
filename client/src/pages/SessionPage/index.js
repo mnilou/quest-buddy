@@ -83,7 +83,7 @@ function SessionPage () {
                     <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title text-center">No Posts Yet</h5>
-                            <p className="card-text text-center">Add a posts</p>
+                            <p className="card-text text-center">Add a post</p>
                         </div>
                     </div>
                         {/* <p>ccruzcosa@gmail said: It was awesome!</p>
