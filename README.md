@@ -11,7 +11,9 @@ Tabletop gaming, including Dungeon and Dragons, is being rediscovered by current
 However, a glaring omission in the existing toolsets is the ability to both track your characters/sessions/campaigns and to schedule meet-ups.  All too often, teams have to use a second app, such as Facebook or Zoom, to track their meetups.  And there is no single record of what happened at each session.  This app simplifies the life of every adventurer and dungeon master by allowing them to download the app, make teams, schedule meetings directly, and keep a record of all past sessions.  No longer will players have to jump between multiple apps just to play the game and know when the next session will be and where.  
 
 ## Screenshots
-
+<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot.jpg"> 
+<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot-user.jpg"> 
+<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot-campaign.jpg"> 
 
 ## Table of contents
 
@@ -55,6 +57,8 @@ As an avid Dungeons and Dragons player who often has multiple campaigns running 
 ## Deployed Link (Heroku)
 
 >[Campaign Planner](https://campaign-planner-nat20.herokuapp.com/)
+
+>[Github Repo](https://github.com/mnilou/quest-buddy)
 
 ## Contributors
 
