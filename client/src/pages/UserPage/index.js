@@ -1,6 +1,7 @@
 import {Link, useHistory, useParams} from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
 import {useAuth} from '../../util/authContext';
+import './user.css';
 import API from '../../util/API';
 import CharacterTile from '../../components/CharacterTile';
 import TeamTile from '../../components/TeamTile';
@@ -46,7 +47,7 @@ function UserPage() {
   }, [user]);
 
   return (
-    <div className="background">
+    <div className="back">
       <main className="container">
         <h3 className="mt-5 mb-4 text-center">
           Welcome home, <span style={{color: 'red'}}>{user.username}</span>
