@@ -31,6 +31,8 @@ const getEquipment = () => {
 const getOneEquipment = (equipment) => {
     return axios.get("https://www.dnd5eapi.co/api/equipment/" + equipment);
 }
+
+
 const getStartingEquipment = (characterClass) => {
     return axios.get("https://www.dnd5eapi.co/api/starting-equipment/" + characterClass);
 }
@@ -40,10 +42,19 @@ const getProtectedExample = () => axios.get("/api/protected");
 
 // example api request for public data
 const getPublicExample = () => axios.get("/api/unprotected");
+
+const addEquipment = (id, equipment) => {
+    return axios({
+        method: "post",
+        url: "/api/character/equipment",
+        data: {id: id, equipment: equipment}
+    })
+}
+
 const createCharacter = (id, character) => {
     return axios({
         method: "post",
-        url: "api/character",
+        url: "/api/character",
         data: { id: id, character: character }
     })
 }
@@ -137,6 +148,7 @@ const removeUserFromTeam = (teamId, userId, username) => {
 
 
 const API = {
+    addEquipment,
     getLanguages,
     getOneLanguage,
     getMonsters,
