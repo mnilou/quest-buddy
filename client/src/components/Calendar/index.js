@@ -8,10 +8,12 @@ import API from '../../util/API';
 import './calendar.css';
 
 const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
-  const inputRef = useRef();
+  const inputRefTitle = useRef();
+  const inputRefDescription = useRef();
   const handleSubmit = () => {
-    onSubmit(inputRef.current.value);
-    inputRef.current.value = '';
+    onSubmit({title: inputRefTitle.current.value, description: inputRefDescription.current.value});
+    inputRefTitle.current.value = '';
+    inputRefDescription.current.value = '';
   };
   const handleClose = () => onClose();
   return (
@@ -35,7 +37,7 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
           <h4 className="p-5 bg-light">Creating event on {eventDate}</h4>
           <label htmlFor="event-title">Event Title</label>
           <input
-            ref={inputRef}
+            ref={inputRefTitle}
             type="text"
             id="event-title"
             className="form-control"
@@ -46,6 +48,7 @@ const EventTitleInputModal = ({onSubmit, eventDate, onClose}) => {
           <label htmlfor="description"> Event Description</label>
           <textarea
             type="text"
+            ref={inputRefDescription}
             className="form-control"
             id="event-description"
             rows="5"
@@ -129,12 +132,13 @@ export default class Calendar extends React.Component {
     this.setState({showEventTitleInput: true, selectInfo});
   };
 
-  handleEventTitleSubmit = (title) => {
-    if (title && this.props.campaignId) {
+  handleEventTitleSubmit = (object) => {
+    if (object.title && this.props.campaignId) {
       const event = {
-        title,
+        title: object.title,
         date: this.state.selectInfo.startStr,
         campaignId: this.props.campaignId,
+        description: object.description
       };
 
       API.createSession(event)
