@@ -28,11 +28,13 @@ const CharacterAddModal = (props) => {
                     onClick={props.handleCharacterAddSubmit}
                     className="btn btn-outline-success"
                     type="submit"
+                    style={{marginTop: '0.5rem', marginLeft: '0.5rem'}}
                 > Submit
                 </button> }
                 
                 <div className="footer">
-                    <button onClick={props.handleClose}>Close</button>
+                    <button onClick={props.handleClose}
+                    className="btn btn-outline-danger" style={{marginTop: '0.5rem', marginLeft: '0.5rem', marginBottom: '0.5rem'}}>Close</button>
                 </div>
             </form>
         </div >
