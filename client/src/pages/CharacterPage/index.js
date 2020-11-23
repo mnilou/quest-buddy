@@ -45,6 +45,7 @@ function CharacterPage() {
             equipmentToAdd = results.data
         }).then(()=>{
             API.addEquipment(characterData._id, equipmentToAdd);
+            window.location.reload(false);
         })
     }
 
@@ -55,6 +56,7 @@ function CharacterPage() {
             spellToAdd = results.data
         }).then(() => {
             API.addSpell(characterData._id, spellToAdd);
+            window.location.reload(false);
         })
     }
 
