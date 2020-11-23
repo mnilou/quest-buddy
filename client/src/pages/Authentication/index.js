@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../util/authContext';
 import './style.css';
 import logoName from '../../assets/logo-name.png';
+import terms from '../../assets/terms.pdf';
 
 function Authentication() {
   const { signup, login } = useAuth();
@@ -215,8 +216,8 @@ function Authentication() {
                   </button>
                   <p>
                     By clicking 'Sign up' you agree to our{' '}
-                    <a href="/" target="_blank">
-                      {' '}
+                    <a href= {terms} target="_blank">
+                      { '' }
                       terms of service
                     </a>
                   </p>
