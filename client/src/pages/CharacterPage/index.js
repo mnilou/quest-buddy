@@ -1,8 +1,11 @@
 import { useHistory, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import CharacterEquipment from "../../components/CharacterEquipment/"
+import CharacterSpells from "../../components/CharacterSpells"
 //import { useAuth } from "../../util/authContext";
 import API from "../../util/API";
 import "./style.css";
+
 
 function CharacterPage() {
     const { id } = useParams();
@@ -13,6 +16,8 @@ function CharacterPage() {
     const [counter, setCounter] = useState(0);
     const [items, setItems] = useState([]);
     const [spells, setSpells] = useState([]);
+    const [characterEquipment, setCharacterEquipment] = useState([]);
+    const [characterSpells, setCharacterSpells] = useState([]);
 
     let equipmentToAdd;
     let spellToAdd;
@@ -88,19 +93,46 @@ function CharacterPage() {
     }
 
     useEffect(() => {
-        API.getEquipment().then(equipment => {
-            setItems(equipment.data.results)
-        })
-        API.getSpells().then(spellList => {
-            setSpells(spellList.data.results)
-        })
         API.getOneCharacter(id).then(results => {
             setCharacterData(results.data);
         }).catch(err => {
             console.log(err);
         })
-    }, []);
+    }, [])
 
+    useEffect(() => {
+        API.getOneCharacter(id).then(results => {
+            setCharacterEquipment(results.data.equipment)
+        }).catch(err => {
+            console.log(err);
+        })
+    }, [])
+
+    useEffect(() => {
+        API.getOneCharacter(id).then(results => {
+            setCharacterSpells(results.data.spells)
+        }).catch(err => {
+            console.log(err);
+        })
+    }, [])
+
+    useEffect(() => {
+        API.getEquipment().then(equipment => {
+            setItems(equipment.data.results)
+        }).catch(err => {
+            console.log(err);
+        })
+    }, [])
+
+    useEffect(() => {
+        API.getSpells().then(spellList => {
+            setSpells(spellList.data.results)
+        }).catch(err => {
+            console.log(err)
+        })
+    }, []);
+    
+// console.log(characterSpells)
     useEffect(() => {
         if (counter !== 0) {
             API.updateCharacter(characterData);
@@ -212,8 +244,8 @@ function CharacterPage() {
                             </h6>
                         </div>
                         <div className="col-md-6">
-
                             <div className="form-group container">
+                                <h3 className="text-center">Equipment</h3>
                                 <label htmlFor="equipment-add">Add equipment</label>
                                 <select className="form-control" id="equipment-add">
                                     {items.map(item => {
@@ -224,18 +256,13 @@ function CharacterPage() {
                             </div>
                             <div className="row">
                                 <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <h5 className="card-title">Club</h5>
-                                            <p className="card-text">Weapon / Melee
-                                        </p>
-                                            <p className="card-text">1d4 Dmg
-                                        </p>
-                                        </div>
-                                    </div>
+                                    {characterEquipment.map((item, index) => {
+                                        return <CharacterEquipment key={index} equipment = {item} />
+                                    })}
                                 </div>
                             </div>
                             <div className="form-group container">
+                                <h3 className="text-center">Spells</h3>
                                 <label htmlFor="spell-add">Add Spells</label>
                                 <select className="form-control" id="equipment-add">
                                     {spells.map(spell => {
@@ -244,9 +271,15 @@ function CharacterPage() {
                                 </select>
                                 <button className="mt-3 btn btn-info" onClick={addSpell}>Add Spell</button>
                             </div>
+
+                            
                             <div className="row">
+                                
                                 <div className="col overflow-auto border" style={{ height: "20em" }}>
-                                    <div className="card">
+                                    {characterSpells.map((spell, index) => {
+                                        return <CharacterSpells key={index} spell={spell}/> 
+                                        })}
+                                    {/* <div className="card">
                                         <div className="card-body">
                                             <h5 className="card-title">Acid Arrow</h5>
                                             <p className="card-text">A shimmering green arrow streaks toward a target within
@@ -278,9 +311,11 @@ function CharacterPage() {
                                             <p className="card-text">Conjuration
                                         </p>
                                         </div>
-                                    </div>
+                                    </div> */}
+
                                 </div>
                             </div>
+
                         </div>
 
                     </div>

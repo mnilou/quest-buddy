@@ -19,9 +19,6 @@ app.post("/api/character", (req, res) => {
 
 app.post("/api/character/equipment", (req, res) => {
     db.Character.findById(req.body.id).then(results => {
-        //console.log(results)
-        //console.log(results.equipment);
-        // console.log(req.body.equipment);
         results.equipment.push(req.body.equipment);
         results.save();
         res.json(results)
