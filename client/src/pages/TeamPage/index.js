@@ -24,7 +24,7 @@ function TeamPage() {
         .catch(err => {
             console.log(err);
         })
-    }, []);
+    }, [teamId, userAlreadyInTeam]);
 
     useEffect(() => {
         API.getUsersByTeam(teamId).then(results => {
@@ -33,7 +33,7 @@ function TeamPage() {
         .catch(err => {
             console.log(err);
         })
-    }, [teamId,userAlreadyInTeam]);
+    }, [teamId]);
 
     useEffect(() => {
         API.getCampaignsByTeam(teamId).then(results => {
@@ -47,8 +47,6 @@ function TeamPage() {
     //check if user is already in the team and if so removes the "join" button
     useEffect(() => {
         API.getUsersByTeam(teamId).then(results => {
-            console.log(results.data);
-            console.log(loggedInUser.id);
             usersInCampaignArray = results.data;
         })
         .then(() => {
@@ -67,7 +65,7 @@ function TeamPage() {
         event.preventDefault();
         API.addUserToTeamArray(teamId,loggedInUser.id, loggedInUser.username).then(() => {
             setUserAlreadyInTeam(true);
-            history.push("/user/" + teamId)
+            history.push("/team/" + teamId);
         })
         
     };
@@ -76,7 +74,7 @@ function TeamPage() {
         event.preventDefault();
         API.removeUserFromTeam(teamId, loggedInUser.id, loggedInUser.username).then(() => {
             setUserAlreadyInTeam(false);
-            history.push("/user/")
+            history.push("/team/" + teamId);
         })
     }
 
@@ -99,7 +97,7 @@ function TeamPage() {
 
     return (
         <main className="container">
-            <h3 className="mt-3 mb-4 text-center">{"Team: " + team.name}</h3>
+            <h3 className="mt-5 mb-4 text-center">{"Team: " + team.name}</h3>
             <div className="row">
                 <div className="col-md-5 col-sm mt-2 componentLeft border">
                     <div className="row justify-content-center mb-2">
@@ -140,7 +138,16 @@ function TeamPage() {
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
                             <div>
-                            {campaigns.map( campaign => (
+                            {(campaigns.length < 1) ?
+                                <div className="card">
+                                    <div className="card-body">
+                                        <h5 className="card-title text-center">No Campaigns Exist Yet</h5>
+                                        <p className="card-text text-center">Add a campaign to begin your journey!</p>
+                                    </div>
+                                </div>
+                                :
+                                
+                            campaigns.map( campaign => (
                                     <CampaignTile
                                         onClick={campaignClick}
                                         id={campaign._id}

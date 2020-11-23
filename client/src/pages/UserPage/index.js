@@ -92,7 +92,7 @@ function UserPage() {
                     </div>
                     <div className="row justify-content-center border">
                         <div className="col overflow-auto" style={{ height: "25em" }}>
-                            {(characters.length < 1) ?
+                            {(teams.length < 1) ?
                                 <div className="card">
                                     <div className="card-body">
                                         <h5 className="card-title text-center">Not a Member of Any Teams Yet</h5>

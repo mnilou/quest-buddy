@@ -35,7 +35,7 @@ function SessionPage () {
 
   return (
     <main className="container">
-        <h3 className="mt-3 mb-4 text-center">{session.title}</h3>
+        <h3 className="mt-5 mb-4 text-center">{session.title}</h3>
         <h4 className="mt-3 mb-4 text-center"> {session.date}</h4>
         <div className="row">
             <div className="col">
@@ -46,16 +46,14 @@ function SessionPage () {
                         <p>{session.description}</p>
                     </div>
                     <div className="col-md-6 overflow-auto border" style={{height: "15em"}}>
+
                         <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Dire Wolf</h5>
-                                <p className="card-text">CR: 3 / Alignment: Chaotic Neutral
-                                </p>
-                                <p className="card-text">Str:21/Dex:9/Con:15/Int:18/Wis:15/Char:18
-                                </p>
-                            </div>
+                                    <div className="card-body">
+                                        <h5 className="card-title text-center">No Monsters Added Yet</h5>
+                                        <p className="card-text text-center">Find ye opponents to face in mortal combat!</p>
+                                    </div>
                         </div>
-                            <div className="card">
+                            {/* <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">Dire Wolf</h5>
                                     <p className="card-text">CR: 3 / Alignment: Chaotic Neutral
@@ -72,7 +70,7 @@ function SessionPage () {
                                     <p className="card-text">Str:21/Dex:9/Con:15/Int:18/Wis:15/Char:18
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                     </div>
                 </div>
             </div>
@@ -81,7 +79,14 @@ function SessionPage () {
             <div className="col">
                 <div className="row">
                     <div className="col-11 overflow-auto" style={{height: "15em"}}>
-                        <p>ccruzcosa@gmail said: It was awesome!</p>
+
+                    <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title text-center">No Posts Yet</h5>
+                            <p className="card-text text-center">Add a posts</p>
+                        </div>
+                    </div>
+                        {/* <p>ccruzcosa@gmail said: It was awesome!</p>
                         <p>ccruzcosa@gmail said: We found a door that we couldn't open. It seemed to need four keys, but
                             we didn't find any of them yet.
                             We need to keep looking in the rest of the cemetary.</p>
@@ -116,7 +121,7 @@ function SessionPage () {
                             To take my life. Two of these fellows you
                             Must know and own; this thing of darkness I
                             Acknowledge mine.
-                        </p>
+                        </p> */}
                     </div>
                     <div className="col-1 border">
                         <button className="btn btn-success" style={{height: "15em", display: "block"}}>

@@ -151,7 +151,7 @@ function CharacterCreator() {
                             <option>Paladin</option>
                             <option>Ranger</option>
                             <option>Rogue</option>
-                            <option>Socerer</option>
+                            <option>Sorcerer</option>
                             <option>Warlock</option>
                             <option>Wizard</option>
                         </select>
