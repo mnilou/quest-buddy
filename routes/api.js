@@ -20,7 +20,7 @@ app.post("/api/character", (req, res) => {
 app.post("/api/character/equipment", (req, res) => {
     db.Character.findById(req.body.id).then(results => {
         //console.log(results)
-        console.log(results.equipment);
+        //console.log(results.equipment);
         // console.log(req.body.equipment);
         results.equipment.push(req.body.equipment);
         results.save();
@@ -28,6 +28,15 @@ app.post("/api/character/equipment", (req, res) => {
     })
     
   });
+
+app.post("/api/character/spells", (req, res) => {
+    db.Character.findById(req.body.id).then(results => {
+        results.spells.push(req.body.spell);
+        results.save();
+        res.json(results)        
+    })
+    
+})
 
 app.post("/api/team", (req, res) => {
   db.Team.create(req.body.team).then(result => {
