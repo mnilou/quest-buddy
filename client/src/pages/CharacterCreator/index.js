@@ -67,7 +67,7 @@ function CharacterCreator() {
 
   return (
     <main className="container">
-        <h3 className="mt-3 mb-4 text-center">Create a New Character</h3>
+        <h3 className="mt-5 mb-4 text-center">Create a New Character</h3>
         <div className="row">
             <div className="col">
                 <form onSubmit={handleOnSubmit} onChange={handleInputChange}>
