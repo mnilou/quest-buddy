@@ -217,7 +217,7 @@ function Authentication() {
                   <p>
                     By clicking 'Sign up' you agree to our{' '}
                     <a href= {terms} target="_blank">
-                      {' '}
+                      { '' }
                       terms of service
                     </a>
                   </p>
