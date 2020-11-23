@@ -1,28 +1,29 @@
 import { useHistory, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../util/authContext";
+//import { useAuth } from "../../util/authContext";
 import API from "../../util/API";
 import "./style.css";
 
 function CharacterPage() {
     const { id } = useParams();
     const history = useHistory();
-    const { user } = useAuth();
+    //const { user } = useAuth();
 
     const [characterData, setCharacterData] = useState({});
     const [counter, setCounter] = useState(0);
+    const [items, setItems] = useState([]);
+
+    let equipmentToAdd;
 
     const up = (event) => {
-        console.log('up')
         const currentVar = parseInt(event.target.previousElementSibling.textContent)
         const input = event.target.previousElementSibling.id;
         const upVar = currentVar + 1;
         event.target.previousElementSibling.textContent = upVar;
-       saveCharacter(input, 1)
+        saveCharacter(input, 1)
     }
 
     const down = (event) => {
-        console.log('down')
         const currentVar = parseInt(event.target.nextElementSibling.textContent)
         const input = event.target.nextElementSibling.id;
         const downVar = currentVar - 1;
@@ -30,7 +31,18 @@ function CharacterPage() {
         saveCharacter(input, -1)
     }
 
-    async function saveCharacter(stat, num){
+    const addItem = (event) => {
+        let item = event.target.previousElementSibling.value;
+        item = item.replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g,"").replace(/ /g, "-").toLowerCase();
+        API.getOneEquipment(item).then(results => {
+            equipmentToAdd = results.data
+            
+        }).then(()=>{
+            API.addEquipment(characterData._id, equipmentToAdd);
+        })
+    }
+
+    async function saveCharacter(stat, num) {
         switch (stat) {
             case "level":
                 setCharacterData({ ...characterData, level: characterData.level + num })
@@ -65,6 +77,9 @@ function CharacterPage() {
     }
 
     useEffect(() => {
+        API.getEquipment().then(equipment => {
+            setItems(equipment.data.results)
+        })
         API.getOneCharacter(id).then(results => {
             setCharacterData(results.data);
         }).catch(err => {
@@ -73,13 +88,13 @@ function CharacterPage() {
     }, []);
 
     useEffect(() => {
-        if(counter !== 0){
+        if (counter !== 0) {
             API.updateCharacter(characterData);
         } else {
             setCounter(counter + 1);
         }
     }, [characterData])
-
+    
     return (
         <main className="container">
             <h3 className="mt-5 mb-4 text-center">{characterData.name}</h3>
@@ -184,9 +199,17 @@ function CharacterPage() {
                         </div>
                         <div className="col-md-6">
 
-
+                            <div className="form-group container">
+                                <label htmlFor="equipment-add">Add equipment</label>
+                                <select className="form-control" id="equipment-add">
+                                    {items.map(item => {
+                                        return <option key={item.index}>{item.name}</option>
+                                    })}
+                                </select>
+                                <button className="mt-3 btn btn-info" onClick={addItem}>Add item</button>
+                            </div>
                             <div className="row">
-                                <div className="col overflow-auto border" style={{ height: "20em" }}>
+                                <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
                                     <div className="card">
                                         <div className="card-body">
                                             <h5 className="card-title">Club</h5>

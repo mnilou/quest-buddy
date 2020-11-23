@@ -1,5 +1,5 @@
 const express = require("express");
-const { result } = require("validate.js");
+//const { result } = require("validate.js");
 const app = express();
 const db = require("../models/")
 
@@ -16,6 +16,18 @@ app.post("/api/character", (req, res) => {
   }) 
 
 });
+
+app.post("/api/character/equipment", (req, res) => {
+    db.Character.findById(req.body.id).then(results => {
+        //console.log(results)
+        console.log(results.equipment);
+        // console.log(req.body.equipment);
+        results.equipment.push(req.body.equipment);
+        results.save();
+        res.json(results)
+    })
+    
+  });
 
 app.post("/api/team", (req, res) => {
   db.Team.create(req.body.team).then(result => {
