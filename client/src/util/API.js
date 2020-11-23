@@ -51,6 +51,14 @@ const addEquipment = (id, equipment) => {
     })
 }
 
+const addSpell = (id, spell) => {
+    return axios({
+        method: "post",
+        url: "/api/character/spells",
+        data: {id: id, spell: spell}
+    })
+}
+
 const createCharacter = (id, character) => {
     return axios({
         method: "post",
@@ -149,6 +157,7 @@ const removeUserFromTeam = (teamId, userId, username) => {
 
 const API = {
     addEquipment,
+    addSpell,
     getLanguages,
     getOneLanguage,
     getMonsters,

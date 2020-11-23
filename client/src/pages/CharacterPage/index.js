@@ -12,8 +12,10 @@ function CharacterPage() {
     const [characterData, setCharacterData] = useState({});
     const [counter, setCounter] = useState(0);
     const [items, setItems] = useState([]);
+    const [spells, setSpells] = useState([]);
 
     let equipmentToAdd;
+    let spellToAdd;
 
     const up = (event) => {
         const currentVar = parseInt(event.target.previousElementSibling.textContent)
@@ -36,9 +38,18 @@ function CharacterPage() {
         item = item.replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g,"").replace(/ /g, "-").toLowerCase();
         API.getOneEquipment(item).then(results => {
             equipmentToAdd = results.data
-            
         }).then(()=>{
             API.addEquipment(characterData._id, equipmentToAdd);
+        })
+    }
+
+    const addSpell = (event) => {
+        let spell = event.target.previousElementSibling.value;
+        spell = spell.replace(/[.,\#!$%\^&\*;:{}=\-_`'~()]/g,"").replace(/[\/ ]/g, "-").toLowerCase();
+        API.getOneSpell(spell).then(results => {
+            spellToAdd = results.data
+        }).then(() => {
+            API.addSpell(characterData._id, spellToAdd);
         })
     }
 
@@ -79,6 +90,9 @@ function CharacterPage() {
     useEffect(() => {
         API.getEquipment().then(equipment => {
             setItems(equipment.data.results)
+        })
+        API.getSpells().then(spellList => {
+            setSpells(spellList.data.results)
         })
         API.getOneCharacter(id).then(results => {
             setCharacterData(results.data);
@@ -220,6 +234,15 @@ function CharacterPage() {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div className="form-group container">
+                                <label htmlFor="spell-add">Add Spells</label>
+                                <select className="form-control" id="equipment-add">
+                                    {spells.map(spell => {
+                                        return <option key={spell.index}>{spell.name}</option>
+                                    })}
+                                </select>
+                                <button className="mt-3 btn btn-info" onClick={addSpell}>Add Spell</button>
                             </div>
                             <div className="row">
                                 <div className="col overflow-auto border" style={{ height: "20em" }}>
