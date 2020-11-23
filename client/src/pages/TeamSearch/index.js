@@ -30,7 +30,7 @@ function TeamSearch() {
 
     return (
         <main className="container">
-            <h3 className="mt-3 mb-4 text-center">Search for a Team</h3>
+            <h3 className="mt-5 mb-4 text-center">Search for a Team</h3>
             <div className="form-group">
                 <label htmlFor="search">Search</label>
                 <input className="form-control" type="text" onChange={handleInputChange}></input>
