@@ -1,0 +1,16 @@
+body {
+  height: 100%;
+}
+
+.background {
+  background-color: '#333';
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  margin-top: -1%;
+  background-color: whitesmoke;
+}

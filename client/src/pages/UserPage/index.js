@@ -46,7 +46,7 @@ function UserPage() {
   }, [user]);
 
   return (
-    <div style={{width: '100%'}}>
+    <div className="background">
       <main className="container">
         <h3 className="mt-5 mb-4 text-center">
           Welcome home, <span style={{color: 'red'}}>{user.username}</span>
