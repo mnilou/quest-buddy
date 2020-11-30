@@ -6,7 +6,11 @@ import { useAuth } from "../../util/authContext";
 
 function TeamCreator (){
     
-
+    const styles = {
+        container: {
+            boxShadow: "25px 50px 25px #9E9E9E"
+        },
+      };
     const {user, logout} = useAuth();
     const [data, setData] = useState(null);
     const [formState, setFormState] = useState({
@@ -30,7 +34,7 @@ function TeamCreator (){
 
 
     return (
-        <main className="container">
+        <main className="container" style={styles.container}>
             <h3 className="mt-5 mb-4 text-center">Create a New Team</h3>
             <div className="row">
                 <div className="col">
@@ -39,7 +43,7 @@ function TeamCreator (){
                             <label htmlFor="teamName">Team Name</label>
                             <input type="text" className="form-control" id="teamName" aria-describedby="teamName" onChange={handleInputChange}/>
                         </div>
-                        <button type="submit" className="btn btn-success">Create!</button>
+                        <button type="submit" className="btn btn-success" style={{marginBottom: "1rem"}}>Create!</button>
                     </form>
                 </div>
             </div>

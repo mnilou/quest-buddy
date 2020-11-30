@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    font-family: 'Eczar', serif;
     }
     .bg {
     background-image: url("../../assets/dddragons-blur.jpg");
