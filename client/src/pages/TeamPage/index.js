@@ -6,6 +6,11 @@ import UserTile from "../../components/UserTile";
 import CampaignTile from "../../components/CampaignTile";
 
 function TeamPage() {
+    const styles = {
+        container: {
+            boxShadow: "25px 50px 25px #9E9E9E"
+        },
+      };
     const { teamId } = useParams();
     const history = useHistory();
     const { user } = useAuth();
@@ -96,7 +101,7 @@ function TeamPage() {
     };
 
     return (
-        <main className="container">
+        <main className="container" style={styles.container}>
             <h3 className="mt-5 mb-4 text-center">{"Team: " + team.name}</h3>
             <div className="row">
                 <div className="col-md-5 col-sm mt-2 componentLeft border">

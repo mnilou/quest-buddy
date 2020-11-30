@@ -6,6 +6,11 @@ import CharacterTile from "../../components/CharacterTile";
 import TeamTile from "../../components/TeamTile";
 
 function UserPage() {
+    const styles = {
+        container: {
+            boxShadow: "25px 50px 25px #9E9E9E"
+        },
+      };
     const { id } = useParams();
     const history = useHistory();
     const { user } = useAuth();
@@ -44,7 +49,7 @@ function UserPage() {
     }, [user]);
 
     return (
-        <main className="container">
+        <main className="container" style={styles.container}>
             <h3 className="mt-5 mb-4 text-center">Welcome home, <span style={{ color: "red" }}>{user.username}</span></h3>
             <div className="row">
                 <div className="col-md-5 mt-2 componentLeft border">
