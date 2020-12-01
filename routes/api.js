@@ -6,7 +6,6 @@ const db = require("../models/")
 app.post("/api/character", (req, res) => {
   db.Character.create(req.body.character).then(result => {
     const character = result;
-
     db.User.findById(req.body.id).then(results => {
         const characterArray = results.characters;
         characterArray.push(character);

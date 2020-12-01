@@ -20,7 +20,7 @@ function CharacterPage() {
     const [weapons, setWeapons] = useState([]);
     const [armor, setArmor] = useState([]); 
     const [spells, setSpells] = useState([]);
-    const [characterEquipment, setCharacterEquipment] = useState([]);
+    const [characterEquipment, setCharacterEquipment] = useState({});
     const [characterSpells, setCharacterSpells] = useState([]);
     //const [characterWeapons, setcharacterWeapons] = useState([]);
     //const [characterArmor, setcharacterArmor] = useState([]);
@@ -48,7 +48,7 @@ function CharacterPage() {
 
     const addItem = (event) => {
         let item = event.target.previousElementSibling.value;
-        item = item.replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g,"").replace(/ /g, "-").toLowerCase();
+        item = item.replace(/[.,#!$%^&*;:{}=\-_`'~()]/g,"").replace(/ /g, "-").toLowerCase();
         API.getOneEquipment(item).then(results => {
             //console.log(results.data)
             equipmentToAdd = results.data
