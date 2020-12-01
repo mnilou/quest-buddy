@@ -1,12 +1,14 @@
 import React from 'react';
 
 function TeamTile(props) {
+  const styles = {
+    container: {
+      boxShadow: '10px 20px 10px #9E9E9E',
+    },
+  };
   return (
-    <div key={props.id} className="card">
-      <div
-        className="card-body"
-       
-      >
+    <div key={props.id} className="card" style={styles.container}>
+      <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
         <p className="card-text">Team Members: {props.members.length}</p>
         <button

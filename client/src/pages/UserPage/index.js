@@ -2,13 +2,15 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../util/authContext";
 import API from "../../util/API";
+import redDice from '../../assets/red-dice.png';
+import redDice2 from '../../assets/red-dice-2.png';
 import CharacterTile from "../../components/CharacterTile";
 import TeamTile from "../../components/TeamTile";
 
 function UserPage() {
     const styles = {
         container: {
-            boxShadow: "25px 50px 25px #9E9E9E"
+            boxShadow: "15px 30px 15px #9E9E9E"
         },
       };
     const { id } = useParams();
@@ -120,6 +122,30 @@ function UserPage() {
                     </div>
                 </div>
             </div>
+            <img
+              className="dice"
+              src={redDice}
+              alt="red dice"
+              style={{ width: 200, height: 100, objectFit: "none", float: "left", marginLeft: "-8rem", marginTop: "2rem"}}
+            />
+             <img
+              className="dice-two"
+              src={redDice2}
+              alt="red dice two"
+              style={{ width: 200, height: 100, objectFit: "none", float: "left", marginLeft: "-6rem", marginTop: "2rem"}}
+            />
+               <img
+              className="dice"
+              src={redDice}
+              alt="red dice"
+              style={{ width: 200, height: 100, objectFit: "none", float: "right", marginRight: "-8rem", marginTop: "2rem"}}
+            />
+             <img
+              className="dice-two"
+              src={redDice2}
+              alt="red dice two"
+              style={{ width: 200, height: 100, objectFit: "none", float: "right", marginRight: "-6rem", marginTop: "2rem"}}
+            />
         </main>
     );
 }

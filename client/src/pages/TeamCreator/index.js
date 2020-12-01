@@ -8,7 +8,7 @@ function TeamCreator (){
     
     const styles = {
         container: {
-            boxShadow: "25px 50px 25px #9E9E9E"
+            boxShadow: "10px 20px 10px #9E9E9E"
         },
       };
     const {user, logout} = useAuth();
