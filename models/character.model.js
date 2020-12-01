@@ -20,6 +20,12 @@ const schema = new mongoose.Schema({
   equipment: {
     type: Array
   },
+  weapons: {
+    type: Array
+  },
+  armor: {
+    type: Array
+  },
   spells: {
     type: Array
   },

@@ -32,6 +32,21 @@ const getOneEquipment = (equipment) => {
     return axios.get("https://www.dnd5eapi.co/api/equipment/" + equipment);
 }
 
+const getWeapons = () => {
+    return axios.get("https://www.dnd5eapi.co/api/equipment-categories/weapon")
+}
+
+const getArmor = () => {
+    return axios.get("https://www.dnd5eapi.co/api/equipment-categories/armor")
+}
+
+const getAdventureGear = () => {
+    return axios.get("https://www.dnd5eapi.co/api/equipment-categories/adventuring-gear")
+}
+
+const getTools = () => {
+    return axios.get("https://www.dnd5eapi.co/api/equipment-categories/tools")
+}
 
 const getStartingEquipment = (characterClass) => {
     return axios.get("https://www.dnd5eapi.co/api/starting-equipment/" + characterClass);
@@ -164,6 +179,10 @@ const API = {
     getOneMonster,
     getEquipment,
     getOneEquipment,
+    getWeapons,
+    getArmor,
+    getAdventureGear,
+    getTools,
     getStartingEquipment,
     getSpells,
     getOneSpell,
