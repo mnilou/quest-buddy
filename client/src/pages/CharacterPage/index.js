@@ -1,10 +1,14 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import CharacterEquipment from "../../components/CharacterEquipment/"
+import CharacterGear from "../../components/CharacterGear"
+import CharacterTools from "../../components/CharacterTools"
+import CharacterWeapons from "../../components/CharacterWeapons"
+import CharacterArmor from "../../components/CharacterArmor"
 import CharacterSpells from "../../components/CharacterSpells"
 //import { useAuth } from "../../util/authContext";
 import API from "../../util/API";
 import "./style.css";
+import Charactertools from "../../components/CharacterTools";
 //import e from "express";
 
 
@@ -20,7 +24,10 @@ function CharacterPage() {
     const [weapons, setWeapons] = useState([]);
     const [armor, setArmor] = useState([]); 
     const [spells, setSpells] = useState([]);
-    const [characterEquipment, setCharacterEquipment] = useState({});
+    const [characterGear, setCharacterGear] = useState([]);
+    const [characterTools, setCharacterTools] = useState([]);
+    const [characterWeapons, setCharacterWeapons] = useState([]);
+    const [characterArmor, setCharacterArmor] = useState([]);
     const [characterSpells, setCharacterSpells] = useState([]);
     //const [characterWeapons, setcharacterWeapons] = useState([]);
     //const [characterArmor, setcharacterArmor] = useState([]);
@@ -113,7 +120,16 @@ function CharacterPage() {
 
     useEffect(() => {
         API.getOneCharacter(id).then(results => {
-            setCharacterEquipment(results.data.equipment)
+            //console.log(results.data.gear)
+            setCharacterGear(results.data.gear)
+            setCharacterTools(results.data.tools)
+            setCharacterWeapons(results.data.weapons)
+            setCharacterArmor(results.data.armor)
+        }).then(() => {
+            // console.log(characterGear);
+            // console.log(characterTools);
+            // console.log(characterWeapons);
+            // console.log(characterArmor);
         }).catch(err => {
             console.log(err);
         })
@@ -133,35 +149,35 @@ function CharacterPage() {
 
     useEffect(() => {
         API.getEquipment().then(equipment => {
-            console.log("target length "  + equipment.data.results.length)
+            //console.log("target length "  + equipment.data.results.length)
             //setItems(equipment.data.results)
         })
     }, [])
 
     useEffect(() => {
         API.getAdventureGear().then(equipment => {
-            console.log(equipment.data.equipment.length)
+           // console.log(equipment.data.equipment.length)
             setItems(equipment.data.equipment)
         })
     }, [])
 
     useEffect(() => {
         API.getTools().then(tools => {
-            console.log(tools.data.equipment.length)
+            //console.log(tools.data.equipment.length)
             setTools(tools.data.equipment)
         })
     }, [])
 
     useEffect(() => {
         API.getWeapons().then(weapons => {
-            console.log(weapons.data.equipment.length);
+            //console.log(weapons.data.equipment.length);
             setWeapons(weapons.data.equipment)
         })
     }, [])
 
     useEffect(() => {
         API.getArmor().then(armor => {
-            console.log(armor.data.equipment.length);
+           // console.log(armor.data.equipment.length);
             setArmor(armor.data.equipment)
         })
     }, [])
@@ -299,8 +315,8 @@ function CharacterPage() {
                             
                             <div className="row">
                                 <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
-                                    {characterEquipment.map((item, index) => {
-                                        return <CharacterEquipment key={index} equipment = {item} />
+                                    {characterGear.map((item, index) => {
+                                        return <CharacterGear key={index} equipment = {item} />
                                     })}
                                 </div>
                             </div>
@@ -318,8 +334,8 @@ function CharacterPage() {
                             
                             <div className="row">
                                 <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
-                                    {characterEquipment.map((item, index) => {
-                                        return <CharacterEquipment key={index} equipment = {item} />
+                                    {characterTools.map((item, index) => {
+                                        return <CharacterTools key={index} equipment = {item} />
                                     })}
                                 </div>
                             </div>
@@ -337,8 +353,8 @@ function CharacterPage() {
                             
                             <div className="row">
                                 <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
-                                    {characterEquipment.map((item, index) => {
-                                        return <CharacterEquipment key={index} equipment = {item} />
+                                    {characterWeapons.map((item, index) => {
+                                        return <CharacterWeapons key={index} equipment = {item} />
                                     })}
                                 </div>
                             </div>
@@ -356,8 +372,8 @@ function CharacterPage() {
                             
                             <div className="row">
                                 <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
-                                    {characterEquipment.map((item, index) => {
-                                        return <CharacterEquipment key={index} equipment = {item} />
+                                    {characterArmor.map((item, index) => {
+                                        return <CharacterArmor key={index} equipment = {item} />
                                     })}
                                 </div>
                             </div>

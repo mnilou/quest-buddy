@@ -21,7 +21,11 @@ function CharacterCreator() {
     charisma: 10,
     race: "Dragonborn",
     class: "Barbarian",
-    description: ""
+    description: "",
+    gear: [],
+    tools: [],
+    weapons: [],
+    armor: []
 });
 
 
