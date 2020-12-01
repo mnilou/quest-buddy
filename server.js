@@ -14,7 +14,7 @@ if (!process.env.SERVER_SECRET) {
 
 const uri = process.env.MONGODB_URI || "mongodb://localhost/campaignplannerDB";
 mongoose.connect(uri, { useNewUrlParser: true });
-
+mongoose.set("useFindAndModify", false)
 const app = express();
 
 app.use(express.json());
