@@ -18,7 +18,8 @@ const schema = new mongoose.Schema({
     type: String
   },
   equipment: {
-    type: Array
+    type: Object,
+    default: {gear: [], tools: [], weapons: [], armor: []}
   },
   spells: {
     type: Array
