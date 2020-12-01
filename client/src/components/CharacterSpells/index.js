@@ -14,7 +14,7 @@ function CharacterSpells(props) {
         <h5 className="card-title">{props.spell.name}</h5>
         <p className="card-text">Range: {props.spell.range}</p>
         <p className="card-text">Casting time: {props.spell.casting_time}</p>
-        <p className="card-text">Spell duration: {props.spell.duration}</p>
+        <p className="card-text">Spell duration: {props.spell.duration} </p>
         <p className="card-text">School: {props.spell.school.name}</p>
         <p className="card-text">{description}</p>
     </div>
