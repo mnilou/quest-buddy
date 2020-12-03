@@ -168,6 +168,14 @@ const removeUserFromTeam = (teamId, userId, username) => {
     return axios.post("/api/team/" + teamId + "/removeuser/" + userId + "/" + username)
 }
 
+const addPostToSessionArray = (sessionId, username, postText) => {
+    return axios({
+        method: "post",
+        url: ("/api/session/" + sessionId + "/addPost"),
+        data: {username, postText}
+    })
+}
+
 
 
 const API = {
@@ -205,7 +213,8 @@ const API = {
     getSessionsByCampaign,
     addCharacterToCampaignArray,
     addUserToTeamArray,
-    removeUserFromTeam
+    removeUserFromTeam,
+    addPostToSessionArray
 };
 
 export default API;

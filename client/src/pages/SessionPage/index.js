@@ -1,8 +1,8 @@
 import {React, useHistory, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import API from '../../util/API';
-import CharacterTile from '../../components/CharacterTile';
 import {useAuth} from '../../util/authContext';
+import SessionPostsWall from '../../components/SessionPostsWall';
 
 function SessionPage () {
   const { sessionId } = useParams();
@@ -11,6 +11,9 @@ function SessionPage () {
 
   const [session, setSession] = useState({});
   const [characters, setCharacters] = useState([{}]);
+  const [posts, setPosts] = useState([]);
+  const [showSessionPostsWallModal, setShowSessionPostsWallModal] = useState(false);
+  const [newPostText, setNewPostText] = useState("");
 
   useEffect(() => {
     // example API call
@@ -24,13 +27,40 @@ function SessionPage () {
       });
   }, []);
 
-  const characterPageClick = (event) => {
+  useEffect(() => {
+    // example API call
+    API.getOneSession(sessionId)
+      .then((results) => {
+        console.log(results);
+        setPosts(results.data.posts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [sessionId,showSessionPostsWallModal]);
+
+
+  const showSessionPostsWallModalClick = (event) => {
     event.preventDefault();
-    history.push('/character');
+    setShowSessionPostsWallModal(true);
   };
 
-  const sessionClick = (event, sessionId) => {
-    history.push('/session/' + sessionId);
+  const handleClose = () => {
+    setShowSessionPostsWallModal(false);
+  };
+
+  const handleAddPostToSessionArray = (event) => {
+    event.preventDefault();
+    API.addPostToSessionArray(sessionId, user.username, newPostText).then(
+      (res) => {
+        setShowSessionPostsWallModal(false);
+      }
+    );
+  };
+
+  const handleInputChangeNewPostText = (event) => {
+    const newText = event.target.value;
+    setNewPostText(newText);
   };
 
   return (
@@ -77,57 +107,14 @@ function SessionPage () {
         </div>
         <div className="row mt-3">
             <div className="col">
-                <div className="row">
-                    <div className="col-11 overflow-auto" style={{height: "15em"}}>
-
-                    <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title text-center">No Posts Yet</h5>
-                            <p className="card-text text-center">Add a post</p>
-                        </div>
-                    </div>
-                        {/* <p>ccruzcosa@gmail said: It was awesome!</p>
-                        <p>ccruzcosa@gmail said: We found a door that we couldn't open. It seemed to need four keys, but
-                            we didn't find any of them yet.
-                            We need to keep looking in the rest of the cemetary.</p>
-                        <p>ariel@gmail said: We found a plaque that said, "Now my charms are all o'erthrown,
-                            And what strength I have's mine own,
-                            Which is most faint: now, 'tis true,
-                            I must be here confined by you,
-                            Or sent to Naples. Let me not,
-                            Since I have my dukedom got
-                            And pardon'd the deceiver, dwell
-                            In this bare island by your spell;
-                            But release me from my bands
-                            With the help of your good hands:
-                            Gentle breath of yours my sails
-                            Must fill, or else my project fails,
-                            Which was to please. Now I want
-                            Spirits to enforce, art to enchant,
-                            And my ending is despair,
-                            Unless I be relieved by prayer,
-                            Which pierces so that it assaults
-                            Mercy itself and frees all faults.
-                            As you from crimes would pardon'd be,
-                            Let your indulgence set me free.
-                        </p>
-                        <p>ccruzcosa said: Mark but the badges of these men, my lords,
-                            Then say if they be true. This mis-shapen knave,
-                            His mother was a witch, and one so strong
-                            That could control the moon, make flows and ebbs,
-                            And deal in her command without her power.
-                            These three have robb'd me; and this demi-devil—
-                            For he's a bastard one—had plotted with them
-                            To take my life. Two of these fellows you
-                            Must know and own; this thing of darkness I
-                            Acknowledge mine.
-                        </p> */}
-                    </div>
-                    <div className="col-1 border">
-                        <button className="btn btn-success" style={{height: "15em", display: "block"}}>
-                            Add Post</button>
-                    </div>
-                </div>
+                <SessionPostsWall 
+                posts={posts}
+                show={showSessionPostsWallModal}
+                showModalFunction={showSessionPostsWallModalClick}
+                handleClose={handleClose}
+                handleAddPostToSessionArray={handleAddPostToSessionArray}
+                handleInputChangeNewPostText={handleInputChangeNewPostText}
+                />
             </div>
         </div>
     </main>

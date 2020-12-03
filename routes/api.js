@@ -298,6 +298,16 @@ app.post("/api/campaign/:campaignId/addcharacter/:characterId", (req, res) => {
 
 });
 
+app.post("/api/session/:sessionId/addPost", (req, res) => {
+    db.Session.findById(req.params.sessionId).then(results => {
+        const postsArray = results.posts;
+        postsArray.push(req.body),
+             results.save();
+        res.json(results);
+    })
+
+});
+
 
 
 module.exports = app;
