@@ -8,7 +8,7 @@ import CampaignTile from "../../components/CampaignTile";
 function TeamPage() {
     const styles = {
         container: {
-            boxShadow: "10px 20px 10px #9E9E9E"
+            boxShadow: "5px 10px 5px #9E9E9E"
         },
       };
     const { teamId } = useParams();
