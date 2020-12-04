@@ -16,11 +16,11 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-secondary" >
       {isLoggedIn ? (
         <NavLink className="navbar-brand" to="/user">
-          <img src={logo} alt="" className="logo" style={{ width: 100, height: 50, objectFit: "cover"}}/>
+          <img src={logo} alt="" className="logo" style={{ width: 75, height: 35, objectFit: "cover"}}/>
         </NavLink>
       ) : (
         <NavLink className="navbar-brand" to="/">
-         <img src={logo} alt="" className="logo" style={{ width: 100, height: 50, objectFit: "cover"}}/>
+         <img src={logo} alt="" className="logo" style={{ width: 75, height: 35, objectFit: "cover"}}/>
         </NavLink>
       )}
       <button
@@ -35,29 +35,42 @@ function Navbar() {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            {isLoggedIn && (
-              <button
-                className="btn btn-sm btn-light"
-                onClick={logout}
-              >
-                Logout
-              </button>
-            )}
-          </li>
-          <li className="nav-item active">
-            {isLoggedIn && (
-              <button
-                className="btn btn-sm btn-danger"
-                onClick={goBack}
-              >
-                BACK
-              </button>
-            )}
-          </li>
+        <ul className="navbar-nav text-center mr-auto">
+            <li className="nav-item active">
+                {isLoggedIn && (
+                <NavLink className="nav-link" to="/user" style={{color: "purple", textShadow: "1px 1px #00008b"}}>
+                  Home
+                </NavLink>
+                )}
+            </li>
+            <li className="nav-item active" style={{color: "purple", textShadow: "1px 1px #00008b", verticalAlign: "bottom"}}>
+                {isLoggedIn && (
+                <NavLink className="nav-link" to="/team_search" style={{color: "purple"}}>
+                  Team Search
+                </NavLink>
+                )}
+            </li>
+            <li className="nav-item active" style={{color: "purple", textShadow: "1px 1px #00008b"}}>
+                {isLoggedIn && (
+                <NavLink className="nav-link" to="/" style={{color: "purple"}} onClick={logout}>
+                  Logout
+                </NavLink>
+                )}
+            </li>
         </ul>
       </div>
+      <ul className="navbar-nav text-center ml-auto">
+            <li className="nav-item active">
+              {isLoggedIn && (
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={goBack}
+                >
+                  Go Back
+                </button>
+              )}
+            </li>
+      </ul>
     </nav>
   );
 }

@@ -1,19 +1,20 @@
-import {React, useHistory, useParams} from 'react-router-dom';
-import {useEffect, useState} from 'react';
+import { React, useHistory, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import API from '../../util/API';
 // import CharacterTile from '../../components/CharacterTile';
 import CharacterAdd from '../../components/CharacterAdd';
-import {useAuth} from '../../util/authContext';
+import { useAuth } from '../../util/authContext';
 import Calendar from '../../components/Calendar';
 
 function CampaignPage() {
-  const {campaignId} = useParams();
+  const { campaignId } = useParams();
   const history = useHistory();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const [campaign, setCampaign] = useState({});
   const [campaignCharacters, setCampaignCharacters] = useState([]);
   const [userCharacters, setUserCharacters] = useState([]);
+
 
   //these variables are for using the Add Character component and its modal
   const [showCharacterAddModal, setShowCharacterAddModall] = useState(false);
@@ -55,7 +56,7 @@ function CampaignPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [campaignId,showCharacterAddModal]);
+  }, [campaignId, showCharacterAddModal]);
 
   useEffect(() => {
     API.getCharacters(user)
@@ -66,6 +67,7 @@ function CampaignPage() {
         console.log(err);
       });
   }, [user]);
+
 
   const characterPageClick = (event) => {
     event.preventDefault();
@@ -101,10 +103,11 @@ function CampaignPage() {
     setSelectedCharacterId(theSelectedCharacterID);
   };
 
+
   return (
     <main className="container">
       <h3 className="mt-5 mb-3 text-center">{campaign.name}</h3>
-      <h5 className="mt-1 mb-4 text-center">{"Game System: "+ campaign.system + " Campaign"}</h5>
+      <h5 className="mt-1 mb-4 text-center">{"Game System: " + campaign.system + " Campaign"}</h5>
       <span
         className="block"
         style={{
@@ -123,10 +126,10 @@ function CampaignPage() {
       >
         Click on the calendar to create an event
       </span>
-      <div className="col" style={{contentHeight: '50'}}>
+      <div className="col" style={{ contentHeight: '50' }}>
         <Calendar campaignId={campaignId} sessionClick={sessionClick} />
       </div>
-      <div className="row mt-2 mb-6" style={{height: '15em'}}>
+      <div className="row mt-2 mb-6" style={{ height: '15em' }}>
         <div className="col-md-6 overflow-auto border" >
           <p className="mt-2"></p>
           {campaign.description}
@@ -144,6 +147,7 @@ function CampaignPage() {
           />
         </div>
       </div>
+
     </main>
   );
 }

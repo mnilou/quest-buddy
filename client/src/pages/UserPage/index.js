@@ -50,17 +50,21 @@ function UserPage() {
     history.push('/character/' + id);
   };
 
-  useEffect(() => {
-    // example API call
-    API.getCharacters(user)
-      .then((results) => {
-        setCharacters(results.data.characters);
-        setTeams(results.data.teams);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [user]);
+    const teamSearchClick = (event) => {
+        event.preventDefault();
+        history.push("/team_search");
+    };
+
+    useEffect(() => {
+        // example API call
+        API.getCharacters(user).then(results => {
+            setCharacters(results.data.characters);
+            setTeams(results.data.teams);
+        })
+            .catch(err => {
+                console.log(err);
+            })
+    }, [user]);
 
   return (
     <main className="container" style={styles.container}>

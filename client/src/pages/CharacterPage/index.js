@@ -1,24 +1,39 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import CharacterEquipment from "../../components/CharacterEquipment/"
+import CharacterGear from "../../components/CharacterGear"
+import CharacterTools from "../../components/CharacterTools"
+import CharacterWeapons from "../../components/CharacterWeapons"
+import CharacterArmor from "../../components/CharacterArmor"
 import CharacterSpells from "../../components/CharacterSpells"
 //import { useAuth } from "../../util/authContext";
 import API from "../../util/API";
 import "./style.css";
+import Charactertools from "../../components/CharacterTools";
+//import e from "express";
 
 
 function CharacterPage() {
     const { id } = useParams();
-    const history = useHistory();
+    //const history = useHistory();
     //const { user } = useAuth();
 
     const [characterData, setCharacterData] = useState({});
     const [counter, setCounter] = useState(0);
     const [items, setItems] = useState([]);
+    const [tools, setTools] = useState([]);
+    const [weapons, setWeapons] = useState([]);
+    const [armor, setArmor] = useState([]); 
     const [spells, setSpells] = useState([]);
-    const [characterEquipment, setCharacterEquipment] = useState([]);
+    const [characterGear, setCharacterGear] = useState([]);
+    const [characterTools, setCharacterTools] = useState([]);
+    const [characterWeapons, setCharacterWeapons] = useState([]);
+    const [characterArmor, setCharacterArmor] = useState([]);
     const [characterSpells, setCharacterSpells] = useState([]);
+    //const [characterWeapons, setcharacterWeapons] = useState([]);
+    //const [characterArmor, setcharacterArmor] = useState([]);
 
+    
+    //let equipmentList = [];
     let equipmentToAdd;
     let spellToAdd;
 
@@ -40,8 +55,9 @@ function CharacterPage() {
 
     const addItem = (event) => {
         let item = event.target.previousElementSibling.value;
-        item = item.replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g,"").replace(/ /g, "-").toLowerCase();
+        item = item.replace(/[.,#!$%^&*;:{}=\-_`'~()]/g,"").replace(/ /g, "-").toLowerCase();
         API.getOneEquipment(item).then(results => {
+            //console.log(results.data)
             equipmentToAdd = results.data
         }).then(()=>{
             API.addEquipment(characterData._id, equipmentToAdd);
@@ -104,7 +120,16 @@ function CharacterPage() {
 
     useEffect(() => {
         API.getOneCharacter(id).then(results => {
-            setCharacterEquipment(results.data.equipment)
+            //console.log(results.data.gear)
+            setCharacterGear(results.data.gear)
+            setCharacterTools(results.data.tools)
+            setCharacterWeapons(results.data.weapons)
+            setCharacterArmor(results.data.armor)
+        }).then(() => {
+            // console.log(characterGear);
+            // console.log(characterTools);
+            // console.log(characterWeapons);
+            // console.log(characterArmor);
         }).catch(err => {
             console.log(err);
         })
@@ -118,11 +143,42 @@ function CharacterPage() {
         })
     }, [])
 
+//Item types you want to separate are "Weapon" and "Armor"
+
+
+
     useEffect(() => {
         API.getEquipment().then(equipment => {
-            setItems(equipment.data.results)
-        }).catch(err => {
-            console.log(err);
+            //console.log("target length "  + equipment.data.results.length)
+            //setItems(equipment.data.results)
+        })
+    }, [])
+
+    useEffect(() => {
+        API.getAdventureGear().then(equipment => {
+           // console.log(equipment.data.equipment.length)
+            setItems(equipment.data.equipment)
+        })
+    }, [])
+
+    useEffect(() => {
+        API.getTools().then(tools => {
+            //console.log(tools.data.equipment.length)
+            setTools(tools.data.equipment)
+        })
+    }, [])
+
+    useEffect(() => {
+        API.getWeapons().then(weapons => {
+            //console.log(weapons.data.equipment.length);
+            setWeapons(weapons.data.equipment)
+        })
+    }, [])
+
+    useEffect(() => {
+        API.getArmor().then(armor => {
+           // console.log(armor.data.equipment.length);
+            setArmor(armor.data.equipment)
         })
     }, [])
 
@@ -247,24 +303,83 @@ function CharacterPage() {
                         </div>
                         <div className="col-md-6">
                             <div className="form-group container">
-                                <h3 className="text-center">Equipment</h3>
-                                <label htmlFor="equipment-add">Add equipment</label>
+                                <h3 className="text-center">Adventuring Gear</h3>
+                                <label htmlFor="equipment-add">Add Adventuring Gear</label>
                                 <select className="form-control" id="equipment-add">
                                     {items.map(item => {
                                         return <option key={item.index}>{item.name}</option>
                                     })}
                                 </select>
-                                <button className="mt-3 btn btn-info" onClick={addItem}>Add item</button>
+                                <button className="mt-3 btn btn-info" onClick={addItem}>Add gear</button>
                             </div>
+                            
                             <div className="row">
                                 <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
-                                    {characterEquipment.map((item, index) => {
-                                        return <CharacterEquipment key={index} equipment = {item} />
+                                    {characterGear.map((item, index) => {
+                                        return <CharacterGear key={index} equipment = {item} />
                                     })}
                                 </div>
                             </div>
+
                             <div className="form-group container">
-                                <h3 className="text-center">Spells</h3>
+                                <h3 className="text-center mt-5">Tools</h3>
+                                <label htmlFor="equipment-add">Add Tool</label>
+                                <select className="form-control" id="equipment-add">
+                                    {tools.map(item => {
+                                        return <option key={item.index}>{item.name}</option>
+                                    })}
+                                </select>
+                                <button className="mt-3 btn btn-info" onClick={addItem}>Add tool</button>
+                            </div>
+                            
+                            <div className="row">
+                                <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
+                                    {characterTools.map((item, index) => {
+                                        return <CharacterTools key={index} equipment = {item} />
+                                    })}
+                                </div>
+                            </div>
+
+                            <div className="form-group container">
+                                <h3 className="text-center mt-5">Weapons</h3>
+                                <label htmlFor="equipment-add">Add Weapon</label>
+                                <select className="form-control" id="equipment-add">
+                                    {weapons.map(weapon => {
+                                        return <option key={weapon.index}>{weapon.name}</option>
+                                    })}
+                                </select>
+                                <button className="mt-3 btn btn-info" onClick={addItem}>Add weapon</button>
+                            </div>
+                            
+                            <div className="row">
+                                <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
+                                    {characterWeapons.map((item, index) => {
+                                        return <CharacterWeapons key={index} equipment = {item} />
+                                    })}
+                                </div>
+                            </div>
+
+                            <div className="form-group container">
+                                <h3 className="text-center mt-5">Armor</h3>
+                                <label htmlFor="equipment-add">Add Armor</label>
+                                <select className="form-control" id="equipment-add">
+                                    {armor.map(item => {
+                                        return <option key={item.index}>{item.name}</option>
+                                    })}
+                                </select>
+                                <button className="mt-3 btn btn-info" onClick={addItem}>Add armor</button>
+                            </div>
+                            
+                            <div className="row">
+                                <div className="equipment col overflow-auto border" style={{ height: "20em" }}>
+                                    {characterArmor.map((item, index) => {
+                                        return <CharacterArmor key={index} equipment = {item} />
+                                    })}
+                                </div>
+                            </div>
+
+                            <div className="form-group container">
+                                <h3 className="text-center mt-5">Spells</h3>
                                 <label htmlFor="spell-add">Add Spells</label>
                                 <select className="form-control" id="equipment-add">
                                     {spells.map(spell => {
@@ -281,39 +396,6 @@ function CharacterPage() {
                                     {characterSpells.map((spell, index) => {
                                         return <CharacterSpells key={index} spell={spell}/> 
                                         })}
-                                    {/* <div className="card">
-                                        <div className="card-body">
-                                            <h5 className="card-title">Acid Arrow</h5>
-                                            <p className="card-text">A shimmering green arrow streaks toward a target within
-                                            range and bursts in a spray of acid. Make a ranged spell attack against the
-                                            target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid
-                                            damage at the end of its next turn. On a miss, the arrow splashes the target
-                                            with acid for half as much of the initial damage and no damage at the end of
-                                            its next turn.
-                                        </p>
-                                            <p className="card-text">Evocation
-                                        </p>
-                                        </div>
-                                    </div>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <h5 className="card-title">Produce Flame</h5>
-                                            <p className="card-text">"A flickering flame appears in your hand. The flame remains
-                                            there for the duration and harms neither you nor your equipment. The flame
-                                            sheds bright light in a 10-foot radius and dim light for an additional 10
-                                            feet. The spell ends if you dismiss it as an action or if you cast it
-                                            again.",
-                                            "You can also attack with the flame, although doing so ends the spell. When
-                                            you cast this spell, or as an action on a later turn, you can hurl the flame
-                                            at a creature within 30 feet of you. Make a ranged spell attack. On a hit,
-                                            the target takes 1d8 fire damage.",
-                                            "This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th
-                                            level (3d8), and 17th level (4d8)."
-                                        </p>
-                                            <p className="card-text">Conjuration
-                                        </p>
-                                        </div>
-                                    </div> */}
 
                                 </div>
                             </div>
