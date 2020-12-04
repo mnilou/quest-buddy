@@ -11,13 +11,10 @@ function CampaignPage() {
   const history = useHistory();
   const { user } = useAuth();
 
-  const [monsters, setMonsters] = useState([]);
-
   const [campaign, setCampaign] = useState({});
   const [campaignCharacters, setCampaignCharacters] = useState([]);
   const [userCharacters, setUserCharacters] = useState([]);
 
-  const [campaignMonsters, setCampaignMonsters] = useState([]);
 
   //these variables are for using the Add Character component and its modal
   const [showCharacterAddModal, setShowCharacterAddModall] = useState(false);
@@ -38,13 +35,10 @@ function CampaignPage() {
   //this gets the character tile information as an array
   useEffect(() => {
     let characterIdArray;
-    let monsterArray;
 
     API.getOneCampaign(campaignId)
       .then((results) => {
         characterIdArray = results.data.characters;
-        monsterArray = results.data.monsters;
-        setCampaignMonsters(monsterArray)
       })
       .then(() => {
         let arrayCounter = 0;
@@ -74,11 +68,6 @@ function CampaignPage() {
       });
   }, [user]);
 
-  useEffect(() => {
-    API.getMonsters().then(results => {
-      setMonsters(results.data.results)
-    })
-  }, [])
 
   const characterPageClick = (event) => {
     event.preventDefault();
@@ -114,21 +103,6 @@ function CampaignPage() {
     setSelectedCharacterId(theSelectedCharacterID);
   };
 
-  // const handleSelectChange = (event) => {
-  //   event.preventDefault();
-  //   console.log(event.target.selectedOptions[0].id)
-  // }
-
-  const handleAddMonster = (event) => {
-    event.preventDefault()
-    const monsterToAdd = event.target.previousElementSibling.selectedOptions[0].id
-    API.getOneMonster(monsterToAdd).then(results => {
-      API.addMonsterToCampaign(results.data, campaignId)
-    }).then(() => {
-      window.location.reload(false)
-    })
-    // console.log(event.target.previousElementSibling.selectedOptions[0].id);
-  }
 
   return (
     <main className="container">
@@ -171,39 +145,6 @@ function CampaignPage() {
             handleInputChangeCharacterAdd={handleInputChangeCharacterAdd}
             onClick={characterPageClick}
           />
-        </div>
-
-        {/* The styling is pretty much not here, so go crazy */}
-        <div className="col-md-6">
-          <div className="form-group">
-            <select className="form-control">
-              {monsters.map(item => {
-                // console.log(item);
-                return <option id={item.index} key={item.index}>{item.name}</option>
-
-              })}
-              {/* <option>Test</option> */}
-            </select>
-            <button className="mt-3 btn btn-danger" onClick={handleAddMonster}>Add Monster</button>
-          </div>
-          <div className="overflow-auto">
-            {campaignMonsters.map(item => {
-              let enemyType = item.type.split("");
-              enemyType[0] = enemyType[0].toUpperCase();
-              enemyType = enemyType.join('');
-              // console.log(enemyType)
-              // item.type[0].toUpperCase()
-              return <div className="card">
-                <h5 className="card-title">{item.name}</h5>
-                <p className="card-text">HP: {item.hit_points}</p>
-                <p className="card-text">Damage: {item.hit_dice}</p>
-                <p className="card-text">Size: {item.size}</p>
-                <p className="card-text">Type: {enemyType}</p>
-              </div>
-            })}
-
-          </div>
-
         </div>
       </div>
 

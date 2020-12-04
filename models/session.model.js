@@ -21,6 +21,9 @@ const schema = new mongoose.Schema({
       type: String,
       required: false    
     },
+    monsters: {
+      type: Array
+    }
   });
 
 const Session = mongoose.model("Session", schema);

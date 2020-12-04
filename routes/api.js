@@ -298,9 +298,8 @@ app.post("/api/campaign/:campaignId/addcharacter/:characterId", (req, res) => {
 
 });
 
-app.post("/api/campaign/:campaignId/addmonster/", (req, res) => {
-    console.log(req.body);
-    db.Campaign.findById(req.params.campaignId).then(results => {
+app.post("/api/session/:sessionId/addmonster/", (req, res) => {
+    db.Session.findById(req.params.sessionId).then(results => {
         const monsterArray = results.monsters;
         monsterArray.push(req.body)
         results.save();

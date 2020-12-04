@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import API from '../../util/API';
 import {useAuth} from '../../util/authContext';
 import SessionPostsWall from '../../components/SessionPostsWall';
+import MonsterAdd from '../../components/MonsterAdd';
 
 function SessionPage () {
   const { sessionId } = useParams();
@@ -14,9 +15,11 @@ function SessionPage () {
   const [posts, setPosts] = useState([]);
   const [showSessionPostsWallModal, setShowSessionPostsWallModal] = useState(false);
   const [newPostText, setNewPostText] = useState("");
+  const [monsters, setMonsters] = useState([]);
+  const [campaignMonsters, setCampaignMonsters] = useState([]);
+  const [monsterAddCounter, setMonsterAddCounter] = useState(0);
 
   useEffect(() => {
-    // example API call
     API.getOneSession(sessionId)
       .then((results) => {
         console.log(results);
@@ -28,7 +31,23 @@ function SessionPage () {
   }, []);
 
   useEffect(() => {
-    // example API call
+    API.getOneSession(sessionId)
+      .then((results) => {
+        console.log(results);
+        setCampaignMonsters(results.data.monsters);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [sessionId,monsterAddCounter]);
+
+  useEffect(() => {
+    API.getMonsters().then(results => {
+      setMonsters(results.data.results)
+    })
+  }, [])
+
+  useEffect(() => {
     API.getOneSession(sessionId)
       .then((results) => {
         console.log(results);
@@ -63,6 +82,16 @@ function SessionPage () {
     setNewPostText(newText);
   };
 
+  const handleAddMonster = (event) => {
+    event.preventDefault()
+    const monsterToAdd = event.target.previousElementSibling.selectedOptions[0].id
+    API.getOneMonster(monsterToAdd).then(results => {
+      API.addMonsterToSession(results.data, sessionId)
+    }).then(() => {
+      setMonsterAddCounter(monsterAddCounter + 1)
+    })
+  };
+
   return (
     <main className="container">
         <h3 className="mt-5 mb-4 text-center">{session.title}</h3>
@@ -76,13 +105,12 @@ function SessionPage () {
                         <p>{session.description}</p>
                     </div>
                     <div className="col-md-6 overflow-auto border" style={{height: "15em"}}>
+                        <MonsterAdd
+                        handleAddMonster={handleAddMonster}
+                        monsters={monsters}
+                        campaignMonsters={campaignMonsters}
+                        />
 
-                        <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title text-center">No Monsters Added Yet</h5>
-                                        <p className="card-text text-center">Find ye opponents to face in mortal combat!</p>
-                                    </div>
-                        </div>
                             {/* <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">Dire Wolf</h5>
