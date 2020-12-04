@@ -31,7 +31,7 @@ function CharacterAdd (props) {
                     />
                 ))
                 :
-                <div key={props.id} className="card">
+                <div key={props.id} className="card" >
                     <div className="card-body">
                         <h5 className="card-title">No Characters to Show Yet</h5>
                         <p className="card-text">Add an existing character to join this campaign!</p>
