@@ -176,6 +176,18 @@ function UserPage() {
               //   marginTop: '2rem',
             }}
           />
+          <img
+            className="dice-two"
+            src={redDice2}
+            alt="red dice two"
+            style={{
+              width: 50,
+              height: 50,
+              objectFit: 'none',
+              float: 'right',
+            //   marginLeft: '0.5rem',            
+            }}
+          />
         </p>
       </div>
     </main>
