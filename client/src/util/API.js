@@ -16,6 +16,14 @@ const getOneMonster = (monster) => {
     return axios.get("https://www.dnd5eapi.co/api/monsters/" + monster)
 }
 
+const addMonsterToCampaign = (monster, campaignId) => {
+    return axios({
+        method: "post",
+        url: "/api/campaign/" + campaignId + "/addmonster/", 
+        data: monster
+    })
+}
+
 const getSpells = () => {
     return axios.get("https://www.dnd5eapi.co/api/spells");
 }
@@ -185,6 +193,7 @@ const API = {
     getOneLanguage,
     getMonsters,
     getOneMonster,
+    addMonsterToCampaign,
     getEquipment,
     getOneEquipment,
     getWeapons,
