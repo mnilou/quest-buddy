@@ -180,8 +180,30 @@ app.put("/api/session", (req, res) => {
     console.log("session edited");
 });
 
-app.delete("/api/character", (req, res) => {
-    console.log("Character deleted");
+app.delete("/api/:character/delete/:user", (req, res) => {
+    // console.log(req.params)
+    db.Character.findById(req.params.character).then(results => {
+        //console.log(results.owner.id)
+        let index
+        const charID = JSON.stringify(results._id);
+        db.User.findById(req.params.user).then(user => {
+          //  console.log(user)
+            let character = user.characters.filter(element => {
+                return JSON.stringify(element._id) === charID
+            })
+            character = character[0];
+            for (let i = 0; i < user.characters.length; i++) {
+                if (user.characters[i] === character) {
+                    index = i;
+                }
+            }
+            console.log(character)
+            console.log(index)
+            user.characters.splice(index, 1);
+            user.save();
+            res.json(user);
+        })
+    })
 });
 
 app.delete("/api/team", (req, res) => {

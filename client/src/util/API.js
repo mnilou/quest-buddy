@@ -122,6 +122,14 @@ const updateCharacter = (character) => {
     })
 }
 
+const deleteCharacter = (user, character) => {
+    console.log(user +"  "+ character)
+    return axios({
+        method: "delete",
+        url: "/api/" + character + "/delete/" + user 
+    })
+}
+
 const getCharacters = (user) => {
     return axios.get("/api/character/" + user.id)
 };
@@ -204,6 +212,7 @@ const API = {
     getSpells,
     getOneSpell,
     updateCharacter,
+    deleteCharacter,
     getTeams,
     getCharacters,
     createCampaign,
