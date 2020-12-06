@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import CharacterGear from "../../components/CharacterGear"
 import CharacterTools from "../../components/CharacterTools"
 import CharacterWeapons from "../../components/CharacterWeapons"
 import CharacterArmor from "../../components/CharacterArmor"
 import CharacterSpells from "../../components/CharacterSpells"
-//import { useAuth } from "../../util/authContext";
+import { useAuth } from "../../util/authContext";
 import API from "../../util/API";
 import "./style.css";
 import Charactertools from "../../components/CharacterTools";
@@ -14,8 +14,8 @@ import Charactertools from "../../components/CharacterTools";
 
 function CharacterPage() {
     const { id } = useParams();
-    //const history = useHistory();
-    //const { user } = useAuth();
+    const history = useHistory();
+    const { user } = useAuth();
 
     const [characterData, setCharacterData] = useState({});
     const [counter, setCounter] = useState(0);
@@ -198,6 +198,13 @@ function CharacterPage() {
             setCounter(counter + 1);
         }
     }, [characterData])
+
+
+    const deleteCharacter = () => {
+        API.deleteCharacter(user.id, id).then(() => {
+            history.push("/user")
+        });
+    }
     
     return (
         <main className="container">
@@ -206,10 +213,12 @@ function CharacterPage() {
             <div className="row">
                 <div className="col">
                     <div className="row mt-2">
-                        <div className="col-md-6 overflow-auto border" style={{ height: "40em" }}>
-                            <p className="mt-2"></p>
-                            <h5>Race: {characterData.race}</h5>
+                        <div className="col-md-6" >
+                        <h5>Race: {characterData.race}</h5>
                             <h5>Class: {characterData.class}</h5>
+                            <div className="overflow-auto border" style={{ height: "45em" }}>
+                            <p className="mt-2"></p>
+
                             <h5>Level:
                             <div className="def-number-input number-input safari_only">
                                     <button onClick={down}
@@ -231,8 +240,6 @@ function CharacterPage() {
                                                 className="plus"></button>
                                         </div>
                                     </h6>
-                                </div>
-                                <div className="col">
                                     <h6>Max HP:
                             <div className="def-number-input number-input safari_only">
                                             <button onClick={down}
@@ -242,6 +249,9 @@ function CharacterPage() {
                                                 className="plus"></button>
                                         </div>
                                     </h6>
+                                </div>
+                                <div className="col">
+
                                 </div>
                             </div>
                             <br />
@@ -300,6 +310,8 @@ function CharacterPage() {
                                         className="plus"></button>
                                 </div>
                             </h6>
+                            </div>
+                            <button onClick={deleteCharacter} className="btn btn-danger">Delete Character</button>
                         </div>
                         <div className="col-md-6">
                             <div className="form-group container">
@@ -403,6 +415,7 @@ function CharacterPage() {
                         </div>
 
                     </div>
+                    
                 </div>
             </div>
         </main>
