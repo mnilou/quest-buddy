@@ -2,8 +2,6 @@ import {Link, useHistory, useParams} from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
 import {useAuth} from '../../util/authContext';
 import API from '../../util/API';
-import redDice from '../../assets/red-dice.png';
-import redDice2 from '../../assets/red-dice-2.png';
 import CharacterTile from '../../components/CharacterTile';
 import TeamTile from '../../components/TeamTile';
 
@@ -14,15 +12,6 @@ function UserPage() {
       border: 'hidden',
       outline: 'none',
     },
-  };
-  const footer = {
-    marginTop: '1rem',
-    padding: '1rem',
-    backgroundColor: '#555',
-    position: 'fixed',
-    bottom: '0',
-    left: '0',
-    width: '100%',
   };
   const {id} = useParams();
   const history = useHistory();
@@ -163,36 +152,6 @@ function UserPage() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="footer" style={footer}>
-        <p>
-          <img
-            className="dice"
-            src={redDice}
-            alt="red dice"
-            style={{
-              width: 50,
-              height: 50,
-              objectFit: 'none',
-              float: 'left',
-              //   marginLeft: '8rem',
-              //   marginTop: '2rem',
-            }}
-          />
-          <img
-            className="dice-two"
-            src={redDice2}
-            alt="red dice two"
-            style={{
-              width: 50,
-              height: 50,
-              objectFit: 'none',
-              float: 'right',
-            //   marginLeft: '0.5rem',            
-            }}
-          />
-        </p>
       </div>
     </main>
   );
