@@ -1,9 +1,17 @@
 import React from "react";
 
 function MonsterAdd(props) {
-
+    const styles = {
+        container: {
+            boxShadow: "5px 10px 5px #9E9E9E",
+            outline: 'none',
+            marginBottom: '1rem',
+            marginTop: '1rem',
+            border: 'none',
+        },
+      };
     return (
-        <div>
+        <div style={styles.container}>
             <h4 className="mt-2 mb-4">The Monsters We Faced!</h4>
             <div className="form-group">
                 <select className="form-control">
@@ -31,7 +39,7 @@ function MonsterAdd(props) {
                     enemyType = enemyType.join('');
                     // console.log(enemyType)
                     // monster.type[0].toUpperCase()
-                    return <div className="card">
+                    return <div className="card" style={styles.container}>
                         <h5 className="card-title">{monster.name}</h5>
                         <p className="card-text">HP: {monster.hit_points}</p>
                         <p className="card-text">Damage: {monster.hit_dice}</p>

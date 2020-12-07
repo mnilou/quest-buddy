@@ -5,7 +5,15 @@ import { useAuth } from "../../util/authContext";
 
 
 function CampaignCreator() {
-
+    const styles = {
+        container: {
+            boxShadow: "5px 10px 5px #9E9E9E",
+            outline: 'none',
+            marginBottom: '1rem',
+            marginTop: '1rem',
+            border: 'none',
+        },
+      };
     const { id } = useParams();
     const { user, logout } = useAuth();
     const [data, setData] = useState(null);
@@ -49,7 +57,7 @@ console.log(id);
 
 
     return (
-        <main className="container">
+        <main className="container" style={styles.container}>
             <h3 className="mt-5 mb-4 text-center">Create a New Campaign</h3>
             <div className="row">
                 <div className="col" onSubmit={handleOnSubmit}>
@@ -68,7 +76,7 @@ console.log(id);
                             <label htmlFor="description">Setting Description</label>
                             <textarea type="text" onChange={handleInputChange} className="form-control" id="description" rows="5"></textarea>
                         </div>
-                        <button type="submit" className="btn btn-success">Create!</button>
+                        <button type="submit" className="btn btn-success" style={{marginBottom: '1rem'}}>Create!</button>
                     </form>
                 </div>
             </div>

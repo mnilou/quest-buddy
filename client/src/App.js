@@ -11,6 +11,7 @@ import TeamPage from "./pages/TeamPage";
 import TeamSearch from "./pages/TeamSearch"
 import SessionPage from "./pages/SessionPage"
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { ProvideAuth } from "./util/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -57,6 +58,7 @@ function App() {
            <SessionPage />
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </Router>
     </ProvideAuth>
   );

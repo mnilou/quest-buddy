@@ -7,6 +7,15 @@ import { useAuth } from '../../util/authContext';
 import Calendar from '../../components/Calendar';
 
 function CampaignPage() {
+  const styles = {
+    container: {
+        boxShadow: "5px 10px 5px #9E9E9E",
+        outline: 'none',
+        marginBottom: '1rem',
+        marginTop: '1rem',
+        border: 'none',
+    },
+  };
   const { campaignId } = useParams();
   const history = useHistory();
   const { user } = useAuth();
@@ -105,7 +114,7 @@ function CampaignPage() {
 
 
   return (
-    <main className="container">
+    <main className="container" style={styles.container}>
       <h3 className="mt-5 mb-3 text-center">{campaign.name}</h3>
       <h5 className="mt-1 mb-4 text-center">{"Game System: " + campaign.system + " Campaign"}</h5>
       <span

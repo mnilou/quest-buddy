@@ -3,10 +3,19 @@ import CharacterTile from "../../components/CharacterTile";
 import CharacterAddModal from "../../components/CharacterAddModal";
 
 function CharacterAdd (props) {
-
+    const styles = {
+        container: {
+            height: "25em",
+            boxShadow: "5px 10px 5px #9E9E9E",
+            outline: 'none',
+            marginBottom: '1rem',
+            marginTop: '1rem',
+            border: 'none',
+        },
+      };
 
     return (
-        <div className="col overflow-auto" style={{ height: "25em" }}>
+        <div className="col overflow-auto" style={styles.container}>
             <button type="button" className="btn btn-outline-success btn-block mt-3 mb-5" onClick={props.showModalFunction}>Add a Character to Campaign</button>
           <CharacterAddModal
           show={props.show}

@@ -2,9 +2,17 @@ import './style.css'
 
 const SessionPostsWallModal = (props) => {
     const showHideClassName = props.show ? "modal display-block" : "modal display-none";
-
+    const styles = {
+        container: {
+            boxShadow: "5px 10px 5px #9E9E9E",
+            outline: 'none',
+            marginBottom: '1rem',
+            marginTop: '1rem',
+            border: 'none',
+        },
+      };
     return (
-        <div className={showHideClassName}>
+        <div className={showHideClassName} style={styles.container}>
             <form className="modal-main">
                 <h4 className="p-3 bg-light">Write below to add a new post to the session wall</h4>
                 <div className="form-group m-2">

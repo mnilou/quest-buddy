@@ -8,8 +8,17 @@ function CharacterWeapons(props) {
     // } else {
     //     description = "";
     // }
+    const styles = {
+      container: {
+          boxShadow: "5px 10px 5px #9E9E9E",
+          outline: 'none',
+          marginBottom: '1rem',
+          marginTop: '1rem',
+          border: 'none',
+      },
+    };
   return (
-    <div  className="card">
+    <div  className="card" style={styles.container}>
     <div className="card-body">
         <h5 className="card-title">{props.equipment.name}</h5>
         <p className="card-text">Weapon type: {props.equipment.weapon_category} {props.equipment.weapon_range.toLowerCase()}</p>
