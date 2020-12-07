@@ -2,10 +2,18 @@ import React from "react";
 import SessionPostsWallModal from "../../components/SessionPostsWallModal";
 
 function SessionPostsWall(props) {
-
+    const styles = {
+        container: {
+            boxShadow: "5px 10px 5px #9E9E9E",
+            outline: 'none',
+            marginBottom: '1rem',
+            marginTop: '1rem',
+            border: 'none',
+        },
+      };
 
     return (
-        <div className="row">
+        <div className="row" style={styles.container}>
             <div className="col-11 overflow-auto" style={{ height: "15em" }}>
                 <SessionPostsWallModal
                 show={props.show}

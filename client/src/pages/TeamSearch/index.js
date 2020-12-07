@@ -4,7 +4,15 @@ import SearchResults from "../../components/SearchResults/index";
 
 function TeamSearch() {
 
-
+    const styles = {
+        container: {
+            boxShadow: "5px 10px 5px #9E9E9E",
+            outline: 'none',
+            marginBottom: '1rem',
+            marginTop: '1rem',
+            border: 'none',
+        },
+      };
     const [teams, setTeams] = useState([]);
     const [search, setSearch] = useState("");
     const searchArray = teams.filter(team => {
@@ -29,7 +37,7 @@ function TeamSearch() {
 
 
     return (
-        <main className="container">
+        <main className="container" style={styles.container}>
             <h3 className="mt-5 mb-4 text-center">Search for a Team</h3>
             <div className="form-group">
                 <label htmlFor="search">Search</label>
