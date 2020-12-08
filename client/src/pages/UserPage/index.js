@@ -1,6 +1,6 @@
-import {Link, useHistory, useParams} from 'react-router-dom';
-import React, {useEffect, useState} from 'react';
-import {useAuth} from '../../util/authContext';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../../util/authContext';
 import API from '../../util/API';
 import CharacterTile from '../../components/CharacterTile';
 import TeamTile from '../../components/TeamTile';
@@ -13,9 +13,9 @@ function UserPage() {
       outline: 'none',
     },
   };
-  const {id} = useParams();
+  const { id } = useParams();
   const history = useHistory();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const [characters, setCharacters] = useState([]);
   const [teams, setTeams] = useState([]);
@@ -39,26 +39,26 @@ function UserPage() {
     history.push('/character/' + id);
   };
 
-    const teamSearchClick = (event) => {
-        event.preventDefault();
-        history.push("/team_search");
-    };
+  const teamSearchClick = (event) => {
+    event.preventDefault();
+    history.push("/team_search");
+  };
 
-    useEffect(() => {
-        // example API call
-        API.getCharacters(user).then(results => {
-            setCharacters(results.data.characters);
-            setTeams(results.data.teams);
-        })
-            .catch(err => {
-                console.log(err);
-            })
-    }, [user]);
+  useEffect(() => {
+    // example API call
+    API.getCharacters(user).then(results => {
+      setCharacters(results.data.characters);
+      setTeams(results.data.teams);
+    })
+      .catch(err => {
+        console.log(err);
+      })
+  }, [user]);
 
   return (
     <main className="container" style={styles.container}>
       <h3 className="mt-5 mb-4 text-center">
-        Welcome home, <span style={{color: 'red'}}>{user.username}</span>
+        Welcome home, <span style={{ color: 'red' }}>{user.username}</span>
       </h3>
       <div className="row">
         <div className="col-md-5 mt-2">
@@ -87,20 +87,20 @@ function UserPage() {
                 </div>
               </div>
             ) : (
-              <div className="col overflow-auto" style={{height: '25em'}}>
-                {characters.map((character) => (
-                  <CharacterTile
-                    onClick={characterPageClick}
-                    id={character._id}
-                    key={character._id}
-                    name={character.name}
-                    class={character.class}
-                    race={character.race}
-                    level={character.level}
-                  />
-                ))}
-              </div>
-            )}
+                <div className="col overflow-auto" style={{ height: '25em' }}>
+                  {characters.map((character) => (
+                    <CharacterTile
+                      onClick={characterPageClick}
+                      id={character._id}
+                      key={character._id}
+                      name={character.name}
+                      class={character.class}
+                      race={character.race}
+                      level={character.level}
+                    />
+                  ))}
+                </div>
+              )}
           </div>
         </div>
         <div className="col-2"></div>
@@ -126,7 +126,7 @@ function UserPage() {
             </button>
           </div>
           <div className="row justify-content-center border">
-            <div className="col overflow-auto" style={{height: '25em'}}>
+            <div className="col overflow-auto" style={{ height: '25em' }}>
               {teams.length < 1 ? (
                 <div className="card">
                   <div className="card-body">
@@ -139,16 +139,16 @@ function UserPage() {
                   </div>
                 </div>
               ) : (
-                teams.map((team) => (
-                  <TeamTile
-                    onClick={teamPageClick}
-                    members={team.members}
-                    id={team._id}
-                    key={team._id}
-                    name={team.name}
-                  />
-                ))
-              )}
+                  teams.map((team) => (
+                    <TeamTile
+                      onClick={teamPageClick}
+                      members={team.members}
+                      id={team._id}
+                      key={team._id}
+                      name={team.name}
+                    />
+                  ))
+                )}
             </div>
           </div>
         </div>
