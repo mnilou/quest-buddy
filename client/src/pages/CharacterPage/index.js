@@ -238,9 +238,13 @@ function CharacterPage() {
   }, [characterData]);
 
   const deleteCharacter = () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this character?");
+    if (confirmDelete === true){
     API.deleteCharacter(user.id, id).then(() => {
       history.push('/user');
     });
+    }
+
   };
 
   return (
