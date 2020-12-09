@@ -1,4 +1,4 @@
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../util/authContext';
 import API from '../../util/API';
@@ -13,7 +13,7 @@ function UserPage() {
       outline: 'none',
     },
   };
-  const { id } = useParams();
+
   const history = useHistory();
   const { user } = useAuth();
 
@@ -39,13 +39,7 @@ function UserPage() {
     history.push('/character/' + id);
   };
 
-  const teamSearchClick = (event) => {
-    event.preventDefault();
-    history.push("/team_search");
-  };
-
   useEffect(() => {
-    // example API call
     API.getCharacters(user).then(results => {
       setCharacters(results.data.characters);
       setTeams(results.data.teams);
@@ -61,7 +55,7 @@ function UserPage() {
         Welcome home, <span style={{ color: 'red' }}>{user.username}</span>
       </h3>
       <div className="row">
-        <div className="col-md-5 mt-2">
+        <div className="col-md-5 col-sm-12 mt-2">
           <div className="row justify-content-center">
             <h4 className="my-1">My Characters</h4>
           </div>
@@ -104,7 +98,7 @@ function UserPage() {
           </div>
         </div>
         <div className="col-2"></div>
-        <div className="col-md-5 mt-2">
+        <div className="col-md-5 col-sm-12 mt-2">
           <div className="row justify-content-center">
             <h4 className="my-1 ml-1 text-center">My Teams</h4>
           </div>
