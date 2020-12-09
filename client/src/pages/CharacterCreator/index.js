@@ -20,7 +20,7 @@ function CharacterCreator() {
     wisdom: 10,
     charisma: 10,
     race: "Aarakocra",
-    class: "Artificer",
+    class: "Arificer",
     description: "",
     gear: [],
     tools: [],
