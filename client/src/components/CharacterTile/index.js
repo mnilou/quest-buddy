@@ -83,9 +83,9 @@ function CharacterTile(props) {
 
   return (
 
-    <div className="card" style={styles.container}>
+    <div key={props.id} className="card" style={styles.container}>
       <div className="row">
-        <div className="col-8" key={props.id}>
+        <div className="col-8" >
           <div className="card-body">
             <h5 className="card-title">{props.name}</h5>
             <p className="card-text">{props.race + " / " + props.class + " / Level: " + props.level}

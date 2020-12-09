@@ -108,7 +108,7 @@ function TeamPage() {
         <main className="container" style={styles.container}>
             <h3 className="mt-5 mb-4 text-center">{"Team: " + team.name}</h3>
             <div className="row">
-                <div className="col-md-5 col-sm mt-2 componentLeft border">
+                <div className="col-md-5 col-sm-12 mt-2 componentLeft border">
                     <div className="row justify-content-center mb-2">
                         <h4 className="my-3">Current Team Members</h4>
                     </div>
@@ -137,7 +137,7 @@ function TeamPage() {
                     </div>
                 </div>
                 <div className="col-2"></div>
-                <div className="col-md-5 col-sm mt-2 componentLeft border">
+                <div className="col-md-5 col-sm-12 mt-2 componentLeft border">
                     <div className="row justify-content-center mb-2">
                         <h4 className="my-3">Campaigns</h4>
                     </div>

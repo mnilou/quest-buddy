@@ -1,4 +1,5 @@
 import React from 'react';
+import Team from "../../assets/team.png"
 
 function TeamTile(props) {
   const styles = {
@@ -9,9 +10,17 @@ function TeamTile(props) {
       marginTop: '1rem',
       border: 'none',
     },
+    icon: {
+      width: '8rem',
+      position: 'relative',
+      top: '1rem',
+      right: '3rem'
+    }
   };
   return (
     <div key={props.id} className="card" style={styles.container}>
+      <div className="row">
+      <div className="col-8">
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
         <p className="card-text">Team Members: {props.members.length}</p>
@@ -27,6 +36,11 @@ function TeamTile(props) {
         >
           Go to Team
         </button>
+      </div>
+      </div>
+      <div className="col-4">
+          <img src ={Team} alt="test" style={styles.icon} />
+        </div>
       </div>
     </div>
   );
