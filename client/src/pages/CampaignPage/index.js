@@ -127,12 +127,12 @@ function CampaignPage() {
       <div className="col" style={{contentHeight: '50'}}>
         <Calendar campaignId={campaignId} sessionClick={sessionClick} />
       </div>
-      <div className="row mt-2 mb-6" style={{height: '15em'}}>
+      <div className="row mt-2 mb-6" style={{height: '15em', marginBottom: '20em'}}>
         <div className="col-md-6 overflow-auto border">
           <p className="mt-2"></p>
           {campaign.description}
         </div>
-        <div className="col-md-6 overflow-auto border" style={{marginBottom: '10em'}}>
+        <div className="col-md-6 overflow-auto border">
           <CharacterAdd
             campaignCharacters={campaignCharacters}
             userCharacters={userCharacters}
