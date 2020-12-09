@@ -164,7 +164,7 @@ function CharacterCreator() {
                         <label htmlfor="description">Description</label>
                         <textarea type="text" className="form-control" id="description" rows="5"></textarea>
                     </div>
-                    <button type="submit" className="btn btn-success">Create!</button>
+                    <button type="submit" className="btn btn-success" style={{marginBottom: '10em'}}>Create!</button>
                 </form>
             </div>
         </div>
