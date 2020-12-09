@@ -5,7 +5,7 @@ import redDice2 from '../../assets/red-dice-2.png';
 
 function Footer() {
     const footer = {
-        marginTop: '1rem',
+        marginTop: '100rem',
         padding: '1rem',
         backgroundColor: '#555',
         position: 'fixed',
