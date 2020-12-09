@@ -11,9 +11,10 @@ Tabletop gaming, including Dungeon and Dragons, is being rediscovered by current
 However, a glaring omission in the existing toolsets is the ability to both track your characters/sessions/campaigns and to schedule meet-ups.  All too often, teams have to use a second app, such as Facebook or Zoom, to track their meetups.  And there is no single record of what happened at each session.  This app simplifies the life of every adventurer and dungeon master by allowing them to download the app, make teams, schedule meetings directly, and keep a record of all past sessions.  No longer will players have to jump between multiple apps just to play the game and know when the next session will be and where.  
 
 ## Screenshots
-<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot.jpg"> 
-<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot-user.jpg"> 
-<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot-campaign.jpg"> 
+<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot.png"> 
+<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot-user.png"> 
+<img width="1389" alt="Screen Shot 2020-11-23 at 1 24 40 PM" src="client\public\screenshot-campaign.png"> 
+<img width="1389" alt="Screen Shot 2020-12-09 at 1 47 40 PM" src="client\public\screenshot-character.png">
 
 ## Table of contents
 
@@ -54,6 +55,11 @@ That's it, your app should be running on <http://localhost:3000>. The Express se
 
 As an avid Dungeons and Dragons player who often has multiple campaigns running at once, I want to have a place to schedule and organize my games, so that I can better run Dungeons and Dragons sessions with my friends. 
 
+To use the app, please sign in as a guest user with the following login credentials:
+```
+username: guest1
+password: password
+```
 ## Deployed Link (Heroku)
 
 >[Campaign Planner](https://campaign-planner-nat20.herokuapp.com/)
